@@ -35,7 +35,7 @@ exampleFunction1('Travis');
 exampleFunction2('Travis')
 
 export {
-  getRandomUser,
+  getUserData,
   calculateAvgStepGoal,
-  getUserData
+  getRandomUser
 }
