@@ -9,8 +9,11 @@ const exampleFunction2 = (person) => {
   console.log(`bye now ${person}`)
 }
 
+const displayUserInfo = (user) => {
+  const randomUser = getRandomUser();
+  displayUserInfo(randomUser);
+}
 
 export {
-  exampleFunction1,
-  exampleFunction2,
+  displayUserInfo
 }
