@@ -1,4 +1,8 @@
 // This is the JavaScript entry file - your code begins here
+const getUserData = (users, userId) => {
+  return users.find(user => user.id === userId);
+};
+
 // Do not delete or rename this file ********
 
 
@@ -17,3 +21,9 @@ import { exampleFunction1, exampleFunction2 } from './domUpdates';
 
 exampleFunction1('Travis');
 exampleFunction2('Travis')
+
+export {
+  getRandomUser,
+  calculateAvgStepGoal,
+  getUserData
+}
