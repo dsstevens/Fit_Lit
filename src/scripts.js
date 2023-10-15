@@ -3,6 +3,10 @@ const getUserData = (users, userId) => {
   return users.find(user => user.id === userId);
 };
 
+const calculateAvgStepGoal = users => {
+  const totalStepGoal = users.reduce((sum, { dailyStepGoal }) => sum + dailyStepGoal, 0); 
+  return totalStepGoal / users.length;
+};
 // Do not delete or rename this file ********
 
 
