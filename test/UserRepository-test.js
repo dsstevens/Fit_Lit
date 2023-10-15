@@ -47,6 +47,8 @@ describe("getUserData function", function () {
     };
   });
   it('should return a user from the user array', function() {
-    const user = getRandomUser()
+    const user = getRandomUser(userData.users);   
+    expect(user).to.be.an('object');
+    expect(user).to.have.property('id');
   });
 });

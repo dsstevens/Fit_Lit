@@ -8,7 +8,7 @@ const calculateAvgStepGoal = users => {
   return totalStepGoal / users.length;
 };
 
-const getRandomUser = () => {
+const getRandomUser = (users) => {
   const randomIndex = Math.floor(Math.random() * users.length);
   const randomUser = users[randomIndex];
   return randomUser;
