@@ -7,6 +7,14 @@ const calculateAvgStepGoal = users => {
   const totalStepGoal = users.reduce((sum, { dailyStepGoal }) => sum + dailyStepGoal, 0); 
   return totalStepGoal / users.length;
 };
+
+const getRandomUser = () => {
+  const randomIndex = Math.floor(Math.random() * users.length);
+  const randomUser = users[randomIndex];
+  return randomUser;
+}
+
+
 // Do not delete or rename this file ********
 
 
