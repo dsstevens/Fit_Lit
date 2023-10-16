@@ -4,8 +4,9 @@ import {
   calculateAvgStepGoal,
   getRandomUser,
   //functions to be tested, all of them
-} from "scripts.js";
-import userData from "src/data/users.js";
+} from "../src/scripts.js";
+
+import userData from "../src/data/users.js";
 
 describe("User Repository", () => {
   it("should run tests", function () {
