@@ -31,8 +31,8 @@ console.log("User Data:", userData);
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
 import { exampleFunction1, exampleFunction2 } from './domUpdates';
 
-exampleFunction1('Travis');
-exampleFunction2('Travis')
+// exampleFunction1('Travis');
+// exampleFunction2('Travis')
 
 export {
   getUserData,
