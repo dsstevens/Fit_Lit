@@ -8,7 +8,7 @@ const calculateAvgStepGoal = users => {
   return totalStepGoal / users.length;
 };
 
-const getRandomUser = () => {
+const getRandomUser = (users) => {
   const randomIndex = Math.floor(Math.random() * users.length);
   const randomUser = users[randomIndex];
   return randomUser;
@@ -35,7 +35,7 @@ exampleFunction1('Travis');
 exampleFunction2('Travis')
 
 export {
-  getRandomUser,
+  getUserData,
   calculateAvgStepGoal,
-  getUserData
+  getRandomUser
 }
