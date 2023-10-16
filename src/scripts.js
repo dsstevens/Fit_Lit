@@ -8,7 +8,7 @@ const calculateAvgStepGoal = users => {
   return totalStepGoal / users.length;
 };
 
-const getRandomUser = () => {
+const getRandomUser = (users) => {
   const randomIndex = Math.floor(Math.random() * users.length);
   const randomUser = users[randomIndex];
   return randomUser;
@@ -19,23 +19,23 @@ const getRandomUser = () => {
 
 
 // An example of how you tell webpack to use a CSS file
-import './css/styles.css';
+// import './css/styles.css';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png';
+// import './images/turing-logo.png';
 
 // An example of how you tell webpack to use a JS file
-import userData from './data/users';
-console.log("User Data:", userData);
+// import userData from './data/users';
+// console.log("User Data:", userData);
 
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
-import { exampleFunction1, exampleFunction2 } from './domUpdates';
+// import { exampleFunction1, exampleFunction2 } from './domUpdates';
 
-exampleFunction1('Travis');
-exampleFunction2('Travis')
+// exampleFunction1('Travis');
+// exampleFunction2('Travis')
 
 export {
-  getRandomUser,
+  getUserData,
   calculateAvgStepGoal,
-  getUserData
+  getRandomUser
 }
