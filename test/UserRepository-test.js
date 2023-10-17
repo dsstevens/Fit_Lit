@@ -61,8 +61,8 @@ describe("calculateAvgStepGoal function", function () {
   });
 });
 
-describe("calculateAvgStepGoal function", function () {
-  it('should return the average step goal of all users', function() {
+describe("getRandomUser function", function () {
+  it('should return users', function() {
     const avgStepGoal = calculateAvgStepGoal(userData.users);
     expect(avgStepGoal).to.equal(6780);
   });
