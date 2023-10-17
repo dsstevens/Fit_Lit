@@ -33,7 +33,7 @@ describe("getUserData function", function () {
           address: "623 Koelpin Skyway, Lake Luigichester MN 77576-1678",
           email: "Nicolette_Halvorson43@yahoo.com",
           strideLength: 4.5,
-          dailyStepGoal: 9000,
+          dailyStepGoal: 8000,
           friends: [13, 19, 3],
         },
         {id: 3,
@@ -47,9 +47,34 @@ describe("getUserData function", function () {
       ],
     };
   });
-  it('should return a user from the user array', function() {
+  it('should return a user from the array based on their ID', function() {
     const user = getRandomUser(userData.users);   
     expect(user).to.be.an('object');
     expect(user).to.have.property('id');
   });
 });
+
+describe("calculateAvgStepGoal function", function () {
+  it('should return the average step goal of all users', function() {
+    const avgStepGoal = calculateAvgStepGoal(userData.users);
+    expect(avgStepGoal).to.equal(6780);
+  });
+});
+
+describe("getRandomUser function", function () {
+  it('should return users', function() {
+    const avgStepGoal = calculateAvgStepGoal(userData.users);
+    expect(avgStepGoal).to.equal(6780);
+  });
+});
+// const getUserData = (users, userId) => {
+//   return users.find(user => user.id === userId);
+// };
+// const calculateAvgStepGoal = users => {
+//   const totalStepGoal = users.reduce((sum, { dailyStepGoal }) => sum + dailyStepGoal, 0); 
+//   return totalStepGoal / users.length;
+// };
+// const getRandomUser = (users) => {
+//   const randomIndex = Math.floor(Math.random() * users.length);
+//   const randomUser = users[randomIndex];
+//   return randomUser;

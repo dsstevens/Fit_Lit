@@ -1,4 +1,4 @@
-npm export default { hydrationData: [
+export default { hydrationData: [
   {
     "userID": 1,
     "date": "2023/03/24",
@@ -13,7 +13,7 @@ npm export default { hydrationData: [
     "userID": 3,
     "date": "2023/03/24",
     "numOunces": 95
-  },
+  }, 
   {
     "userID": 4,
     "date": "2023/03/24",
