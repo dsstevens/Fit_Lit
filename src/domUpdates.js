@@ -1,10 +1,10 @@
 window.addEventListener("load", function() {
-  getRandomUser()
-  getUserData()
+  getRandomUser(users)
+  getUserData(users, randomUser.id)
   calculateAvgStepGoal()
-  updateWelcomeMessage()
-  updateInfoCard()
-  compareStepGoals()
+  updateWelcomeMessage(randomUser.name)
+  updateInfoCard(randomUser)
+  compareStepGoals(randomUser, averageStepGoal)
 
 })
 
