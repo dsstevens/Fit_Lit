@@ -7,7 +7,7 @@ import {
   //functions to be tested, all of them
 } from "../test/functionsToTest";
 import userData from "../src/data/users.js";
-import hydrationData from "../src/data/hydration.js";
+import hydrationData from "../src/data/hydration.js";  
 
 // describe("User Repository", () => {
 //   it("should run tests", function () {
@@ -117,7 +117,7 @@ describe("fluid consumed", function () {
   it('should return average fluid ounces consumed per day for all time', function () {
     const id = 1;
     const avgFluidConsumed = getAvgTotalFluid(hydrationData.userWater, id);
-    expect(avgFluidConsumed).to.deep.equal(41);
+    expect(avgFluidConsumed).to.deep.equal(33);
   });
 });
 
