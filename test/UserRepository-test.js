@@ -7,6 +7,7 @@ import {
   //functions to be tested, all of them
 } from "../test/functionsToTest";
 import userData from "../src/data/users.js";
+import hydrationData from "../src/data/hydration.js";
 
 // describe("User Repository", () => {
 //   it("should run tests", function () {
