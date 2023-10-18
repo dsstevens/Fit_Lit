@@ -3,8 +3,10 @@ import {
   getUserData,
   calculateAvgStepGoal,
   getRandomUser,
-  getAvgTotalFluid
-  //functions to be tested, all of them
+  getAvgTotalFluid,
+  getDayFluids,
+  getWeeklyHydration
+  //all functions to be tested
 } from "../test/functionsToTest";
 import userData from "../src/data/users.js";
 import hydrationData from "../src/data/hydration.js";  
