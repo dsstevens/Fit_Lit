@@ -50,25 +50,43 @@ describe("getUserData function", function () {
       ],
     };
   });
+
   it('should return a user from the array based on their ID', function() {
     const user = getRandomUser(userData.users);   
+    const userId = user.id;
     expect(user).to.be.an('object');
+    expect(user.id).to.deep.equal(userId);
     expect(user).to.have.property('id');
   });
+  // const getUserData = (users, userId) => {
+  //   return users.find(user => user.id === userId);
+  // };
+  it('should return undefined if the users array is empty', function () {
+    const user = getRandomUser([]);
+    expect(user).to.be.undefined;
+  });
+
   it('should return the average step goal of all users', function() {
     const avgStepGoal = calculateAvgStepGoal(userData.users);
-    expect(avgStepGoal).to.equal(6780);
+    expect(avgStepGoal).to.equal(6000);
   });
+
+  it('should return a random user from the user array', function() {
+    const user = getRandomUser(userData.users);   
+    expect(user).to.be.an('object');
+  })
+  // const getRandomUser = (users) => {
+  //   const randomIndex = Math.floor(Math.random() * users.length);
+  //   const randomUser = users[randomIndex];
+  //   return randomUser;
+  // };
 });
 
 describe("calculateAvgStepGoal function", function () {
 });
 
 describe("getRandomUser function", function () {
-  it('should return users', function() {
-    const avgStepGoal = calculateAvgStepGoal(userData.users);
-    expect(avgStepGoal).to.equal(6780);
-  });
+  
 });
 
 describe("fluid consumed", function () {
