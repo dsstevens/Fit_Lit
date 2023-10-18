@@ -1,5 +1,132 @@
-body, html {
-  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+body,
+html {
+  background-image: linear-gradient(
+    to top,
+    #ff9a9e 0%,
+    #fecfef 99%,
+    #fecfef 100%
+  );
   background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100%;
+  margin: 5px;
+  margin-top: 10px;
+  padding: 11px;
+}
+
+.header {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  height: 90px;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.main-title {
+  font-size: 2em;
+}
+
+.img {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 500px;
+  height: 115px;
+  border-radius: 20px;
+  position: relative;
+  float: left;
+  margin-top: 44px;
+}
+
+.welcome {
+  position: relative;
+  top: -150px;
+  float: right;
+  width: 500px;
+  padding: 10px;
+  height: 130px;
+  border-radius: 20px;
+}
+
+.welcome-banner {
+  position: relative;
+  background-color: #f9f9f9;
+  padding: 10px;
+  width: 500px;
+  border-radius: 20px;
+}
+
+.calendar-nav {
+  position: relative;
+  top: -150px;
+  float: right;
+  width: 500px;
+  padding: 10px;
+  height: 130px;
+  border-radius: 20px;
+}
+
+.sleep-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 500px;
+  border-radius: 20px;
+  height: 400px;
+  margin-top: 10px;
+}
+
+.activity-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 500px;
+  height: 365px;
+  border-radius: 20px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: -440px;
+  margin-right: 290px;
+}
+
+.user-info-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 240px;
+  height: 200px;
+  border-radius: 20px;
+  position: relative;
+  float: right;
+  margin-top: -404px;
+}
+
+.hydration-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 240px;
+  height: 200px;
+  border-radius: 20px;
+  position: relative;
+  float: right;
+  margin-top: -155px;
+}
+
+.step-goals {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 500px;
+  height: 150px;
+  border-radius: 20px;
+  position: relative;
+  float: right;
+  margin-top: 9px;
+  margin-right: 10px;
+}
+
+h2,
+h3 {
+  color: #333;
+  margin: 10px 0;
 }
