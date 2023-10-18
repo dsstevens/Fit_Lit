@@ -8,8 +8,8 @@ import {
   getWeeklyHydration
   //all functions to be tested
 } from "../test/functionsToTest";
-import userData from "../src/data/users.js";
-import hydrationData from "../src/data/hydration.js";  
+// import userData from "../src/data/users.js";
+// import hydrationData from "../src/data/hydration.js";  
 
 // describe("User Repository", () => {
 //   it("should run tests", function () {
@@ -55,13 +55,13 @@ describe("getUserData function", function () {
     expect(user).to.be.an('object');
     expect(user).to.have.property('id');
   });
-});
-
-describe("calculateAvgStepGoal function", function () {
   it('should return the average step goal of all users', function() {
     const avgStepGoal = calculateAvgStepGoal(userData.users);
     expect(avgStepGoal).to.equal(6780);
   });
+});
+
+describe("calculateAvgStepGoal function", function () {
 });
 
 describe("getRandomUser function", function () {
