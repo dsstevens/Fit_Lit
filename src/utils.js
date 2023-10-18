@@ -26,6 +26,9 @@ const getDayFluids = (data, id, date) => {
 // console.log(getDayFluids(hydrationData, 1, "2023/03/24" )
 
 const getWeeklyHydration = (hydrationData, userId) => {
+  if (!hydrationData || !userId) {
+    return undefined
+  }
   const userHydrationData = hydrationData.filter(data => data.userID === userId);
   const weeklyOunces = userHydrationData.map(data => ({
     date: data.date,
