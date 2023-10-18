@@ -68,6 +68,11 @@ describe("getUserData function", function () {
     expect(avgStepGoal).to.equal(6000);
   });
 
+  it('should return undefined if the users array is empty', function () {
+    const user = getRandomUser([]);
+    expect(user).to.be.undefined;
+  });
+
   it('should return a random user from the user array', function() {
     const user = getRandomUser(userData.users);   
     const randomIndex = Math.floor(Math.random() * users.length);
