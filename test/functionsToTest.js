@@ -15,8 +15,19 @@ const getRandomUser = (users) => {
   return randomUser;
 }
 
+const getAvgTotalFluid = (data, id) => {
+  const hydrationEntries = data.filter((entry) => entry.userID === id)
+  console.log(hydrationEntries.length)
+  const hydrationAvg = hydrationEntries.reduce((acc, user) => {
+    return (acc += user.numOunces)
+  }, 0)
+  return Math.round(hydrationAvg / hydrationEntries.length)
+}
+console.log(getAvgTotalFluid(hydrationData, 1))
+
 export {
   getUserData,
   calculateAvgStepGoal,
-  getRandomUser
+  getRandomUser,
+  getAvgTotalFluid
 }

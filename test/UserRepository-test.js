@@ -3,6 +3,7 @@ import {
   getUserData,
   calculateAvgStepGoal,
   getRandomUser,
+  getAvgTotalFluid
   //functions to be tested, all of them
 } from "../test/functionsToTest";
 import userData from "../src/data/users.js";
@@ -27,7 +28,7 @@ describe("getUserData function", function () {
           dailyStepGoal: 7000,
           friends: [5, 43, 46, 11],
         },
-        {id: 2,
+        { id: 2,
           name: "Tyreek VonRueden",
           address: "623 Koelpin Skyway, Lake Luigichester MN 77576-1678",
           email: "Nicolette_Halvorson43@yahoo.com",
@@ -35,7 +36,7 @@ describe("getUserData function", function () {
           dailyStepGoal: 8000,
           friends: [13, 19, 3],
         },
-        {id: 3,
+        { id: 3,
           name: "Colt Rohan",
           address: "48010 Balistreri Harbor, Cleobury IN 43317",
           email: "Wilford.Barton@gmail.com",
@@ -66,14 +67,75 @@ describe("getRandomUser function", function () {
     expect(avgStepGoal).to.equal(6780);
   });
 });
-// const getUserData = (users, userId) => {
-//   return users.find(user => user.id === userId);
-// };
-// const calculateAvgStepGoal = users => {
-//   const totalStepGoal = users.reduce((sum, { dailyStepGoal }) => sum + dailyStepGoal, 0); 
-//   return totalStepGoal / users.length;
-// };
-// const getRandomUser = (users) => {
-//   const randomIndex = Math.floor(Math.random() * users.length);
-//   const randomUser = users[randomIndex];
-//   return randomUser;
+
+describe("fluid consumed", function () {
+  let hydrationData;
+
+  beforeEach(function () {
+    hydrationData = {
+      userWater: [
+        { "userID": 1,
+          "date": "2023/03/24",
+          "numOunces": 28
+        },
+        { "userID": 2,
+          "date": "2023/03/24",
+          "numOunces": 35
+        },
+        { "userID": 3,
+          "date": "2023/03/24",
+          "numOunces": 95
+        }, 
+        { "userID": 1,
+          "date": "2023/03/25",
+          "numOunces": 50
+        },
+        { "userID": 2,
+          "date": "2023/03/25",
+          "numOunces": 92
+        },
+        { "userID": 3,
+          "date": "2023/03/25",
+          "numOunces": 59
+        },
+        { "userID": 1,
+          "date": "2023/03/26",
+          "numOunces": 21
+        },
+        { "userID": 2,
+          "date": "2023/03/26",
+          "numOunces": 88
+        },
+        { "userID": 3,
+          "date": "2023/03/26",
+          "numOunces": 63
+        },
+      ],
+    };
+  });
+  it('should return average fluid ounces consumed per day for all time', function () {
+    const id = 1;
+    const avgFluidConsumed = getAvgTotalFluid(hydrationData.userWater, id);
+    expect(avgFluidConsumed).to.deep.equal(41);
+  });
+});
+
+//input: array of avg daily water ounces per user id
+//output: number that's an avg
+//how?
+//take user.id, filter the array by the user id and turn into a new array
+//over the returned array, average all the numOunces / length of the array
+// const getAvgTotalFluid = (data, id) => {
+//   const hydrationEntries = data.filter((entry) => entry.userID === id)
+//   console.log(hydrationEntries.length)
+//   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
+//     return (acc += user.numOunces)
+//   }, 0)
+//   return Math.round(hydrationAvg / hydrationEntries.length)
+// }
+// console.log(getAvgTotalFluid(hydrationData, 1))
+
+// Return the user’s average fluid ounces consumed per day for all time
+// Return the user’s fluid ounces they consumed for a specific day
+// Return how many fluid ounces of water a user consumed each day over the course of a week (7 days)
+// All functions requiring a specific user’s data should be identified by their userID. Also note that all functions returning data for a specific day should be identified by a date.
