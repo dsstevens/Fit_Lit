@@ -108,21 +108,13 @@ describe("fluid consumed", function () {
           "date": "2023/03/24",
           "numOunces": 28
         },
-        { "userID": 2,
-          "date": "2023/03/24",
-          "numOunces": 35
-        },
         { "userID": 3,
           "date": "2023/03/24",
           "numOunces": 95
-        }, 
+        },
         { "userID": 1,
           "date": "2023/03/25",
           "numOunces": 50
-        },
-        { "userID": 2,
-          "date": "2023/03/25",
-          "numOunces": 92
         },
         { "userID": 3,
           "date": "2023/03/25",
@@ -132,13 +124,41 @@ describe("fluid consumed", function () {
           "date": "2023/03/26",
           "numOunces": 21
         },
+        { "userID": 3,
+          "date": "2023/03/26",
+          "numOunces": 63
+        },
+        { "userID": 2,
+          "date": "2023/03/24",
+          "numOunces": 35
+        },
+        { "userID": 2,
+          "date": "2023/03/25",
+          "numOunces": 92
+        },
         { "userID": 2,
           "date": "2023/03/26",
           "numOunces": 88
         },
-        { "userID": 3,
-          "date": "2023/03/26",
-          "numOunces": 63
+        {
+          "userID": 2,
+          "date": "2023/03/27",
+          "numOunces": 68
+        },
+        {
+          "userID": 2,
+          "date": "2023/03/28",
+          "numOunces": 50
+        },
+        {
+          "userID": 2,
+          "date": "2023/03/29",
+          "numOunces": 57
+        },
+        {
+          "userID": 2,
+          "date": "2023/03/30",
+          "numOunces": 28
         },
       ],
     };
@@ -155,6 +175,19 @@ describe("fluid consumed", function () {
     const id = 3;
     const specificDayFluid = getDayFluids(hydrationData.userWater, id, date);
     expect(specificDayFluid).to.equal(95);
+  });
+
+  it('should return how many fluid ounces of water a user consumed each day for a week', function () {
+    const id = 2;
+    const dailyOz = getWeeklyHydration(hydrationData.userWater, id);
+    expect(dailyOz).to.deep.equal([
+    { date: "2023/03/24", ounces: 35 },
+    { date: "2023/03/25", ounces: 92 },
+    { date: "2023/03/26", ounces: 88 },
+    { date: "2023/03/27", ounces: 68 },
+    { date: "2023/03/28", ounces: 50 },
+    { date: "2023/03/29", ounces: 57 },
+    { date: "2023/03/30", ounces: 28 }]);
   });
 
 });
