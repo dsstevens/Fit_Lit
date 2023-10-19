@@ -79,19 +79,19 @@ describe("getUserData function", function () {
     const randomIndex = Math.floor(Math.random() * users.length);
     const randomUser = users[randomIndex];
     expect(user).to.be.an('object');
-  })
+  });
   // const getRandomUser = (users) => {
   //   const randomIndex = Math.floor(Math.random() * users.length);
   //   const randomUser = users[randomIndex];
   //   return randomUser;
   // };
-  it('should return a random user from the user array', function() {
+  it('should return undefined if the users array is empty', function() {
     const users = userData.users;
-    const user = getRandomUser(userData.users);   
-    const randomIndex = Math.floor(Math.random() * users.length);
-    const randomUser = users[randomIndex];
-    expect(user).to.be.an('object');
-})
+    const user = getRandomUser([]);   
+    expect(user).to.be.undefined;
+  });
+});
+
 describe("calculateAvgStepGoal function", function () {
 });
 
@@ -143,6 +143,7 @@ describe("fluid consumed", function () {
       ],
     };
   });
+  
   it('should return average fluid ounces consumed per day for all time', function () {
     const id = 1;
     const avgFluidConsumed = getAvgTotalFluid(hydrationData.userWater, id);
@@ -150,22 +151,22 @@ describe("fluid consumed", function () {
   });
 });
 
-//input: array of avg daily water ounces per user id
-//output: number that's an avg
-//how?
-//take user.id, filter the array by the user id and turn into a new array
-//over the returned array, average all the numOunces / length of the array
-// const getAvgTotalFluid = (data, id) => {
-//   const hydrationEntries = data.filter((entry) => entry.userID === id)
-//   console.log(hydrationEntries.length)
-//   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
-//     return (acc += user.numOunces)
-//   }, 0)
-//   return Math.round(hydrationAvg / hydrationEntries.length)
-// }
-// console.log(getAvgTotalFluid(hydrationData, 1))
+// //input: array of avg daily water ounces per user id
+// //output: number that's an avg
+// //how?
+// //take user.id, filter the array by the user id and turn into a new array
+// //over the returned array, average all the numOunces / length of the array
+// // const getAvgTotalFluid = (data, id) => {
+// //   const hydrationEntries = data.filter((entry) => entry.userID === id)
+// //   console.log(hydrationEntries.length)
+// //   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
+// //     return (acc += user.numOunces)
+// //   }, 0)
+// //   return Math.round(hydrationAvg / hydrationEntries.length)
+// // }
+// // console.log(getAvgTotalFluid(hydrationData, 1))
 
-// Return the user’s average fluid ounces consumed per day for all time
-// Return the user’s fluid ounces they consumed for a specific day
-// Return how many fluid ounces of water a user consumed each day over the course of a week (7 days)
-// All functions requiring a specific user’s data should be identified by their userID. Also note that all functions returning data for a specific day should be identified by a date.
+// // Return the user’s average fluid ounces consumed per day for all time
+// // Return the user’s fluid ounces they consumed for a specific day
+// // Return how many fluid ounces of water a user consumed each day over the course of a week (7 days)
+// // All functions requiring a specific user’s data should be identified by their userID. Also note that all functions returning data for a specific day should be identified by a date.
