@@ -52,10 +52,20 @@ describe("getUserData function", function () {
   });
 
   it('should return a user from the array based on their ID', function() {
-    const user = getRandomUser(userData.users);   
-    const userId = user.id;
+    const users = userData.users;
+    const userId = 1;
+    const user = users.find(user => user.id === 1);
     expect(user.id).to.deep.equal(userId);
     expect(user).to.have.property('id');
+  });
+
+  // const getUserData = (users, userId) => {
+  //   return users.find(user => user.id === userId);
+  // };
+
+  it('should return undefined when user id does not exist', function () {
+    const user = getUserData(userData.users, 70);
+    expect(user).to.be.undefined;
   });
 
   it('should return undefined if the users array is empty', function () {
