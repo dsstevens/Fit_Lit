@@ -1,14 +1,14 @@
 import { users } from "./data/users";
 import { getRandomUser, calculateAvgStepGoal, getUserData } from "./scripts";
 
-window.addEventListener("load", function () {
-  getRandomUser(users);
-  getUserData(users, randomUser.id);
-  calculateAvgStepGoal();
-  updateWelcomeMessage(randomUser.name);
-  updateInfoCard(randomUser);
-  compareStepGoals(randomUser, averageStepGoal);
-});
+const loadCards = (userData) => {
+  window.addEventListener("load", (event) => {
+    const randomUser = getRandomUser(userData.users);
+    updateInfoCard(randomUser);
+    updateWelcomeMessage(randomUser.name);
+    compareStepGoals(randomUser.dailyStepGoal);
+  });
+};
 
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
@@ -39,4 +39,4 @@ const compareStepGoals = (user, averageStepGoal) => {
   }
 };
 
-export { updateInfoCard, updateWelcomeMessage, compareStepGoals };
+export { loadCards, updateWelcomeMessage, compareStepGoals };
