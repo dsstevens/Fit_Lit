@@ -22,7 +22,6 @@ const getAvgTotalFluid = (data, id) => {
     return undefined
   }
   const hydrationEntries = data.filter((entry) => entry.userID === id)
-  console.log(hydrationEntries.length)
   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
     return (acc += user.numOunces)
   }, 0)

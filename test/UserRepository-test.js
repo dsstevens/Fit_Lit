@@ -149,6 +149,14 @@ describe("fluid consumed", function () {
     const avgFluidConsumed = getAvgTotalFluid(hydrationData.userWater, id);
     expect(avgFluidConsumed).to.deep.equal(33);
   });
+
+  it("should return a user's fluid ounces consumed on a specific day", function () {
+    const date = "2023/03/24";
+    const id = 3;
+    const specificDayFluid = getDayFluids(hydrationData.userWater, id, date);
+    expect(specificDayFluid).to.equal(95);
+  });
+
 });
 
 // //input: array of avg daily water ounces per user id
