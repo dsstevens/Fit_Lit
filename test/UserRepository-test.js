@@ -68,12 +68,13 @@ describe("getUserData function", function () {
     expect(avgStepGoal).to.equal(6000);
   });
 
-  it('should return undefined if the users array is empty', function () {
-    const user = getRandomUser([]);
-    expect(user).to.be.undefined;
+  it('should return NaN if the users array is empty', function () {
+    const avgStepGoal = calculateAvgStepGoal([]);
+    expect(avgStepGoal).to.be.NaN;
   });
 
   it('should return a random user from the user array', function() {
+    const users = userData.users;
     const user = getRandomUser(userData.users);   
     const randomIndex = Math.floor(Math.random() * users.length);
     const randomUser = users[randomIndex];
@@ -84,8 +85,13 @@ describe("getUserData function", function () {
   //   const randomUser = users[randomIndex];
   //   return randomUser;
   // };
-});
-
+  it('should return a random user from the user array', function() {
+    const users = userData.users;
+    const user = getRandomUser(userData.users);   
+    const randomIndex = Math.floor(Math.random() * users.length);
+    const randomUser = users[randomIndex];
+    expect(user).to.be.an('object');
+})
 describe("calculateAvgStepGoal function", function () {
 });
 
