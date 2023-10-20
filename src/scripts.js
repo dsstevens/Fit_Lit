@@ -17,6 +17,17 @@ const getRandomUser = (users) => {
   return randomUser;
 };
 
+//place these vars inside of the promiseAll inside of the window event listener
+//window event listener lives in the domUpdates file, possible to have 2? condense in 1?
+//refactor the eventlistener to have loadcards inside AND the promiseall
+//move the eventlistener here
+//babysteps
+
+activityAPICall = fetchAPIcall(activity)
+usersAPICall = fetchAPIcall(users)
+sleepAPICall = fetchAPIcall(sleep)
+hydrationAPICall = fetchAPIcall(hydration)
+
 // Do not delete or rename this file ********
 
 // An example of how you tell webpack to use a CSS file
@@ -32,6 +43,7 @@ import userData from "./data/users";
 
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
 import { loadCards } from "./domUpdates";
+import { fetchAPIcall } from "./apiCalls";
 
 loadCards(userData);
 
