@@ -1,27 +1,52 @@
 // IMPORTS
 import { fetchAPIcall } from './apiCalls'
 import { updateInfoCard, updateWelcomeMessage, compareStepGoals } from './domUpdates'
-// after making sure that the user data is being imported from the api, delete the users import
+// after making sure that the user data is being imported from the api, delete the users import and reorient the users arg for several fns
 import { users } from "./data/users";
+
+let activityData = []
+let userData = []
+let sleepData = []
+let hydrationData = []
 // EVENTLISTENERS
 window.addEventListener("load", function () {
-  getRandomUser(users);
-  getUserData(users, randomUser.id);
+  // console.log("anystring")
+  
+  Promise.all([
+    fetchAPIcall('activity'),
+    fetchAPIcall('users'),
+    fetchAPIcall('sleep'),
+    fetchAPIcall('hydration')
+  ])
+  .then((activityData, userData, sleepData, hydrationData) => {
+  activityData = activityData
+  userData = userData
+  sleepData = sleepData
+  hydrationData = hydrationData
+
+})
+console.log("response user data", userData)
+    
+  getRandomUser(userData);
+  getUserData(userData, randomUser.id);
   calculateAvgStepGoal();
   updateWelcomeMessage(randomUser.name);
   updateInfoCard(randomUser);
   compareStepGoals(randomUser, averageStepGoal);
 
 });
+// .then(data => {
+//   // Assign data to global variables
+//   customerData = data[0].customers;
+//   bookingsData = data[1].bookings;
+//   roomData = data[2].rooms;
+// })
 //window event listener, possible to have 2? 
 //refactor the eventlistener to have the promiseall
 //test with babysteps that these are working before moving the calls into the window event listener
-
+// how to use closure to bring the response from the closure function outside to the higher order function?  
 //place these vars inside of the promiseAll inside of the window event listener
-activityAPICall = fetchAPIcall('activity')
-usersAPICall = fetchAPIcall('users')
-sleepAPICall = fetchAPIcall('sleep')
-hydrationAPICall = fetchAPIcall('hydration')
+
 
 const getUserData = (users, userId) => {
   return users.find((user) => user.id === userId);
