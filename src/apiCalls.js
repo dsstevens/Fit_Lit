@@ -1,6 +1,6 @@
 // Your fetch requests will live here!
 const fetchAPIcall = (data) => {
-  fetch(`"https://fitlit-api.herokuapp.com/api/v1/${data}"`)
+  fetch(`https://fitlit-api.herokuapp.com/api/v1/${data}`)
   .then((response) => {
     if(!response.ok) {
       throw new Error("Error");
@@ -17,3 +17,6 @@ const fetchAPIcall = (data) => {
 
 console.log('I will be a fetch request!')
 
+module.exports = {
+  fetchAPIcall
+}
