@@ -1,6 +1,4 @@
-import { users } from "./data/users";
-import { getRandomUser, calculateAvgStepGoal, getUserData } from "./scripts";
-
+//DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
   infoCard.innerHTML = `
