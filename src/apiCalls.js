@@ -5,12 +5,12 @@ const fetchAPIcall = (data) => {
     if(!response.ok) {
       throw new Error("Error");
     } 
-    return response
+    return response.json()
     // console.log(response.json())
   })
-  .then((data) => {
-    return data.json();
-  })
+  // .then((data) => {
+  //   return data.json();
+  // })
   .catch((error) => {
     console.error("error", error);
   })
