@@ -18,6 +18,7 @@ const updateWelcomeMessage = (userName) => {
 const compareStepGoals = (user, averageStepGoal) => {
   const userStepGoal = user.dailyStepGoal;
   const comparisonElement = document.querySelector(".step-goal-comparison");
+  console.log(comparisonElement)
 
   if (userStepGoal > averageStepGoal) {
     comparisonElement.textContent = `Your step goal is above average!`;

@@ -4,11 +4,28 @@ import { updateInfoCard, updateWelcomeMessage, compareStepGoals } from './domUpd
 // after making sure that the user data is being imported from the api, delete the users import and reorient the users arg for several fns
 import { users } from "./data/users";
 
-// let activityData = []
-let userData = []
-// let sleepData = []
-// let hydrationData = []
-// EVENTLISTENERS
+// // let activityData = []
+// let userData = []
+// // let sleepData = []
+// // let hydrationData = []
+
+const updateDom = (allData) => {
+  const activityData = allData[0].activityData
+  const usersData = allData[1].users
+  const sleepData = allData[2].sleepData
+  const hydrationData = allData[3].hydrationData
+
+  const randomUser = getRandomUser(usersData);
+  const randomUserData = getUserData(usersData, randomUser.id);
+  const avgStepGoal = calculateAvgStepGoal(usersData);
+  updateWelcomeMessage(randomUser.name);
+  updateInfoCard(randomUser);
+  compareStepGoals(randomUser, avgStepGoal);
+  console.log(randomUser, randomUserData, avgStepGoal)
+  
+}
+
+// // EVENTLISTENERS
 window.addEventListener("load", function () {
   // console.log("anystring")
   
@@ -19,17 +36,10 @@ window.addEventListener("load", function () {
     fetchAPIcall('hydration')
   ])
     .then((allData) => {
-      console.log(allData)
+      updateDom(allData)
+      // console.log(allData)
+      
     })
-  // .then((activityData, userData, sleepData, hydrationData) => {
-  //   console.log(activityData, userData, sleepData, hydrationData)
-  // activityData = activityData
-  // userData = userData
-  // sleepData = sleepData
-  // hydrationData = hydrationData
-
-// })
-// console.log("response user data", userData)
     
   // getRandomUser(userData);
   // getUserData(userData, randomUser.id);
