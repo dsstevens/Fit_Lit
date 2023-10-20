@@ -58,6 +58,11 @@ describe("getUserData function", function () {
     expect(user).to.have.property('id');
   });
 
+  it('should return undefined when user id does not exist', function () {
+    const user = getUserData(userData.users, 70);
+    expect(user).to.be.undefined;
+  });
+
   it('should return undefined if the users array is empty', function () {
     const user = getRandomUser([]);
     expect(user).to.be.undefined;
@@ -80,11 +85,7 @@ describe("getUserData function", function () {
     const randomUser = users[randomIndex];
     expect(user).to.be.an('object');
   });
-  // const getRandomUser = (users) => {
-  //   const randomIndex = Math.floor(Math.random() * users.length);
-  //   const randomUser = users[randomIndex];
-  //   return randomUser;
-  // };
+
   it('should return undefined if the users array is empty', function() {
     const users = userData.users;
     const user = getRandomUser([]);   
