@@ -70,5 +70,4 @@ hydrationData = {
   ],
 };
 
-https://fitlit-api.herokuapp.com/api/v1/sleep
 
