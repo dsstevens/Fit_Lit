@@ -23,10 +23,10 @@ const getRandomUser = (users) => {
 //move the eventlistener here
 //babysteps
 
-sleepAPICall = fetchAPIcall(activity)
-sleepAPICall = fetchAPIcall(users)
+activityAPICall = fetchAPIcall(activity)
+usersAPICall = fetchAPIcall(users)
 sleepAPICall = fetchAPIcall(sleep)
-sleepAPICall = fetchAPIcall(hydration)
+hydrationAPICall = fetchAPIcall(hydration)
 
 // Do not delete or rename this file ********
 
