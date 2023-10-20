@@ -1,4 +1,24 @@
-// This is the JavaScript entry file - your code begins her
+// This is the JavaScript entry file - your code begins here
+
+window.addEventListener("load", function () {
+  getRandomUser(users);
+  getUserData(users, randomUser.id);
+  calculateAvgStepGoal();
+  updateWelcomeMessage(randomUser.name);
+  updateInfoCard(randomUser);
+  compareStepGoals(randomUser, averageStepGoal);
+});
+//place these vars inside of the promiseAll inside of the window event listener
+//window event listener lives in the domUpdates file, possible to have 2? condense in 1?
+//refactor the eventlistener to have loadcards inside AND the promiseall
+//move the eventlistener here
+//babysteps
+
+activityAPICall = fetchAPIcall('activity')
+usersAPICall = fetchAPIcall('users')
+sleepAPICall = fetchAPIcall('sleep')
+hydrationAPICall = fetchAPIcall('hydration')
+
 const getUserData = (users, userId) => {
   return users.find((user) => user.id === userId);
 };
@@ -17,16 +37,6 @@ const getRandomUser = (users) => {
   return randomUser;
 };
 
-//place these vars inside of the promiseAll inside of the window event listener
-//window event listener lives in the domUpdates file, possible to have 2? condense in 1?
-//refactor the eventlistener to have loadcards inside AND the promiseall
-//move the eventlistener here
-//babysteps
-
-activityAPICall = fetchAPIcall(activity)
-usersAPICall = fetchAPIcall(users)
-sleepAPICall = fetchAPIcall(sleep)
-hydrationAPICall = fetchAPIcall(hydration)
 
 // Do not delete or rename this file ********
 
