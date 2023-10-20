@@ -13,7 +13,7 @@ const fetchAPIcall = (data) => {
   })
   .catch((error) => {
     console.error("error", error);
-  });
+  })
 }
 
 console.log('I will be a fetch request!')
