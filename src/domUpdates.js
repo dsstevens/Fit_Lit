@@ -45,4 +45,16 @@ const updateCompareStepGoals = (randomUser, avgStepGoal) => {
   }
 };
 
-export { updateInfoCard, updateWelcomeMessage, updateStepGoalCard };
+const updateHydrationData = (avgFluidIntake, dailyFluidIntake, weeklyHydration) => {
+  const avgFluidElement = document.querySelector(".water-daily-avg");
+  const dailyFluidElement = document.querySelector(".water-daily-view");
+  const weeklyFluidElement = document.querySelector(".water-weekly-view");
+
+  avgFluidElement.textContent = `Average Daily Intake: ${avgFluidIntake} ounces`;
+  dailyFluidElement.textContent = `Today's Intake: ${dailyFluidIntake} ounces`;
+
+  const weeklyFluidStr = weeklyHydration.map(entry => `${entry.date}: ${entry.ounces} ounces`).join('<br>');
+  weeklyFluidElement.innerHTML = `<b>Weekly Intake:</b><br>${weeklyFluidStr}`;
+};
+
+export { updateInfoCard, updateWelcomeMessage, updateStepGoalCard, updateHydrationData };
