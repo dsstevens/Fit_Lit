@@ -1,3 +1,4 @@
+export default {
 userData = {
   users: [
     { id: 1,
@@ -25,4 +26,5 @@ userData = {
       friends: [31, 16, 15, 7],
     }
   ],
+}
 }

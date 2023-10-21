@@ -1,3 +1,4 @@
+export default {
 hydrationData = {
   userWater: [
     { "userID": 1,
@@ -37,4 +38,5 @@ hydrationData = {
       "numOunces": 63
     }
   ],
+}
 }

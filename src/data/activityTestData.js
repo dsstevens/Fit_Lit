@@ -1,9 +1,4 @@
-// it looks like the easiest way to do the export statements without a lot of fuss is going to be to put each in its own file
 export default {
-
-
-
-
 activityData = {
   userActivity: [
     {userID: 1, date: '2023/03/24', numSteps: 7362, minutesActive: 261, flightsOfStairs: 26},
@@ -32,4 +27,4 @@ activityData = {
     {userID: 3, date: '2023/03/31', numSteps: 2837, minutesActive: 85, flightsOfStairs: 29}
   ],
 }
-};
+}

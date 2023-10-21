@@ -1,3 +1,4 @@
+export default {
 sleepData = {
   userSleep: [
     {userID: 1, date: '2023/03/24', hoursSlept: 9.6, sleepQuality: 4.3},
@@ -25,4 +26,5 @@ sleepData = {
     {userID: 2, date: '2023/03/31', hoursSlept: 9.3, sleepQuality: 2.8},
     {userID: 3, date: '2023/03/31', hoursSlept: 9.7, sleepQuality: 2.5}
   ],
+}
 }
