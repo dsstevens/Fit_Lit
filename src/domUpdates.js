@@ -1,15 +1,4 @@
-import { users } from "./data/users";
-import { getRandomUser, calculateAvgStepGoal, getUserData } from "./scripts";
-
-const loadCards = (userData) => {
-  window.addEventListener("load", (event) => {
-    const randomUser = getRandomUser(userData.users);
-    updateInfoCard(randomUser);
-    updateWelcomeMessage(randomUser.name);
-    compareStepGoals(randomUser.dailyStepGoal);
-  });
-};
-
+//DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
   infoCard.innerHTML = `
@@ -39,4 +28,4 @@ const compareStepGoals = (user, averageStepGoal) => {
   }
 };
 
-export { loadCards, updateWelcomeMessage, compareStepGoals };
+export { updateInfoCard, updateWelcomeMessage, compareStepGoals };
