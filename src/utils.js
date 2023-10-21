@@ -74,6 +74,16 @@ const getHoursSleptForDay = (sleepData, userId, date) => {
   return userSleepData ? userSleepData.hoursSlept : undefined;
 };
 
+const getSleepQualityForDay = (sleepData, userId, date) => {
+  if (!sleepData || !userId || !date) {
+    return undefined;
+  }
+  const userSleepData = sleepData.find(
+    (data) => data.userID === userId && data.date === date
+  );
+  return userSleepData ? userSleepData.sleepQuality : undefined;
+};
+
 export {
   getAvgTotalFluid,
   getDayFluids,
@@ -81,4 +91,5 @@ export {
   getAvgDailySleep,
   getAvgSleepQuality,
   getHoursSleptForDay,
+  getSleepQualityForDay,
 };
