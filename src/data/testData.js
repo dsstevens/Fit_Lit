@@ -1,5 +1,5 @@
-
-
+// it looks like the easiest way to do the export statements without a lot of fuss is going to be to put each in its own file
+export default {
 userData = {
   users: [
     { id: 1,
@@ -27,8 +27,7 @@ userData = {
       friends: [31, 16, 15, 7],
     }
   ],
-};
-
+},
 
 hydrationData = {
   userWater: [
@@ -69,7 +68,7 @@ hydrationData = {
       "numOunces": 63
     }
   ],
-};
+},
 
 sleepData = {
   userSleep: [
@@ -98,7 +97,7 @@ sleepData = {
     {userID: 2, date: '2023/03/31', hoursSlept: 9.3, sleepQuality: 2.8},
     {userID: 3, date: '2023/03/31', hoursSlept: 9.7, sleepQuality: 2.5}
   ],
-};
+},
 
 activityData = {
   userActivity: [
@@ -127,4 +126,5 @@ activityData = {
     {userID: 2, date: '2023/03/31', numSteps: 14985, minutesActive: 207, flightsOfStairs: 44},
     {userID: 3, date: '2023/03/31', numSteps: 2837, minutesActive: 85, flightsOfStairs: 29}
   ],
+}
 };

@@ -11,6 +11,11 @@ import {
 // import userData from "../src/data/users.js";
 // import hydrationData from "../src/data/hydration.js";  
 
+import userData from "../src/data/testData";
+import hydrationData from "../src/data/testData";
+import sleepData from "../src/data/testData";
+import activityData from "../src/data/testData";
+
 // describe("User Repository", () => {
 //   it("should run tests", function () {
 //     expect(true).to.be(true);
