@@ -27,42 +27,29 @@ window.addEventListener("load", function () {
       
     getRandomUser(userData);
     getUserData(userData, randomUser.id);
-    calculateAvgStepGoal();
+    calculateAvgStepGoal(userData);
     updateWelcomeMessage(randomUser.name);
     updateInfoCard(randomUser);
     compareStepGoals(randomUser, averageStepGoal);
 
 })
-
 });
-// .then(data => {
-//   // Assign data to global variables
-//   customerData = data[0].customers;
-//   bookingsData = data[1].bookings;
-//   roomData = data[2].rooms;
-// })
-//window event listener, possible to have 2? 
-//refactor the eventlistener to have the promiseall
-//test with babysteps that these are working before moving the calls into the window event listener
-// how to use closure to bring the response from the closure function outside to the higher order function?  
-//place these vars inside of the promiseAll inside of the window event listener
 
-
-const getUserData = (users, userId) => {
-  return users.find((user) => user.id === userId);
+const getUserData = (userData, userId) => {
+  return userData.find((user) => user.id === userId);
 };
 
-const calculateAvgStepGoal = (users) => {
-  const totalStepGoal = users.reduce(
+const calculateAvgStepGoal = (userData) => {
+  const totalStepGoal = userData.reduce(
     (sum, { dailyStepGoal }) => sum + dailyStepGoal,
     0
   );
-  return totalStepGoal / users.length;
+  return totalStepGoal / userData.length;
 };
 
-const getRandomUser = (users) => {
-  const randomIndex = Math.floor(Math.random() * users.length);
-  const randomUser = users[randomIndex];
+const getRandomUser = (userData) => {
+  const randomIndex = Math.floor(Math.random() * userData.length);
+  const randomUser = userData[randomIndex];
   return randomUser;
 };
 
