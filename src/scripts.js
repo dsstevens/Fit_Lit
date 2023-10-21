@@ -18,6 +18,16 @@ const updateDom = (allData) => {
   updateWelcomeMessage(randomUser.name);
   updateInfoCard(randomUser);
   updateStepGoalCard(randomUser, avgStepGoal);
+  const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
+  const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
+  const dailyFluidIntake = getDayFluids(
+    hydrationData,
+    randomUser.id,
+    latestDate
+  );
+  const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
+
+  updateHydrationData(avgFluidIntake, dailyFluidIntake, weeklyHydration);
 };
 // // EVENTLISTENERS
 window.addEventListener("load", function () {
@@ -55,5 +65,14 @@ import "./images/turing-logo.png";
 // console.log("User Data:", userData);
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
 // loadCards(userData);
+const getLatestDateForUser = (hydrationData, userId) => {
+  const userHydrationData = hydrationData.filter(
+    (data) => data.userID === userId
+  );
+  const latestDate = userHydrationData.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )[0].date;
+  return latestDate;
+};
 
 export { calculateAvgStepGoal, getRandomUser };
