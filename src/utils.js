@@ -90,9 +90,36 @@ const getHoursSleptForWeek = (sleepData, userId, startDate) => {
   }
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + 6);
-  
-  const userSleepData = sleepData.filter(data => data.userID === userId && new Date(data.date) >= startDate && new Date(data.date) <= endDate);
-  return userSleepData.map(data => ({ date: data.date, hoursSlept: data.hoursSlept }));
+
+  const userSleepData = sleepData.filter(
+    (data) =>
+      data.userID === userId &&
+      new Date(data.date) >= startDate &&
+      new Date(data.date) <= endDate
+  );
+  return userSleepData.map((data) => ({
+    date: data.date,
+    hoursSlept: data.hoursSlept,
+  }));
+};
+
+const getSleepQualityForWeek = (sleepData, userId, startDate) => {
+  if (!sleepData || !userId || !startDate) {
+    return undefined;
+  }
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 6);
+
+  const userSleepData = sleepData.filter(
+    (data) =>
+      data.userID === userId &&
+      new Date(data.date) >= startDate &&
+      new Date(data.date) <= endDate
+  );
+  return userSleepData.map((data) => ({
+    date: data.date,
+    sleepQuality: data.sleepQuality,
+  }));
 };
 
 export {
@@ -104,4 +131,5 @@ export {
   getHoursSleptForDay,
   getSleepQualityForDay,
   getHoursSleptForWeek,
+  getSleepQualityForWeek,
 };
