@@ -3,9 +3,10 @@ import {
   updateInfoCard,
   updateWelcomeMessage,
   updateStepGoalCard,
+  updateHydrationData,
 } from "./domUpdates";
 // after making sure that the user data is being imported from the api, delete the users import
-import { getAvgTotalFluid,getDayFluids, getWeeklyHydration, getAvgDailySleep } from "./utils";
+import { getAvgTotalFluid, getDayFluids, getWeeklyHydration } from "./utils";
 
 const updateDom = (allData) => {
   const activityData = allData[0].activityData;
