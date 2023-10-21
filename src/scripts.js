@@ -2,7 +2,7 @@
 import { fetchAPIcall } from './apiCalls'
 import { updateInfoCard, updateWelcomeMessage, compareStepGoals } from './domUpdates'
 // after making sure that the user data is being imported from the api, delete the users import and reorient the users arg for several fns
-import { users } from "./data/users";
+
 
 let activityData = []
 let userData = []
@@ -10,7 +10,7 @@ let sleepData = []
 let hydrationData = []
 // EVENTLISTENERS
 window.addEventListener("load", function () {
-  // console.log("anystring")
+  console.log("anystring")
   
   Promise.all([
     fetchAPIcall('activity'),
@@ -18,21 +18,21 @@ window.addEventListener("load", function () {
     fetchAPIcall('sleep'),
     fetchAPIcall('hydration')
   ])
-  .then((activityData, userData, sleepData, hydrationData) => {
-  activityData = activityData
-  userData = userData
-  sleepData = sleepData
-  hydrationData = hydrationData
+  .then((response) => {
+    activityData = response[0]
+    userData = response[1]
+    sleepData = response[2]
+    hydrationData = response[3]
+    console.log("response", response)
+      
+    getRandomUser(userData);
+    getUserData(userData, randomUser.id);
+    calculateAvgStepGoal();
+    updateWelcomeMessage(randomUser.name);
+    updateInfoCard(randomUser);
+    compareStepGoals(randomUser, averageStepGoal);
 
 })
-console.log("response user data", userData)
-    
-  getRandomUser(userData);
-  getUserData(userData, randomUser.id);
-  calculateAvgStepGoal();
-  updateWelcomeMessage(randomUser.name);
-  updateInfoCard(randomUser);
-  compareStepGoals(randomUser, averageStepGoal);
 
 });
 // .then(data => {
