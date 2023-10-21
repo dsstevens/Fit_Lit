@@ -52,4 +52,16 @@ const getAvgDailySleep = (sleepData, userId) => {
   return Math.round(sleepAvg / userSleepData.length);
 };
 
-export { getAvgTotalFluid, getDayFluids, getWeeklyHydration, getAvgDailySleep };
+const getAvgSleepQuality = (sleepData, userId) => {
+  if (!sleepData || !userId) {
+    return undefined;
+  }
+  const userSleepData = sleepData.filter((data) => data.userID === userId);
+  const totalSleepQuality = userSleepData.reduce(
+    (acc, user) => acc + user.sleepQuality,
+    0
+  );
+  return totalSleepQuality / userSleepData.length;
+};
+
+export { getAvgTotalFluid, getDayFluids, getWeeklyHydration, getAvgDailySleep, getAvgSleepQuality };
