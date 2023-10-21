@@ -22,13 +22,11 @@ const updateDom = (allData) => {
   updateInfoCard(randomUser);
   compareStepGoals(randomUser, avgStepGoal);
   console.log(randomUser, randomUserData, avgStepGoal)
-  
+  console.log(allData)
 }
 
 // // EVENTLISTENERS
 window.addEventListener("load", function () {
-  // console.log("anystring")
-  
   Promise.all([
     fetchAPIcall('activity'),
     fetchAPIcall('users'),
@@ -38,7 +36,6 @@ window.addEventListener("load", function () {
     .then((allData) => {
       updateDom(allData)
       // console.log(allData)
-      
     })
     
   // getRandomUser(userData);
@@ -49,18 +46,6 @@ window.addEventListener("load", function () {
   // compareStepGoals(randomUser, averageStepGoal);
 
 });
-// .then(data => {
-//   // Assign data to global variables
-//   customerData = data[0].customers;
-//   bookingsData = data[1].bookings;
-//   roomData = data[2].rooms;
-// })
-//window event listener, possible to have 2? 
-//refactor the eventlistener to have the promiseall
-//test with babysteps that these are working before moving the calls into the window event listener
-// how to use closure to bring the response from the closure function outside to the higher order function?  
-//place these vars inside of the promiseAll inside of the window event listener
-
 
 const getUserData = (users, userId) => {
   return users.find((user) => user.id === userId);
