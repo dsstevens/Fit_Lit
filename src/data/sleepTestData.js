@@ -1,5 +1,5 @@
 export default {
-sleepData = {
+sleepData: {
   userSleep: [
     {userID: 1, date: '2023/03/24', hoursSlept: 9.6, sleepQuality: 4.3},
     {userID: 2, date: '2023/03/24', hoursSlept: 8.4, sleepQuality: 3.5},
@@ -27,4 +27,4 @@ sleepData = {
     {userID: 3, date: '2023/03/31', hoursSlept: 9.7, sleepQuality: 2.5}
   ],
 }
-}
+};

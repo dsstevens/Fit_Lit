@@ -1,5 +1,5 @@
 export default {
-userData = {
+userData: {
   users: [
     { id: 1,
       name: "Trystan Gorczany",
@@ -27,4 +27,4 @@ userData = {
     }
   ],
 }
-}
+};
