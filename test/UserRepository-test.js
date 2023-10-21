@@ -11,6 +11,11 @@ import {
 // import userData from "../src/data/users.js";
 // import hydrationData from "../src/data/hydration.js";  
 
+import userData from "../src/data/userTestData.js";
+import sleepData from "../src/data/sleepTestData.js";
+import hydrationData from "../src/data/hydrationTestData.js";
+import activityData from "../src/data/activityTestData.js";
+
 // describe("User Repository", () => {
 //   it("should run tests", function () {
 //     expect(true).to.be(true);
@@ -119,26 +124,10 @@ describe("fluid consumed", function () {
         { userID: 2, date: "2023/03/24", numOunces: 35 },
         { userID: 2, date: "2023/03/25", numOunces: 92 },
         { userID: 2, date: "2023/03/26", numOunces: 88 },
-        {
-          userID: 2,
-          date: "2023/03/27",
-          numOunces: 68,
-        },
-        {
-          userID: 2,
-          date: "2023/03/28",
-          numOunces: 50,
-        },
-        {
-          userID: 2,
-          date: "2023/03/29",
-          numOunces: 57,
-        },
-        {
-          userID: 2,
-          date: "2023/03/30",
-          numOunces: 28,
-        },
+        { userID: 2, date: "2023/03/27", numOunces: 68 },
+        { userID: 2, date: "2023/03/28", numOunces: 50 },
+        { userID: 2, date: "2023/03/29", numOunces: 57 },
+        { userID: 2, date: "2023/03/30", numOunces: 28 },
       ],
     };
   });
@@ -170,3 +159,13 @@ describe("fluid consumed", function () {
     ]);
   });
 });
+
+describe('user's sleep', function () {
+  let sleepData;
+
+  beforeEach(function () {
+    sleepData = {
+      userSleep: [
+
+  
+    
