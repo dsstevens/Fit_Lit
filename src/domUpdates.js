@@ -1,15 +1,4 @@
-import { users } from "./data/users";
-import { getRandomUser, calculateAvgStepGoal, getUserData } from "./scripts";
-
-window.addEventListener("load", function () {
-  getRandomUser(users);
-  getUserData(users, randomUser.id);
-  calculateAvgStepGoal();
-  updateWelcomeMessage(randomUser.name);
-  updateInfoCard(randomUser);
-  compareStepGoals(randomUser, averageStepGoal);
-});
-
+//DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
   infoCard.innerHTML = `
@@ -26,17 +15,46 @@ const updateWelcomeMessage = (userName) => {
   welcomeMessage.textContent = `Welcome, ${userName}!`;
 };
 
-const compareStepGoals = (user, averageStepGoal) => {
-  const userStepGoal = user.dailyStepGoal;
+const updateStepGoalCard = (randomUser, avgStepGoal) => {
+  updateUserStepGoal(randomUser);
+  updateAllUserAverageStepGoal(avgStepGoal);
+  updateCompareStepGoals(randomUser, avgStepGoal);
+};
+
+const updateUserStepGoal = (randomUser) => {
+  const userStepGoalElement = document.querySelector(".usr-step-goal");
+
+  userStepGoalElement.textContent = `User Step Goal: ${randomUser.dailyStepGoal}`;
+};
+
+const updateAllUserAverageStepGoal = (avgStepGoal) => {
+  const avgStepGoalElement = document.querySelector(".avg-step-goal");
+
+  avgStepGoalElement.textContent = `Average Step Goal: ${avgStepGoal}`;
+};
+
+const updateCompareStepGoals = (randomUser, avgStepGoal) => {
   const comparisonElement = document.querySelector(".step-goal-comparison");
 
-  if (userStepGoal > averageStepGoal) {
+  if (randomUser.dailyStepGoal > avgStepGoal) {
     comparisonElement.textContent = `Your step goal is above average!`;
-  } else if (userStepGoal < averageStepGoal) {
+  } else if (randomUser.dailyStepGoal < avgStepGoal) {
     comparisonElement.textContent = `Your step goal is below average.`;
   } else {
     comparisonElement.textContent = `Your step goal is average.`;
   }
 };
 
-export { updateInfoCard, updateWelcomeMessage, compareStepGoals };
+const updateHydrationData = (avgFluidIntake, dailyFluidIntake, weeklyHydration) => {
+  const avgFluidElement = document.querySelector(".water-daily-avg");
+  const dailyFluidElement = document.querySelector(".water-daily-view");
+  const weeklyFluidElement = document.querySelector(".water-weekly-view");
+
+  avgFluidElement.textContent = `Average Daily Intake: ${avgFluidIntake} ounces`;
+  dailyFluidElement.textContent = `Today's Intake: ${dailyFluidIntake} ounces`;
+
+  const weeklyFluidStr = weeklyHydration.map(entry => `${entry.date}: ${entry.ounces} ounces`).join('<br>');
+  weeklyFluidElement.innerHTML = `<b>Weekly Intake:</b><br>${weeklyFluidStr}`;
+};
+
+export { updateInfoCard, updateWelcomeMessage, updateStepGoalCard, updateHydrationData };

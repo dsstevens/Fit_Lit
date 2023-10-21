@@ -1,19 +1,4 @@
-// USER DATA FUNCTIONS
-
-const getUserData = (users, userId) => {
-  return users.find(user => user.id === userId);
-};
-
-const calculateAvgStepGoal = users => {
-  const totalStepGoal = users.reduce((sum, { dailyStepGoal }) => sum + dailyStepGoal, 0); 
-  return totalStepGoal / users.length;
-};
-
-const getRandomUser = (users) => {
-  const randomIndex = Math.floor(Math.random() * users.length);
-  const randomUser = users[randomIndex];
-  return randomUser;
-};
+//DATA FUNCTION DECLARATIONS ONLY!
 
 // HYDRATION FUNCTIONS
 
@@ -22,6 +7,7 @@ const getAvgTotalFluid = (data, id) => {
     return undefined
   }
   const hydrationEntries = data.filter((entry) => entry.userID === id)
+  console.log(hydrationEntries.length)
   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
     return (acc += user.numOunces)
   }, 0)
@@ -40,19 +26,19 @@ const getDayFluids = (data, id, date) => {
 // console.log(getDayFluids(hydrationData, 1, "2023/03/24" )
 
 const getWeeklyHydration = (hydrationData, userId) => {
-  const userHydrationData = hydrationData.filter(data => data.userID === userId);
-  const weeklyOunces = userHydrationData.map(data => ({
+  if (!hydrationData || !userId) {
+    return undefined;
+  }
+  const userHydrationData = hydrationData.filter(data => data.userID === userId).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 7);
+  return userHydrationData.map(data => ({
     date: data.date,
     ounces: data.numOunces
   }));
-  return weeklyOunces;
 };
 // console.log(getWeeklyHydration(hydrationData, 31))
 
+
 export {
-  getUserData,
-  calculateAvgStepGoal,
-  getRandomUser,
   getAvgTotalFluid,
   getDayFluids,
   getWeeklyHydration
