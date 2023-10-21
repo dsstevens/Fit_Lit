@@ -43,7 +43,7 @@ const getWeeklyHydration = (hydrationData, userId) => {
 // SLEEP FUNCTIONS:
 const getAvgDailySleep = (sleepData, userId) => {
   if (!sleepData || !userId) {
-    return undefined;
+    return 0;
   }
   const userSleepData = sleepData.filter((data) => data.userID === userId);
   const sleepAvg = userSleepData.reduce((acc, user) => {
@@ -54,7 +54,7 @@ const getAvgDailySleep = (sleepData, userId) => {
 
 const getAvgSleepQuality = (sleepData, userId) => {
   if (!sleepData || !userId) {
-    return undefined;
+    return 0;
   }
   const userSleepData = sleepData.filter((data) => data.userID === userId);
   const totalSleepQuality = userSleepData.reduce(
@@ -66,27 +66,27 @@ const getAvgSleepQuality = (sleepData, userId) => {
 
 const getHoursSleptForDay = (sleepData, userId, date) => {
   if (!sleepData || !userId || !date) {
-    return undefined;
+    return 0;
   }
   const userSleepData = sleepData.find(
     (data) => data.userID === userId && data.date === date
   );
-  return userSleepData ? userSleepData.hoursSlept : undefined;
+  return userSleepData ? userSleepData.hoursSlept : 0;
 };
 
 const getSleepQualityForDay = (sleepData, userId, date) => {
   if (!sleepData || !userId || !date) {
-    return undefined;
+    return 0;
   }
   const userSleepData = sleepData.find(
     (data) => data.userID === userId && data.date === date
   );
-  return userSleepData ? userSleepData.sleepQuality : undefined;
+  return userSleepData ? userSleepData.sleepQuality : 0;
 };
 
 const getHoursSleptForWeek = (sleepData, userId, startDate) => {
   if (!sleepData || !userId || !startDate) {
-    return undefined;
+    return 0;
   }
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + 6);

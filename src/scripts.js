@@ -3,6 +3,7 @@ import {
   updateInfoCard,
   updateWelcomeMessage,
   updateStepGoalCard,
+  updateSleepInfo,
 } from "./domUpdates";
 // after making sure that the user data is being imported from the api, delete the users import
 
@@ -17,6 +18,7 @@ const updateDom = (allData) => {
   updateWelcomeMessage(randomUser.name);
   updateInfoCard(randomUser);
   updateStepGoalCard(randomUser, avgStepGoal);
+  updateSleepInfo(sleepData, randomUser.id);
 };
 // // EVENTLISTENERS
 window.addEventListener("load", function () {

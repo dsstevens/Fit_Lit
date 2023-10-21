@@ -1,4 +1,10 @@
 //DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
+import {
+  getHoursSleptForDay,
+  getAvgSleepQuality,
+  getSleepQualityForDay,
+} from "./utils";
+
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
   infoCard.innerHTML = `
@@ -15,6 +21,7 @@ const updateWelcomeMessage = (userName) => {
   welcomeMessage.textContent = `Welcome, ${userName}!`;
 };
 
+// StepGoal Dom Functions
 const updateStepGoalCard = (randomUser, avgStepGoal) => {
   updateUserStepGoal(randomUser);
   updateAllUserAverageStepGoal(avgStepGoal);
@@ -45,4 +52,49 @@ const updateCompareStepGoals = (randomUser, avgStepGoal) => {
   }
 };
 
-export { updateInfoCard, updateWelcomeMessage, updateStepGoalCard };
+// SleepData Dom Functions
+const updateElementText = (className, content) => {
+  const element = document.querySelector(`.${className}`);
+  if (element) {
+    element.textContent = content;
+  }
+};
+
+const updateSleepInfo = (sleepData, userId) => {
+  const specificDay = "2023-10-19"; // Example date
+
+  const avgDailySleep = getHoursSleptForDay(sleepData, userId, specificDay);
+  const avgSleepQuality = getAvgSleepQuality(sleepData, userId);
+
+  updateElementText(
+    "sleep-daily-hrs",
+    `Average daily hours slept: ${avgDailySleep.toFixed(2)}`
+  );
+  updateElementText(
+    "sleep-avg-daily-hrs",
+    `Average sleep quality: ${avgSleepQuality.toFixed(2)}`
+  );
+
+  const hoursSleptForDay = getHoursSleptForDay(sleepData, userId, specificDay);
+  const sleepQualityForDay = getSleepQualityForDay(
+    sleepData,
+    userId,
+    specificDay
+  );
+
+  updateElementText(
+    "sleep-daily-hrs-current-week",
+    `Hours slept on ${specificDay}: ${hoursSleptForDay}`
+  );
+  updateElementText(
+    "sleep-daily-qlty-current-week",
+    `Sleep quality on ${specificDay}: ${sleepQualityForDay}`
+  );
+};
+
+export {
+  updateInfoCard,
+  updateWelcomeMessage,
+  updateStepGoalCard,
+  updateSleepInfo,
+};
