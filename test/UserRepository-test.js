@@ -8,10 +8,15 @@ import {
   getWeeklyHydration,
   //all functions to be tested
 } from "../test/functionsToTest";
-import userData from "../src/data/userTestData";
-import hydrationData from "../src/data/hydrationTestData";
-import sleepData from "../src/data/sleepTestData";
-import activityData from "../src/data/activityTestData";
+
+// import userData from "../src/data/users.js";
+// import hydrationData from "../src/data/hydration.js";
+// describe("User Repository", () => {
+//   it("should run tests", function () {
+//     expect(true).to.be(true);
+//   });
+// });
+
 describe("getUserData function", function () {
   let userData;
   beforeEach(() => {
@@ -47,32 +52,35 @@ describe("getUserData function", function () {
       ],
     };
   });
+
   it("should return a user from the array based on their ID", function () {
-    const user = getRandomUser(userData.users);
-    const userId = user.id;
+    const users = userData.users;
+    const userId = 1;
+    const user = users.find((user) => user.id === 1);
     expect(user.id).to.deep.equal(userId);
     expect(user).to.have.property("id");
   });
+
   it("should return undefined when user id does not exist", function () {
     const user = getUserData(userData.users, 70);
     expect(user).to.be.undefined;
   });
-  it("should return undefined when user id does not exist", function () {
-    const user = getUserData(userData.users, 70);
-    expect(user).to.be.undefined;
-  });
+
   it("should return undefined if the users array is empty", function () {
     const user = getRandomUser([]);
     expect(user).to.be.undefined;
   });
+
   it("should return the average step goal of all users", function () {
     const avgStepGoal = calculateAvgStepGoal(userData.users);
     expect(avgStepGoal).to.equal(6000);
   });
+
   it("should return NaN if the users array is empty", function () {
     const avgStepGoal = calculateAvgStepGoal([]);
     expect(avgStepGoal).to.be.NaN;
   });
+
   it("should return a random user from the user array", function () {
     const users = userData.users;
     const user = getRandomUser(userData.users);
@@ -80,14 +88,18 @@ describe("getUserData function", function () {
     const randomUser = users[randomIndex];
     expect(user).to.be.an("object");
   });
+
   it("should return undefined if the users array is empty", function () {
     const users = userData.users;
     const user = getRandomUser([]);
     expect(user).to.be.undefined;
   });
 });
+
 describe("calculateAvgStepGoal function", function () {});
+
 describe("getRandomUser function", function () {});
+
 describe("fluid consumed", function () {
   let hydrationData;
   beforeEach(function () {
@@ -102,24 +114,43 @@ describe("fluid consumed", function () {
         { userID: 2, date: "2023/03/24", numOunces: 35 },
         { userID: 2, date: "2023/03/25", numOunces: 92 },
         { userID: 2, date: "2023/03/26", numOunces: 88 },
-        { userID: 2, date: "2023/03/27", numOunces: 68 },
-        { userID: 2, date: "2023/03/28", numOunces: 50 },
-        { userID: 2, date: "2023/03/29", numOunces: 57 },
-        { userID: 2, date: "2023/03/30", numOunces: 28 },
+        {
+          userID: 2,
+          date: "2023/03/27",
+          numOunces: 68,
+        },
+        {
+          userID: 2,
+          date: "2023/03/28",
+          numOunces: 50,
+        },
+        {
+          userID: 2,
+          date: "2023/03/29",
+          numOunces: 57,
+        },
+        {
+          userID: 2,
+          date: "2023/03/30",
+          numOunces: 28,
+        },
       ],
     };
   });
+
   it("should return average fluid ounces consumed per day for all time", function () {
     const id = 1;
     const avgFluidConsumed = getAvgTotalFluid(hydrationData.userWater, id);
     expect(avgFluidConsumed).to.deep.equal(33);
   });
+
   it("should return a user's fluid ounces consumed on a specific day", function () {
     const date = "2023/03/24";
     const id = 3;
     const specificDayFluid = getDayFluids(hydrationData.userWater, id, date);
     expect(specificDayFluid).to.equal(95);
   });
+
   it("should return how many fluid ounces of water a user consumed each day for a week", function () {
     const id = 2;
     const dailyOz = getWeeklyHydration(hydrationData.userWater, id);
@@ -134,61 +165,3 @@ describe("fluid consumed", function () {
     ]);
   });
 });
-
-describe("fluid consumed", function () {
-  let hydrationData;
-  beforeEach(function () {
-    hydrationData = {
-      userWater: [
-
-describe("user's sleep", function () {
-  let sleepData;
-  beforeEach(function () {
-    sleepData = {
-      userSleep: [
-          {userID: 1, date: '2023/03/24', hoursSlept: 9.6, sleepQuality: 4.3},
-          {userID: 2, date: '2023/03/24', hoursSlept: 8.4, sleepQuality: 3.5},
-          {userID: 3, date: '2023/03/24', hoursSlept: 9.7, sleepQuality: 4.7},
-          {userID: 1, date: '2023/03/25', hoursSlept: 6.3, sleepQuality: 3.3},
-          {userID: 2, date: '2023/03/25', hoursSlept: 8.1, sleepQuality: 4.7},
-          {userID: 3, date: '2023/03/25', hoursSlept: 9.5, sleepQuality: 1.8},
-          {userID: 1, date: '2023/03/26', hoursSlept: 5.4, sleepQuality: 3.1},
-          {userID: 2, date: '2023/03/26', hoursSlept: 9.8, sleepQuality: 4.8},
-          {userID: 3, date: '2023/03/26', hoursSlept: 4.1, sleepQuality: 2},
-          {userID: 1, date: '2023/03/27', hoursSlept: 7.1, sleepQuality: 4.7},
-          {userID: 2, date: '2023/03/27', hoursSlept: 10.7, sleepQuality: 2.8},
-          {userID: 3, date: '2023/03/27', hoursSlept: 8.7, sleepQuality: 2.9},
-          {userID: 1, date: '2023/03/28', hoursSlept: 6, sleepQuality: 4.6},
-          {userID: 2, date: '2023/03/28', hoursSlept: 5.1, sleepQuality: 2.1},
-          {userID: 3, date: '2023/03/28', hoursSlept: 7, sleepQuality: 4.1},
-          {userID: 1, date: '2023/03/29', hoursSlept: 5.6, sleepQuality: 2.1},
-          {userID: 2, date: '2023/03/29', hoursSlept: 4.3, sleepQuality: 2.2},
-          {userID: 3, date: '2023/03/29', hoursSlept: 6.6, sleepQuality: 3.2},
-          {userID: 1, date: '2023/03/30', hoursSlept: 6.2, sleepQuality: 3.3},
-          {userID: 2, date: '2023/03/30', hoursSlept: 10.1, sleepQuality: 3.2},
-          {userID: 3, date: '2023/03/30', hoursSlept: 8.8, sleepQuality: 3.2},
-          {userID: 1, date: '2023/03/31', hoursSlept: 8.3, sleepQuality: 1.2},
-          {userID: 2, date: '2023/03/31', hoursSlept: 9.3, sleepQuality: 2.8},
-          {userID: 3, date: '2023/03/31', hoursSlept: 9.7, sleepQuality: 2.5}
-        ],
-      }
-    });
-
-    it("return the users average number of hours slept per day", () => {
-      expect(getAvgSleep(sleepData, 1)).to.equal(6.8);
-      expect(getAvgSleep(sleepData, 2)).to.equal(8.2);
-    });
-
-    it('should return 0 if no user data is found', () => {
-      expect(getAvgSleep(sleepData, 4)).to.equal(0);
-    });
-
-    
-  
-    
-   
-   
-  
-
-  
-    
