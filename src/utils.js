@@ -27,16 +27,13 @@ const getDayFluids = (data, id, date) => {
 
 const getWeeklyHydration = (hydrationData, userId) => {
   if (!hydrationData || !userId) {
-    return undefined;
+    return [];
   }
-  const userHydrationData = hydrationData.filter(
-    (data) => data.userID === userId
-  );
-  const weeklyOunces = userHydrationData.map((data) => ({
+  const userHydrationData = hydrationData.filter(data => data.userID === userId).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 7);
+  return userHydrationData.map(data => ({
     date: data.date,
-    ounces: data.numOunces,
+    ounces: data.numOunces
   }));
-  return weeklyOunces;
 };
 // console.log(getWeeklyHydration(hydrationData, 31))
 
