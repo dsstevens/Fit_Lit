@@ -8,10 +8,15 @@ import {
   getWeeklyHydration,
   //all functions to be tested
 } from "../test/functionsToTest";
-import userData from "../src/data/userTestData";
-import hydrationData from "../src/data/hydrationTestData";
-import sleepData from "../src/data/sleepTestData";
-import activityData from "../src/data/activityTestData";
+
+// import userData from "../src/data/users.js";
+// import hydrationData from "../src/data/hydration.js";
+// describe("User Repository", () => {
+//   it("should run tests", function () {
+//     expect(true).to.be(true);
+//   });
+// });
+
 describe("getUserData function", function () {
   let userData;
   beforeEach(() => {
@@ -47,32 +52,35 @@ describe("getUserData function", function () {
       ],
     };
   });
+
   it("should return a user from the array based on their ID", function () {
-    const user = getRandomUser(userData.users);
-    const userId = user.id;
+    const users = userData.users;
+    const userId = 1;
+    const user = users.find((user) => user.id === 1);
     expect(user.id).to.deep.equal(userId);
     expect(user).to.have.property("id");
   });
+
   it("should return undefined when user id does not exist", function () {
     const user = getUserData(userData.users, 70);
     expect(user).to.be.undefined;
   });
-  it("should return undefined when user id does not exist", function () {
-    const user = getUserData(userData.users, 70);
-    expect(user).to.be.undefined;
-  });
+
   it("should return undefined if the users array is empty", function () {
     const user = getRandomUser([]);
     expect(user).to.be.undefined;
   });
+
   it("should return the average step goal of all users", function () {
     const avgStepGoal = calculateAvgStepGoal(userData.users);
     expect(avgStepGoal).to.equal(6000);
   });
+
   it("should return NaN if the users array is empty", function () {
     const avgStepGoal = calculateAvgStepGoal([]);
     expect(avgStepGoal).to.be.NaN;
   });
+
   it("should return a random user from the user array", function () {
     const users = userData.users;
     const user = getRandomUser(userData.users);
@@ -80,14 +88,18 @@ describe("getUserData function", function () {
     const randomUser = users[randomIndex];
     expect(user).to.be.an("object");
   });
+
   it("should return undefined if the users array is empty", function () {
     const users = userData.users;
     const user = getRandomUser([]);
     expect(user).to.be.undefined;
   });
 });
+
 describe("calculateAvgStepGoal function", function () {});
+
 describe("getRandomUser function", function () {});
+
 describe("fluid consumed", function () {
   let hydrationData;
   beforeEach(function () {
@@ -125,17 +137,20 @@ describe("fluid consumed", function () {
       ],
     };
   });
+
   it("should return average fluid ounces consumed per day for all time", function () {
     const id = 1;
     const avgFluidConsumed = getAvgTotalFluid(hydrationData.userWater, id);
     expect(avgFluidConsumed).to.deep.equal(33);
   });
+
   it("should return a user's fluid ounces consumed on a specific day", function () {
     const date = "2023/03/24";
     const id = 3;
     const specificDayFluid = getDayFluids(hydrationData.userWater, id, date);
     expect(specificDayFluid).to.equal(95);
   });
+
   it("should return how many fluid ounces of water a user consumed each day for a week", function () {
     const id = 2;
     const dailyOz = getWeeklyHydration(hydrationData.userWater, id);
