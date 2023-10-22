@@ -3,6 +3,7 @@ import {
   updateInfoCard,
   updateWelcomeMessage,
   updateStepGoalCard,
+  updateSleepInfo,
   updateHydrationData,
 } from "./domUpdates";
 // after making sure that the user data is being imported from the api, delete the users import
@@ -19,6 +20,8 @@ const updateDom = (allData) => {
   updateWelcomeMessage(randomUser.name);
   updateInfoCard(randomUser);
   updateStepGoalCard(randomUser, avgStepGoal);
+  updateSleepInfo(sleepData, randomUser.id);
+
   const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
   const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
   const dailyFluidIntake = getDayFluids(
@@ -30,6 +33,7 @@ const updateDom = (allData) => {
 
   updateHydrationData(avgFluidIntake, dailyFluidIntake, weeklyHydration);
 };
+
 // // EVENTLISTENERS
 window.addEventListener("load", function () {
   Promise.all([
