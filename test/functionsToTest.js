@@ -49,6 +49,89 @@ const getWeeklyHydration = (hydrationData, userId) => {
     ounces: data.numOunces
   }));
 };
+
+// SLEEP FUNCTIONS:
+const getAvgDailySleep = (sleepData, userId) => {
+  if (!sleepData || !userId) {
+    return 0;
+  }
+  const userSleepData = sleepData.filter((data) => data.userID === userId);
+  const sleepAvg = userSleepData.reduce((acc, user) => {
+    return (acc += user.hoursSlept);
+  }, 0);
+  return Math.round(sleepAvg / userSleepData.length);
+};
+
+const getAvgSleepQuality = (sleepData, userId) => {
+  if (!sleepData || !userId) {
+    return 0;
+  }
+  const userSleepData = sleepData.filter((data) => data.userID === userId);
+  const totalSleepQuality = userSleepData.reduce(
+    (acc, user) => acc + user.sleepQuality,
+    0
+  );
+  return totalSleepQuality / userSleepData.length;
+};
+
+const getHoursSleptForDay = (sleepData, userId, date) => {
+  if (!sleepData || !userId || !date) {
+    return 0;
+  }
+  const userSleepData = sleepData.find(
+    (data) => data.userID === userId && data.date === date
+  );
+  return userSleepData ? userSleepData.hoursSlept : 0;
+};
+
+const getSleepQualityForDay = (sleepData, userId, date) => {
+  if (!sleepData || !userId || !date) {
+    return 0;
+  }
+  const userSleepData = sleepData.find(
+    (data) => data.userID === userId && data.date === date
+  );
+  return userSleepData ? userSleepData.sleepQuality : 0;
+};
+
+const getHoursSleptForWeek = (sleepData, userId, startDate) => {
+  if (!sleepData || !userId || !startDate) {
+    return 0;
+  }
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 6);
+
+  const userSleepData = sleepData.filter(
+    (data) =>
+      data.userID === userId &&
+      new Date(data.date) >= startDate &&
+      new Date(data.date) <= endDate
+  );
+  return userSleepData.map((data) => ({
+    date: data.date,
+    hoursSlept: data.hoursSlept,
+  }));
+};
+
+const getSleepQualityForWeek = (sleepData, userId, startDate) => {
+  if (!sleepData || !userId || !startDate) {
+    return undefined;
+  }
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 6);
+
+  const userSleepData = sleepData.filter(
+    (data) =>
+      data.userID === userId &&
+      new Date(data.date) >= startDate &&
+      new Date(data.date) <= endDate
+  );
+  return userSleepData.map((data) => ({
+    date: data.date,
+    sleepQuality: data.sleepQuality,
+  }));
+};
+
 // console.log(getWeeklyHydration(hydrationData, 31))
 
 export {
@@ -57,5 +140,11 @@ export {
   getRandomUser,
   getAvgTotalFluid,
   getDayFluids,
-  getWeeklyHydration
+  getWeeklyHydration,
+  getAvgDailySleep,
+  getAvgSleepQuality,
+  getHoursSleptForDay,
+  getSleepQualityForDay,
+  getHoursSleptForWeek,
+  getSleepQualityForWeek
 }
