@@ -40,12 +40,14 @@ const getDayFluids = (data, id, date) => {
 // console.log(getDayFluids(hydrationData, 1, "2023/03/24" )
 
 const getWeeklyHydration = (hydrationData, userId) => {
-  const userHydrationData = hydrationData.filter(data => data.userID === userId);
-  const weeklyOunces = userHydrationData.map(data => ({
+  if (!hydrationData || !userId) {
+    return [];
+  }
+  const userHydrationData = hydrationData.filter(data => data.userID === userId).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 7);
+  return userHydrationData.map(data => ({
     date: data.date,
     ounces: data.numOunces
   }));
-  return weeklyOunces;
 };
 // console.log(getWeeklyHydration(hydrationData, 31))
 
