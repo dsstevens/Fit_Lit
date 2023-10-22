@@ -4,8 +4,10 @@ import {
   updateWelcomeMessage,
   updateStepGoalCard,
   updateSleepInfo,
+  updateHydrationData,
 } from "./domUpdates";
 // after making sure that the user data is being imported from the api, delete the users import
+import { getAvgTotalFluid, getDayFluids, getWeeklyHydration } from "./utils";
 
 const updateDom = (allData) => {
   const activityData = allData[0].activityData;
@@ -19,7 +21,19 @@ const updateDom = (allData) => {
   updateInfoCard(randomUser);
   updateStepGoalCard(randomUser, avgStepGoal);
   updateSleepInfo(sleepData, randomUser.id);
+
+  const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
+  const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
+  const dailyFluidIntake = getDayFluids(
+    hydrationData,
+    randomUser.id,
+    latestDate
+  );
+  const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
+
+  updateHydrationData(avgFluidIntake, dailyFluidIntake, weeklyHydration);
 };
+
 // // EVENTLISTENERS
 window.addEventListener("load", function () {
   Promise.all([
@@ -56,5 +70,14 @@ import "./images/turing-logo.png";
 // console.log("User Data:", userData);
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
 // loadCards(userData);
+const getLatestDateForUser = (hydrationData, userId) => {
+  const userHydrationData = hydrationData.filter(
+    (data) => data.userID === userId
+  );
+  const latestDate = userHydrationData.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )[0].date;
+  return latestDate;
+};
 
 export { calculateAvgStepGoal, getRandomUser };
