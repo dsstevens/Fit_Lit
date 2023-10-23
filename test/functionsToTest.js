@@ -1,11 +1,14 @@
 // USER DATA FUNCTIONS
 
 const getUserData = (users, userId) => {
-  return users.find(user => user.id === userId);
+  return users.find((user) => user.id === userId);
 };
 
-const calculateAvgStepGoal = users => {
-  const totalStepGoal = users.reduce((sum, { dailyStepGoal }) => sum + dailyStepGoal, 0); 
+const calculateAvgStepGoal = (users) => {
+  const totalStepGoal = users.reduce(
+    (sum, { dailyStepGoal }) => sum + dailyStepGoal,
+    0
+  );
   return totalStepGoal / users.length;
 };
 
@@ -18,26 +21,24 @@ const getRandomUser = (users) => {
 // HYDRATION FUNCTIONS
 
 const getAvgTotalFluid = (data, id) => {
-  if(!data || !id) {
-    return undefined
+  if (!data || !id) {
+    return undefined;
   }
-  const hydrationEntries = data.filter((entry) => entry.userID === id)
+  const hydrationEntries = data.filter((entry) => entry.userID === id);
   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
-    return (acc += user.numOunces)
-  }, 0)
-  return Math.round(hydrationAvg / hydrationEntries.length)
-}
-// console.log(getAvgTotalFluid(hydrationData, 1))
+    return (acc += user.numOunces);
+  }, 0);
+  return Math.round(hydrationAvg / hydrationEntries.length);
+};
 
 const getDayFluids = (data, id, date) => {
   if (!data || !id || !date) {
-    return undefined
+    return undefined;
   }
-  const hydrationEntries = data.filter((entry) => entry.userID === id)
-  const dailyEntry = hydrationEntries.find((entry) => entry.date === date)
-  return dailyEntry.numOunces
-}
-// console.log(getDayFluids(hydrationData, 1, "2023/03/24" )
+  const hydrationEntries = data.filter((entry) => entry.userID === id);
+  const dailyEntry = hydrationEntries.find((entry) => entry.date === date);
+  return dailyEntry.numOunces;
+};
 
 const getWeeklyHydration = (hydrationData, userId) => {
   if (!hydrationData || !userId) {
@@ -46,7 +47,7 @@ const getWeeklyHydration = (hydrationData, userId) => {
   const userHydrationData = hydrationData.filter(data => data.userID === userId).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 7);
   return userHydrationData.map(data => ({
     date: data.date,
-    ounces: data.numOunces
+    ounces: data.numOunces,
   }));
 };
 
@@ -126,8 +127,6 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   return userSleepData.map((data) => data.hoursSlept);
 };
 
-// console.log(getWeeklyHydration(hydrationData, 31))
-
 export {
   getUserData,
   calculateAvgStepGoal,
@@ -141,4 +140,4 @@ export {
   getSleepQualityForDay,
   getHoursSleptForWeek,
   getSleepQualityForWeek
-}
+};

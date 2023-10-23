@@ -5,9 +5,10 @@ import {
   updateStepGoalCard,
   updateSleepInfo,
   updateHydrationData,
+  updateTargetDate,
 } from "./domUpdates";
-// after making sure that the user data is being imported from the api, delete the users import
 import { getAvgTotalFluid, getDayFluids, getWeeklyHydration } from "./utils";
+import { getCurrentDate } from "./utils";
 
 const updateDom = (allData) => {
   const activityData = allData[0].activityData;
@@ -15,12 +16,14 @@ const updateDom = (allData) => {
   const sleepData = allData[2].sleepData;
   const hydrationData = allData[3].hydrationData;
   const randomUser = getRandomUser(usersData);
+  const currentDate = getCurrentDate();
   // const randomUserData = getUserData(usersData, randomUser.id);
   const avgStepGoal = calculateAvgStepGoal(usersData);
   updateWelcomeMessage(randomUser.name);
+  updateTargetDate(currentDate);
   updateInfoCard(randomUser);
   updateStepGoalCard(randomUser, avgStepGoal);
-  updateSleepInfo(sleepData, randomUser.id);
+  updateSleepInfo(sleepData, randomUser.id, currentDate);
 
   const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
   const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
@@ -66,8 +69,6 @@ import "./css/styles.css";
 import "./images/turing-logo.png";
 // An example of how you tell webpack to use a JS file
 // import userData from "./data/users";
-// console.log("hello");
-// console.log("User Data:", userData);
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
 // loadCards(userData);
 const getLatestDateForUser = (hydrationData, userId) => {
@@ -80,4 +81,4 @@ const getLatestDateForUser = (hydrationData, userId) => {
   return latestDate;
 };
 
-export { calculateAvgStepGoal, getRandomUser };
+export { calculateAvgStepGoal, getRandomUser, getCurrentDate };

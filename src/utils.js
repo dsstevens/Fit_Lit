@@ -1,5 +1,10 @@
-//DATA FUNCTION DECLARATIONS ONLY!
+import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+dayjs.extend(calendar);
+dayjs.extend(require("dayjs/plugin/utc"));
 
+//DATA FUNCTION DECLARATIONS ONLY!
+const currentDate = getCurrentDate();
 // HYDRATION FUNCTIONS
 
 const getAvgTotalFluid = (data, id) => {
@@ -7,13 +12,11 @@ const getAvgTotalFluid = (data, id) => {
     return undefined;
   }
   const hydrationEntries = data.filter((entry) => entry.userID === id);
-  console.log(hydrationEntries.length);
   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
     return (acc += user.numOunces);
   }, 0);
   return Math.round(hydrationAvg / hydrationEntries.length);
 };
-// console.log(getAvgTotalFluid(hydrationData, 1))
 
 const getDayFluids = (data, id, date) => {
   if (!data || !id || !date) {
@@ -23,7 +26,6 @@ const getDayFluids = (data, id, date) => {
   const dailyEntry = hydrationEntries.find((entry) => entry.date === date);
   return dailyEntry.numOunces;
 };
-// console.log(getDayFluids(hydrationData, 1, "2023/03/24" )
 
 const getWeeklyHydration = (hydrationData, userId) => {
   if (!hydrationData || !userId) {
@@ -35,7 +37,6 @@ const getWeeklyHydration = (hydrationData, userId) => {
     ounces: data.numOunces
   }));
 };
-// console.log(getWeeklyHydration(hydrationData, 31))
 
 // SLEEP FUNCTIONS:
 const getAvgDailySleep = (sleepData, userId) => {
@@ -65,9 +66,7 @@ const getHoursSleptForDay = (sleepData, userId, date) => {
   if (!sleepData || !userId || !date) {
     return 0;
   }
-  const userSleepData = sleepData.find(
-    (data) => data.userID === userId && data.date === date
-  );
+  const userSleepData = sleepData.find((data) => data.date === date);
   return userSleepData ? userSleepData.hoursSlept : 0;
 };
 
@@ -79,6 +78,34 @@ const getSleepQualityForDay = (sleepData, userId, date) => {
     (data) => data.userID === userId && data.date === date
   );
   return userSleepData ? userSleepData.sleepQuality : 0;
+};
+
+const getWeeklySleepStats = (weekSleepData) => {
+  let totalHoursSlept = 0;
+  let totalSleepQuality = 0;
+
+  for (const entry of weekSleepData) {
+    totalHoursSlept += entry.hoursSlept;
+    totalSleepQuality += entry.sleepQuality;
+  }
+
+  const averageHoursSlept = totalHoursSlept / weekSleepData.length;
+  const averageSleepQuality = totalSleepQuality / weekSleepData.length;
+
+  return {
+    totalHoursSlept,
+    averageHoursSlept,
+    totalSleepQuality,
+    averageSleepQuality,
+  };
+};
+
+const getAvgHoursSlept = (sleepData, userID) => {
+  const sleepEntries = sleepData.filter((entry) => entry.userID === userID);
+  const avgHoursSlept = sleepEntries.reduce((acc, user) => {
+    return (acc += user.hoursSlept);
+  }, 0);
+  return Math.round((avgHoursSlept / sleepEntries.length) * 10) / 10;
 };
 
 const getHoursSleptForWeek = (sleepData, userId, startDate) => {
@@ -113,6 +140,19 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   return userSleepData.map((data) => data.hoursSlept);
 };
 
+// DATE Function:
+function getCurrentDate() {
+  // return dayjs(new Date()).format("YYYY/MM/DD");
+  return "2023/07/01";
+}
+
+const getStartDateOfLatestWeek = (latestDate) => {
+  const endDate = new Date(latestDate);
+  const startDate = new Date(endDate);
+  startDate.setDate(endDate.getDate() - 6);
+  return startDate;
+};
+
 export {
   getAvgTotalFluid,
   getDayFluids,
@@ -123,4 +163,8 @@ export {
   getSleepQualityForDay,
   getHoursSleptForWeek,
   getSleepQualityForWeek,
+  getCurrentDate,
+  getStartDateOfLatestWeek,
+  getAvgHoursSlept,
+  getWeeklySleepStats,
 };
