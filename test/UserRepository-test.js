@@ -312,18 +312,17 @@ describe("user's sleep", function () {
       expect(sleepQualityFor7Days).to.deep.equal(expectedSleepQuality);
     });
 
-    it.skip('should return zero for a user with no data', () => {
-      const sleepData = sleepData.userSleep;
+    it('should return [] for a user with no data', () => {
       const userId = 4;
-      const result = getSleepQualityForWeek(sleepData, userId, startDate);
-      expect(result).to.equal(0);
+      const startDate = '2023/03/25';
+      const result = getSleepQualityForWeek(sleepData.userSleep, userId, startDate);
+      expect(result).to.deep.equal([]);
     });
 
-    it.skip('should return zero when there is less than 7 days of data', () => {
-      const sleepData = sleepData.userSleep;
+    it('should return zero when there is no start date', () => {
       const userId = 2;
-      const startDate = '2023/03/31';
-      const result = getSleepQualityForWeek(sleepData, userId, startDate);
+      const startDate = '';
+      const result = getSleepQualityForWeek(sleepData.userSleep, userId, startDate);
       expect(result).to.equal(0);
     });
   })

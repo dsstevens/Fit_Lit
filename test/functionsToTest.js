@@ -112,7 +112,7 @@ const getHoursSleptForWeek = (sleepData, userId, startDate) => {
 
 const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   if (!sleepData || !userId || !startDate) {
-    return undefined;
+    return 0;
   }
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + 6);
