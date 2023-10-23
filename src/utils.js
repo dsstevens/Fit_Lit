@@ -27,16 +27,13 @@ const getDayFluids = (data, id, date) => {
 
 const getWeeklyHydration = (hydrationData, userId) => {
   if (!hydrationData || !userId) {
-    return undefined;
+    return [];
   }
-  const userHydrationData = hydrationData.filter(
-    (data) => data.userID === userId
-  );
-  const weeklyOunces = userHydrationData.map((data) => ({
+  const userHydrationData = hydrationData.filter(data => data.userID === userId).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 7);
+  return userHydrationData.map(data => ({
     date: data.date,
-    ounces: data.numOunces,
+    ounces: data.numOunces
   }));
-  return weeklyOunces;
 };
 // console.log(getWeeklyHydration(hydrationData, 31))
 
@@ -94,18 +91,15 @@ const getHoursSleptForWeek = (sleepData, userId, startDate) => {
   const userSleepData = sleepData.filter(
     (data) =>
       data.userID === userId &&
-      new Date(data.date) >= startDate &&
+      new Date(data.date) >= new Date(startDate) &&
       new Date(data.date) <= endDate
   );
-  return userSleepData.map((data) => ({
-    date: data.date,
-    hoursSlept: data.hoursSlept,
-  }));
+  return userSleepData.map((data) => data.hoursSlept);
 };
 
 const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   if (!sleepData || !userId || !startDate) {
-    return undefined;
+    return 0;
   }
   const endDate = new Date(startDate);
   endDate.setDate(endDate.getDate() + 6);
@@ -113,13 +107,10 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   const userSleepData = sleepData.filter(
     (data) =>
       data.userID === userId &&
-      new Date(data.date) >= startDate &&
+      new Date(data.date) >= new Date(startDate) &&
       new Date(data.date) <= endDate
   );
-  return userSleepData.map((data) => ({
-    date: data.date,
-    sleepQuality: data.sleepQuality,
-  }));
+  return userSleepData.map((data) => data.hoursSlept);
 };
 
 export {
