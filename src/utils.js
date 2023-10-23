@@ -83,6 +83,34 @@ const getSleepQualityForDay = (sleepData, userId, date) => {
   return userSleepData ? userSleepData.sleepQuality : 0;
 };
 
+const getWeeklySleepStats = (weekSleepData) => {
+  let totalHoursSlept = 0;
+  let totalSleepQuality = 0;
+
+  for (const entry of weekSleepData) {
+    totalHoursSlept += entry.hoursSlept;
+    totalSleepQuality += entry.sleepQuality;
+  }
+
+  const averageHoursSlept = totalHoursSlept / weekSleepData.length;
+  const averageSleepQuality = totalSleepQuality / weekSleepData.length;
+
+  return {
+    totalHoursSlept,
+    averageHoursSlept,
+    totalSleepQuality,
+    averageSleepQuality,
+  };
+};
+
+const getAvgHoursSlept = (sleepData, userID) => {
+  const sleepEntries = sleepData.filter((entry) => entry.userID === userID);
+  const avgHoursSlept = sleepEntries.reduce((acc, user) => {
+    return (acc += user.hoursSlept);
+  }, 0);
+  return Math.round((avgHoursSlept / sleepEntries.length) * 10) / 10;
+};
+
 const getHoursSleptForWeek = (sleepData, userId, startDate) => {
   if (!sleepData || !userId || !startDate) {
     return 0;
@@ -123,8 +151,16 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
 
 // DATE Function:
 function getCurrentDate() {
-  return dayjs(new Date()).format("YYYY/MM/DD");
+  // return dayjs(new Date()).format("YYYY/MM/DD");
+  return "2023/07/01";
 }
+
+const getStartDateOfLatestWeek = (latestDate) => {
+  const endDate = new Date(latestDate);
+  const startDate = new Date(endDate);
+  startDate.setDate(endDate.getDate() - 6);
+  return startDate;
+};
 
 export {
   getAvgTotalFluid,
@@ -137,4 +173,7 @@ export {
   getHoursSleptForWeek,
   getSleepQualityForWeek,
   getCurrentDate,
+  getStartDateOfLatestWeek,
+  getAvgHoursSlept,
+  getWeeklySleepStats,
 };

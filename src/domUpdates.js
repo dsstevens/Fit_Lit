@@ -4,6 +4,7 @@ import {
   getHoursSleptForDay,
   getAvgSleepQuality,
   getSleepQualityForDay,
+  getWeeklySleepStats,
 } from "./utils";
 
 const updateInfoCard = (user) => {
@@ -20,6 +21,11 @@ const updateInfoCard = (user) => {
 const updateWelcomeMessage = (userName) => {
   const welcomeMessage = document.querySelector(".welcome-user-msg");
   welcomeMessage.textContent = `Welcome, ${userName}!`;
+};
+
+const updateTargetDate = (date) => {
+  const targetDate = document.querySelector(".date");
+  targetDate.textContent = date;
 };
 
 // StepGoal Dom Functions
@@ -85,6 +91,24 @@ const updateSleepInfo = (sleepData, userId, date) => {
     "sleep-daily-qlty-current-week",
     `Sleep quality on ${date}: ${sleepQualityForDay}`
   );
+
+  const latestWeekSleepData = getWeeklySleepStats(sleepData);
+  const latestWeekAvgHoursSlept = latestWeekSleepData.averageHoursSlept;
+  const latestWeekAvgSleepQuality = latestWeekSleepData.averageSleepQuality;
+
+  console.log(sleepData);
+  console.log(latestWeekSleepData.averageHoursSlept);
+  console.log(latestWeekSleepData.averageSleepQuality);
+
+  updateElementText(
+    "sleep-daily-avg-hrs",
+    `Latest week average hours slept: ${latestWeekAvgHoursSlept.toFixed(2)}`
+  );
+
+  updateElementText(
+    "sleep-daily-avg-qlty",
+    `Latest week average sleep quality: ${latestWeekAvgSleepQuality.toFixed(2)}`
+  );
 };
 
 const updateHydrationData = (
@@ -111,4 +135,5 @@ export {
   updateStepGoalCard,
   updateSleepInfo,
   updateHydrationData,
+  updateTargetDate,
 };

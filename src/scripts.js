@@ -5,6 +5,7 @@ import {
   updateStepGoalCard,
   updateSleepInfo,
   updateHydrationData,
+  updateTargetDate,
 } from "./domUpdates";
 import { getAvgTotalFluid, getDayFluids, getWeeklyHydration } from "./utils";
 import { getCurrentDate } from "./utils";
@@ -19,6 +20,7 @@ const updateDom = (allData) => {
   // const randomUserData = getUserData(usersData, randomUser.id);
   const avgStepGoal = calculateAvgStepGoal(usersData);
   updateWelcomeMessage(randomUser.name);
+  updateTargetDate(currentDate);
   updateInfoCard(randomUser);
   updateStepGoalCard(randomUser, avgStepGoal);
   updateSleepInfo(sleepData, randomUser.id, currentDate);
