@@ -1,5 +1,10 @@
-//DATA FUNCTION DECLARATIONS ONLY!
+import dayjs from "dayjs";
+import calendar from "dayjs/plugin/calendar";
+dayjs.extend(calendar);
+dayjs.extend(require("dayjs/plugin/utc"));
 
+//DATA FUNCTION DECLARATIONS ONLY!
+const currentDate = getCurrentDate();
 // HYDRATION FUNCTIONS
 
 const getAvgTotalFluid = (data, id) => {
@@ -7,13 +12,11 @@ const getAvgTotalFluid = (data, id) => {
     return undefined;
   }
   const hydrationEntries = data.filter((entry) => entry.userID === id);
-  console.log(hydrationEntries.length);
   const hydrationAvg = hydrationEntries.reduce((acc, user) => {
     return (acc += user.numOunces);
   }, 0);
   return Math.round(hydrationAvg / hydrationEntries.length);
 };
-// console.log(getAvgTotalFluid(hydrationData, 1))
 
 const getDayFluids = (data, id, date) => {
   if (!data || !id || !date) {
@@ -23,7 +26,6 @@ const getDayFluids = (data, id, date) => {
   const dailyEntry = hydrationEntries.find((entry) => entry.date === date);
   return dailyEntry.numOunces;
 };
-// console.log(getDayFluids(hydrationData, 1, "2023/03/24" )
 
 const getWeeklyHydration = (hydrationData, userId) => {
   if (!hydrationData || !userId) {
@@ -38,7 +40,6 @@ const getWeeklyHydration = (hydrationData, userId) => {
   }));
   return weeklyOunces;
 };
-// console.log(getWeeklyHydration(hydrationData, 31))
 
 // SLEEP FUNCTIONS:
 const getAvgDailySleep = (sleepData, userId) => {
@@ -68,9 +69,7 @@ const getHoursSleptForDay = (sleepData, userId, date) => {
   if (!sleepData || !userId || !date) {
     return 0;
   }
-  const userSleepData = sleepData.find(
-    (data) => data.userID === userId && data.date === date
-  );
+  const userSleepData = sleepData.find((data) => data.date === date);
   return userSleepData ? userSleepData.hoursSlept : 0;
 };
 
@@ -122,6 +121,11 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   }));
 };
 
+// DATE Function:
+function getCurrentDate() {
+  return dayjs(new Date()).format("YYYY/MM/DD");
+}
+
 export {
   getAvgTotalFluid,
   getDayFluids,
@@ -132,4 +136,5 @@ export {
   getSleepQualityForDay,
   getHoursSleptForWeek,
   getSleepQualityForWeek,
+  getCurrentDate,
 };

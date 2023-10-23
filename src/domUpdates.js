@@ -1,5 +1,6 @@
 //DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 import {
+  getAvgDailySleep,
   getHoursSleptForDay,
   getAvgSleepQuality,
   getSleepQualityForDay,
@@ -60,10 +61,8 @@ const updateElementText = (className, content) => {
   }
 };
 
-const updateSleepInfo = (sleepData, userId) => {
-  const specificDay = "2023-10-19"; // Example date
-
-  const avgDailySleep = getHoursSleptForDay(sleepData, userId, specificDay);
+const updateSleepInfo = (sleepData, userId, date) => {
+  const avgDailySleep = getAvgDailySleep(sleepData, userId, date);
   const avgSleepQuality = getAvgSleepQuality(sleepData, userId);
 
   updateElementText(
@@ -75,24 +74,24 @@ const updateSleepInfo = (sleepData, userId) => {
     `Average sleep quality: ${avgSleepQuality.toFixed(2)}`
   );
 
-  const hoursSleptForDay = getHoursSleptForDay(sleepData, userId, specificDay);
-  const sleepQualityForDay = getSleepQualityForDay(
-    sleepData,
-    userId,
-    specificDay
-  );
+  const hoursSleptForDay = getHoursSleptForDay(sleepData, userId, date);
+  const sleepQualityForDay = getSleepQualityForDay(sleepData, userId, date);
 
   updateElementText(
     "sleep-daily-hrs-current-week",
-    `Hours slept on ${specificDay}: ${hoursSleptForDay}`
+    `Hours slept on ${date}: ${hoursSleptForDay}`
   );
   updateElementText(
     "sleep-daily-qlty-current-week",
-    `Sleep quality on ${specificDay}: ${sleepQualityForDay}`
+    `Sleep quality on ${date}: ${sleepQualityForDay}`
   );
 };
 
-const updateHydrationData = (avgFluidIntake, dailyFluidIntake, weeklyHydration) => {
+const updateHydrationData = (
+  avgFluidIntake,
+  dailyFluidIntake,
+  weeklyHydration
+) => {
   const avgFluidElement = document.querySelector(".water-daily-avg");
   const dailyFluidElement = document.querySelector(".water-daily-view");
   const weeklyFluidElement = document.querySelector(".water-weekly-view");
@@ -100,7 +99,9 @@ const updateHydrationData = (avgFluidIntake, dailyFluidIntake, weeklyHydration) 
   avgFluidElement.textContent = `Average Daily Intake: ${avgFluidIntake} ounces`;
   dailyFluidElement.textContent = `Today's Intake: ${dailyFluidIntake} ounces`;
 
-  const weeklyFluidStr = weeklyHydration.map(entry => `${entry.date}: ${entry.ounces} ounces`).join('<br>');
+  const weeklyFluidStr = weeklyHydration
+    .map((entry) => `${entry.date}: ${entry.ounces} ounces`)
+    .join("<br>");
   weeklyFluidElement.innerHTML = `<b>Weekly Intake:</b><br>${weeklyFluidStr}`;
 };
 
@@ -109,5 +110,5 @@ export {
   updateWelcomeMessage,
   updateStepGoalCard,
   updateSleepInfo,
-  updateHydrationData
+  updateHydrationData,
 };
