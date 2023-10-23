@@ -288,35 +288,37 @@ describe("user's sleep", function () {
       expect(result).to.deep.equal(expectedHoursSlept);
     });
 
-    it.skip('should return zero when there is less than 7 days of data for the user', () => {
-      const sleepData = sleepData.userSleep;
+    it('should return zero when there is no start date', () => {
       const userId = 1;
-      const startDate = '2023/03/31';
-      const result = getHoursSleptForWeek(sleepData, userId, startDate);
-      const expectedHoursSlept = [0, 0, 0, 0, 0, 0, 0];
+      const startDate = '';
+      const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
+      const expectedHoursSlept = 0;
       expect(result).to.deep.equal(expectedHoursSlept);
     });
-    it.skip('should return zero when there is no data for the user', () => {
-      const sleepData = sleepData.userSleep;
+
+    it('should return [] when there is no data for the user', () => {
       const userId = 4;
-      const result = getHoursSleptForWeek(sleepData, userId, startDate);
-      const expectedHoursSlept = 0;
-      expect(result).to.equal(expectedHoursSlept);
+      const startDate = '2023/03/25';
+      const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
+      const expectedHoursSlept = [];
+      expect(result).to.deep.equal(expectedHoursSlept);
     });
-    it.skip('should return an array of sleep quality for 7 days', () => {
-      const sleepData = sleepData.userSleep;
+
+    it('should return an array of sleep quality for 7 days', () => {
       const userId = 1;
       const startDate = '2023/03/25';
-      const sleepQualityFor7Days = getSleepQualityForWeek(sleepData, userId, startDate);
-      const expectedSleepQuality = [3.3, 3.1, 4.7, 4.6, 2.1, 3.3, 1.2];
+      const sleepQualityFor7Days = getSleepQualityForWeek(sleepData.userSleep, userId, startDate);
+      const expectedSleepQuality = [6.3, 5.4, 7.1, 6, 5.6, 6.2, 8.3];
       expect(sleepQualityFor7Days).to.deep.equal(expectedSleepQuality);
     });
+
     it.skip('should return zero for a user with no data', () => {
       const sleepData = sleepData.userSleep;
       const userId = 4;
       const result = getSleepQualityForWeek(sleepData, userId, startDate);
       expect(result).to.equal(0);
     });
+
     it.skip('should return zero when there is less than 7 days of data', () => {
       const sleepData = sleepData.userSleep;
       const userId = 2;

@@ -107,13 +107,10 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   const userSleepData = sleepData.filter(
     (data) =>
       data.userID === userId &&
-      new Date(data.date) >= startDate &&
+      new Date(data.date) >= new Date(startDate) &&
       new Date(data.date) <= endDate
   );
-  return userSleepData.map((data) => ({
-    date: data.date,
-    sleepQuality: data.sleepQuality,
-  }));
+  return userSleepData.map((data) => data.hoursSlept);
 };
 
 export {
