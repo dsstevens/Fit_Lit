@@ -1,10 +1,27 @@
+/* color palette: 
+
+electric blue
+#3c53f8
+
+lavender
+#cdc0ff
+
+mint green
+#49bea1
+
+off black
+#1C1A27 */
+
 body,
 html {
+  body {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+  }
   background-image: linear-gradient(
     to top,
-    #ff9a9e 0%,
-    #fecfef 99%,
-    #fecfef 100%
+    #3c53f8 0%,
+    #cdc0ff 99%,
+    #cdc0ff 100%
   );
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,6 +29,15 @@ html {
   margin: 5px;
   margin-top: 10px;
   padding: 11px;
+}
+
+h1 {
+  color: #3c53f8;
+  margin: 0px;
+}
+
+p {
+  font-size: small;
 }
 
 .header {
@@ -103,10 +129,11 @@ html {
 }
 
 .hydration-section {
+  overflow: hidden;
   background-color: #f9f9f9;
   padding: 20px;
   width: 240px;
-  height: 200px;
+  height: 315px;
   border-radius: 20px;
   position: relative;
   float: right;
@@ -125,8 +152,12 @@ html {
   margin-right: 10px;
 }
 
-h2,
-h3 {
+h2 {
+  color: #3c53f8;
+  margin: 10px;
+}
+
+h5 {
   color: #333;
-  margin: 10px 0;
+  margin: 10px;
 }
