@@ -96,10 +96,6 @@ const updateSleepInfo = (sleepData, userId, date) => {
   const latestWeekAvgHoursSlept = latestWeekSleepData.averageHoursSlept;
   const latestWeekAvgSleepQuality = latestWeekSleepData.averageSleepQuality;
 
-  console.log(sleepData);
-  console.log(latestWeekSleepData.averageHoursSlept);
-  console.log(latestWeekSleepData.averageSleepQuality);
-
   updateElementText(
     "sleep-daily-avg-hrs",
     `Latest week average hours slept: ${latestWeekAvgHoursSlept.toFixed(2)}`
