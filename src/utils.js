@@ -178,18 +178,15 @@ const getStartDateOfLatestWeek = (latestDate) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~ [MILES USER HAS WALKED] 
 //this passes the test but not sure if it'll be dynamic enough, GPT REALLY HELPED WITH THIS ONE, PLEASE TAKE A LOOK
 const calculateMilesWalked = (userInfo, activityData, date) => {
+  if (!user) {
+    return "User not found."
+  }
   const userActivityForDate = activityData.userActivity.find(activity => activity.date === date)
 
   if (!userActivityForDate) {
     return "No activity found for the given date."
   }
-
   const user = userInfo.users.find(u => u.id === userActivityForDate.userID)
-
-
-  if (!user) {
-    return "User not found."
-  }
 
   const miles = (user.strideLength * userActivityForDate.numSteps) / 5280
   return `Miles walked: ${miles.toFixed(2)}`
