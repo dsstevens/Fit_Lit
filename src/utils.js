@@ -5,6 +5,28 @@ dayjs.extend(require("dayjs/plugin/utc"));
 
 //DATA FUNCTION DECLARATIONS ONLY!
 const currentDate = getCurrentDate();
+
+//MOVED FROM FUNCTIONS TO TEST: 
+// USER DATA FUNCTIONS
+
+const getUserData = (users, userId) => {
+  return users.find((user) => user.id === userId);
+};
+
+const calculateAvgStepGoal = (users) => {
+  const totalStepGoal = users.reduce(
+    (sum, { dailyStepGoal }) => sum + dailyStepGoal,
+    0
+  );
+  return totalStepGoal / users.length;
+};
+
+const getRandomUser = (users) => {
+  const randomIndex = Math.floor(Math.random() * users.length);
+  const randomUser = users[randomIndex];
+  return randomUser;
+};
+
 // HYDRATION FUNCTIONS
 
 const getAvgTotalFluid = (data, id) => {
@@ -218,33 +240,36 @@ const reachedStepGoalForDay = (activityData, userInfo, date) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [STEP GOAL REACHED]
 
-const didUserMeetStepGoal = (userInfo, activityData, date) => {
-  if (!activityData || !userInfo || !date) {
-    return undefined;
-  }
+// const didUserMeetStepGoal = (userInfo, activityData, date) => {
+//   if (!activityData || !userInfo || !date) {
+//     return undefined;
+//   }
 
-  const results = {};
+//   const results = {};
 
-  userInfo.users.forEach(user => {
-    const userActivityData = activityData.userActivity.find(
-      data => data.userID === user.id && data.date === date
-    );
+//   userInfo.users.forEach(user => {
+//     const userActivityData = activityData.userActivity.find(
+//       data => data.userID === user.id && data.date === date
+//     );
 
-    if (userActivityData) {
-      results[user.name] = userActivityData.numSteps >= user.dailyStepGoal;
-    } else {
-      results[user.name] = false;
-    }
-  });
+//     if (userActivityData) {
+//       results[user.name] = userActivityData.numSteps >= user.dailyStepGoal;
+//     } else {
+//       results[user.name] = false;
+//     }
+//   });
 
-  return results;
-}
+//   return results;
+// }
 
-console.log(didUserMeetStepGoal(userInfo, activityData, "2023/03/24"));
+
 
 
 
 export {
+  getUserData,
+  calculateAvgStepGoal,
+  getRandomUser,
   getAvgTotalFluid,
   getDayFluids,
   getWeeklyHydration,
