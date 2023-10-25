@@ -69,6 +69,7 @@ const getRandomUser = (users) => {
 import "./css/styles.css";
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
+import "./images/banner.png";
 // An example of how you tell webpack to use a JS file
 // import userData from "./data/users";
 // Example of one way to import functions from the domUpdates file.  You will delete these examples.
