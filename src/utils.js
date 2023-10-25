@@ -172,6 +172,8 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
 
 // Activity Data Functions
 const calculateMilesWalked = (user, activityData, date) => {
+  console.log(activityData);
+  console.log(user);
   const userActivityForDate = activityData.find(
     (activity) => activity.date === date
   );
@@ -208,6 +210,29 @@ const reachedStepGoalForDay = (user, activityData, date) => {
   return userActivityForDate.numSteps >= user.dailyStepGoal ? "Yes" : "No";
 };
 
+const getLatestSteps = (activityData) => {
+  const startDate = new Date("2023/03/24");
+  const endDate = new Date("2023/07/01");
+
+  const validEntries = activityData.filter(
+    (entry) =>
+      new Date(entry.date) >= startDate && new Date(entry.date) <= endDate
+  );
+
+  if (validEntries.length === 0) {
+    return "No valid entries found in the given date range.";
+  }
+
+  const { numSteps: latestSteps } = validEntries.reduce((latest, current) => {
+    const currentDate = new Date(current.date);
+    const latestDate = new Date(latest.date);
+
+    return currentDate > latestDate ? current : latest;
+  });
+
+  return latestSteps;
+};
+
 // Date Functions
 function getCurrentDate() {
   // return dayjs(new Date()).format("YYYY/MM/DD");
@@ -237,4 +262,5 @@ export {
   getMinutesActiveForDay,
   calculateMilesWalked,
   reachedStepGoalForDay,
+  getLatestSteps,
 };
