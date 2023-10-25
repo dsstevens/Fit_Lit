@@ -1,15 +1,61 @@
 //DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 import {
+  getRandomUser,
+  getCurrentDate,
+  calculateAvgStepGoal,
   getAvgDailySleep,
-  getHoursSleptForDay,
   getAvgSleepQuality,
+  getHoursSleptForDay,
   getSleepQualityForDay,
   getWeeklySleepStats,
-  calculateMilesWalked,
+  getLatestDateForUser,
+  getAvgTotalFluid,
+  getDayFluids,
+  getWeeklyHydration,
   getMinutesActiveForDay,
+  calculateMilesWalked,
   reachedStepGoalForDay,
 } from "./utils";
 
+// Update DOM
+const updateDom = (allData) => {
+  // Parse data
+  const activityData = allData[0].activityData;
+  const usersData = allData[1].users;
+  const sleepData = allData[2].sleepData;
+  const hydrationData = allData[3].hydrationData;
+
+  // Update Header
+  const randomUser = getRandomUser(usersData);
+  updateWelcomeMessage(randomUser.name);
+  const currentDate = getCurrentDate();
+  updateTargetDate(currentDate);
+
+  // Update Info Card
+  updateInfoCard(randomUser);
+
+  // Update Step Goal Card
+  const avgStepGoal = calculateAvgStepGoal(usersData);
+  updateStepGoalCard(randomUser, avgStepGoal);
+
+  // Update Sleep Card
+  updateSleepCard(sleepData, randomUser.id, currentDate);
+
+  // Update Hydration Card
+  const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
+  const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
+  const dailyFluidIntake = getDayFluids(
+    hydrationData,
+    randomUser.id,
+    latestDate
+  );
+  const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
+  updateHydrationCard(avgFluidIntake, dailyFluidIntake, weeklyHydration);
+
+  updateActivityCard(activityData, randomUser, currentDate);
+};
+
+// Update Info Card
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
   infoCard.innerHTML = `
@@ -21,17 +67,19 @@ const updateInfoCard = (user) => {
   `;
 };
 
+// Update Welcome Message
 const updateWelcomeMessage = (userName) => {
   const welcomeMessage = document.querySelector(".welcome-user-msg");
   welcomeMessage.textContent = `Welcome, ${userName}!`;
 };
 
+// Update Target Date
 const updateTargetDate = (date) => {
   const targetDate = document.querySelector(".date");
   targetDate.textContent = date;
 };
 
-// StepGoal Dom Functions
+// Update Step Goal Card
 const updateStepGoalCard = (randomUser, avgStepGoal) => {
   updateUserStepGoal(randomUser);
   updateAllUserAverageStepGoal(avgStepGoal);
@@ -39,15 +87,14 @@ const updateStepGoalCard = (randomUser, avgStepGoal) => {
 };
 
 const updateUserStepGoal = (randomUser) => {
-  const userStepGoalElement = document.querySelector(".usr-step-goal");
-
-  userStepGoalElement.textContent = `User Step Goal: ${randomUser.dailyStepGoal}`;
+  updateElementText(
+    "usr-step-goal",
+    `User Step Goal: ${randomUser.dailyStepGoal}`
+  );
 };
 
 const updateAllUserAverageStepGoal = (avgStepGoal) => {
-  const avgStepGoalElement = document.querySelector(".avg-step-goal");
-
-  avgStepGoalElement.textContent = `Average Step Goal: ${avgStepGoal}`;
+  updateElementText("avg-step-goal", `Average Step Goal: ${avgStepGoal}`);
 };
 
 const updateCompareStepGoals = (randomUser, avgStepGoal) => {
@@ -62,15 +109,8 @@ const updateCompareStepGoals = (randomUser, avgStepGoal) => {
   }
 };
 
-// SleepData Dom Functions
-const updateElementText = (className, content) => {
-  const element = document.querySelector(`.${className}`);
-  if (element) {
-    element.textContent = content;
-  }
-};
-
-const updateSleepInfo = (sleepData, userId, date) => {
+// Update Sleep Card
+const updateSleepCard = (sleepData, userId, date) => {
   const avgDailySleep = getAvgDailySleep(sleepData, userId, date);
   const avgSleepQuality = getAvgSleepQuality(sleepData, userId);
 
@@ -110,25 +150,30 @@ const updateSleepInfo = (sleepData, userId, date) => {
   );
 };
 
-const updateHydrationData = (
+// Update Hydration Card
+const updateHydrationCard = (
   avgFluidIntake,
   dailyFluidIntake,
   weeklyHydration
 ) => {
-  const avgFluidElement = document.querySelector(".water-daily-avg");
-  const dailyFluidElement = document.querySelector(".water-daily-view");
+  updateElementText(
+    "water-daily-avg",
+    `Average Daily Intake: ${avgFluidIntake} ounces`
+  );
+  updateElementText(
+    "water-weekly-view",
+    `Today's Intake: ${dailyFluidIntake} ounces`
+  );
+
   const weeklyFluidElement = document.querySelector(".water-weekly-view");
-
-  avgFluidElement.textContent = `Average Daily Intake: ${avgFluidIntake} ounces`;
-  dailyFluidElement.textContent = `Today's Intake: ${dailyFluidIntake} ounces`;
-
   const weeklyFluidStr = weeklyHydration
     .map((entry) => `${entry.date}: ${entry.ounces} ounces`)
     .join("<br>");
   weeklyFluidElement.innerHTML = `<b>Weekly Intake:</b><br>${weeklyFluidStr}`;
 };
 
-const updateActivityData = (activityData, randomUser, date) => {
+// Update Activity Card
+const updateActivityCard = (activityData, randomUser, date) => {
   const minutesActiveDay = getMinutesActiveForDay(
     randomUser,
     activityData,
@@ -146,12 +191,12 @@ const updateActivityData = (activityData, randomUser, date) => {
   updateElementText("miles-per-day", `${milesWalked}`);
 };
 
-export {
-  updateActivityData,
-  updateInfoCard,
-  updateWelcomeMessage,
-  updateStepGoalCard,
-  updateSleepInfo,
-  updateHydrationData,
-  updateTargetDate,
+// Helper Functions
+const updateElementText = (className, content) => {
+  const element = document.querySelector(`.${className}`);
+  if (element) {
+    element.textContent = content;
+  }
 };
+
+export { updateDom };
