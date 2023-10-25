@@ -176,23 +176,25 @@ const getStartDateOfLatestWeek = (latestDate) => {
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~ [MILES USER HAS WALKED] 
-//this passes the test but not sure if it'll be dynamic enough, GPT REALLY HELPED WITH THIS ONE, PLEASE TAKE A LOOK
+
 const calculateMilesWalked = (userInfo, activityData, date) => {
-  if (!user) {
-    return "User not found."
-  }
   const userActivityForDate = activityData.userActivity.find(activity => activity.date === date)
 
   if (!userActivityForDate) {
     return "No activity found for the given date."
   }
+
   const user = userInfo.users.find(u => u.id === userActivityForDate.userID)
+
+
+  if (!user) {
+    return "User not found."
+  }
 
   const miles = (user.strideLength * userActivityForDate.numSteps) / 5280
   return `Miles walked: ${miles.toFixed(2)}`
 }
 
-// console.log(calculateMilesWalked(userInfo, activityData, "2023/03/24"))
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [DAILY ACTIVE MINS] 
 const getMinutesActiveForDay = (userInfo, activityData, date) => {
@@ -200,21 +202,14 @@ const getMinutesActiveForDay = (userInfo, activityData, date) => {
     return undefined;
   }
 
-  const results = {};
+  const userActivityData = activityData.userActivity.find(data => data.date === date);
 
-  userInfo.users.forEach(user => {
-    const userActivityData = activityData.userActivity.find(
-      data => data.userID === user.id && data.date === date
-    );
+  if (!userActivityData) {
+    return `No activity found for the date: ${date}.`;
+  }
 
-    results[user.name] = userActivityData ? userActivityData.minutesActive : 0;
-  });
-
-  return results;
+  return userActivityData.minutesActive;
 }
-
-// console.log(getMinutesActiveForDay(userInfo, activityData, "2023/03/24"));
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [STEP GOAL REACHED 2.0!!!!!!]
 //refactor function and test to remove the userId param
@@ -222,46 +217,18 @@ const reachedStepGoalForDay = (activityData, userInfo, date) => {
   if (!activityData || !userInfo || !date) {
     return undefined
   }
-  const user = userInfo.users.find(user => user.id === userId);
-  if (!user) return false
-  const stepGoal = user.dailyStepGoal
-  const userActivityData = activityData.userActivity.find (
-    data => data.userID === userId && data.date === date
-  )
-  if (!userActivityData) return false
-  return userActivityData.numSteps >= stepGoal
-  //return boolean
+
+  const userActivityData = activityData.userActivity.find(data => data.date === date);
+
+  if (!userActivityData) return false;
+
+  const user = userInfo.users.find(u => u.id === userActivityData.userID);
+
+  if (!user) return false;
+
+  const stepGoal = user.dailyStepGoal;
+  return userActivityData.numSteps >= stepGoal;
 };
-//scripts
-// reachedStepGoalForDay(activityData, usersData,  currentDate)
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [STEP GOAL REACHED]
-
-// const didUserMeetStepGoal = (userInfo, activityData, date) => {
-//   if (!activityData || !userInfo || !date) {
-//     return undefined;
-//   }
-
-//   const results = {};
-
-//   userInfo.users.forEach(user => {
-//     const userActivityData = activityData.userActivity.find(
-//       data => data.userID === user.id && data.date === date
-//     );
-
-//     if (userActivityData) {
-//       results[user.name] = userActivityData.numSteps >= user.dailyStepGoal;
-//     } else {
-//       results[user.name] = false;
-//     }
-//   });
-
-//   return results;
-// }
-
-
-
-
 
 export {
   getUserData,
