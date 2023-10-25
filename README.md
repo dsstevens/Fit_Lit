@@ -21,62 +21,39 @@ Node.JS
 GitHub
 GitHub Projects
 JSON
+Webpack
 
 ## Project Reflections
 
 ### Wins
 
+Moving from local data files to fetch requests involved creating a function that stored the data retrieved in variables, then used those variables as arguments in the functions that update our data model. The output of those functions was stored in variables that then became arguments in the functions that updated the DOM.
+Figuring out how to create this chain of data stored in variables that became arguments in functions whose output became variables that became arguments in the next set of functions was a big challenge.
+
+Overcomming the challenges we faced using GitHib involved establishing new norms for more frequent communication and careful coordination of pushing  and merging branches.
 
 ### Challenges
 
+Moving from using local data files to using fetch calls to retrieve data.
+Creating functions that manipulate that data and then display it on page load.
+Using Webpack to manage file structure and import / export statements between files.
+Learning to coordinate collaboration using GitHub between 4 team members working often simultaneously on various GitHub branches was challenging.  
 
-## Setup
+## Future features could include:
 
-1. *fork* this repo - on the top right corner of this page, click the **Fork** button.
-1. clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page).  `Control + C` is the command to stop running the local server.  Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.   
-1. Make sure both members of your team are collaborators on the forked repo.  
-1. Do not run `npm audit fix --force`.  This will update to the latest version of packages.  We need to be using `webpack-dev-server@3.11.2` which is not the latest version.  If you start to run into Webpack errors, first check that all group members are using the correct version.  
+Go from retrieving data from a server to posting it on a server. This would allow a user to input data.
 
-## 
+## Set Up
 
-
-
-
-## 
-
-
-**Users**
-
-
-
-**Activity**
-
-
-
-**Hydration**
-
-
-
-**Sleep**
-
+Fork this repo.
+Clone the repo to your local machine.
+CD into the root of the project directory.
+Run npm install.
+Run npm start.
 
 The details of this project are outlined in [this project spec](http://frontend.turing.io/projects/fitlit.html).
 
-work together as much as we can, either as all 4 or paired.  if you write something on your own, meet and go over it together and debrief everyone on the code.
 
-TDD: write each test for the function and test it before moving on
-
-DOM manipulation: HTML, CSS, eventlisteners and JS in ES6
-
-Network requests, server data in second half
-
-GIt flow: branches and commits as atomic as possible, equitable share of commits and PRs.
-
-Communicate when merged to main so everyone is updated on main. Spread the pushes and commits equitably to reflect a division of labor.
-
-Run npm start in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page). Control + C is the command to stop running the local server. Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.
 
 
 
