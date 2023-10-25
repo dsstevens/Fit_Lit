@@ -15,6 +15,7 @@ import {
   getMinutesActiveForDay,
   calculateMilesWalked,
   reachedStepGoalForDay,
+  getLatestSteps,
 } from "./utils";
 
 // Update DOM
@@ -179,8 +180,10 @@ const updateActivityCard = (activityData, randomUser, date) => {
     activityData,
     date
   );
+
   const milesWalked = calculateMilesWalked(randomUser, activityData, date);
   const stepGoalReached = reachedStepGoalForDay(randomUser, activityData, date);
+  const latestSteps = getLatestSteps(activityData);
 
   updateElementText("activity", "Activity Data");
   updateElementText("min-active-day", `Minutes Active: ${minutesActiveDay}`);
@@ -189,6 +192,7 @@ const updateActivityCard = (activityData, randomUser, date) => {
     `Reached Step Goal: ${stepGoalReached}`
   );
   updateElementText("miles-per-day", `${milesWalked}`);
+  updateElementText("latest-steps", `Latest Steps: ${latestSteps}`);
 };
 
 // Helper Functions
