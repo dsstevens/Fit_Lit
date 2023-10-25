@@ -1,6 +1,9 @@
 ## Abstract
 
+
 This is a user-friendly app inspired by fitness tracking apps like Fitbit or Strava as outlined in [this project spec](http://frontend.turing.io/projects/fitlit.html). Using remote data sets of users and their daily entries of information, we managed to integrate fitness and hydration logs into a dashboard to display for any user. The purpose of FitLit was to take user datasets and display it for individual users in an easy to understand visual representation. The dashboard allows a user to view and see their latest activity data, goals, and hydration intake.
+
+<img src="https://i.imgur.com/uN96sFM.png" width="1012" height="531" alt="Screenshot of Fit Lit App">
 
 ## Learning Goals
 
