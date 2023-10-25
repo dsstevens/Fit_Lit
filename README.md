@@ -52,8 +52,3 @@ Run npm install.
 Run npm start.
 
 The details of this project are outlined in [this project spec](http://frontend.turing.io/projects/fitlit.html).
-
-
-
-
-
