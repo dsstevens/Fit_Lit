@@ -3,22 +3,9 @@ import calendar from "dayjs/plugin/calendar";
 dayjs.extend(calendar);
 dayjs.extend(require("dayjs/plugin/utc"));
 
-//DATA FUNCTION DECLARATIONS ONLY!
-const currentDate = getCurrentDate();
-
-//MOVED FROM FUNCTIONS TO TEST:
-// USER DATA FUNCTIONS
-
+// User Data Functions
 const getUserData = (users, userId) => {
   return users.find((user) => user.id === userId);
-};
-
-const calculateAvgStepGoal = (users) => {
-  const totalStepGoal = users.reduce(
-    (sum, { dailyStepGoal }) => sum + dailyStepGoal,
-    0
-  );
-  return totalStepGoal / users.length;
 };
 
 const getRandomUser = (users) => {
@@ -27,8 +14,16 @@ const getRandomUser = (users) => {
   return randomUser;
 };
 
-// HYDRATION FUNCTIONS
+// Step Goal Data Functions
+const calculateAvgStepGoal = (users) => {
+  const totalStepGoal = users.reduce(
+    (sum, { dailyStepGoal }) => sum + dailyStepGoal,
+    0
+  );
+  return totalStepGoal / users.length;
+};
 
+// Hydration Data Functions
 const getAvgTotalFluid = (data, id) => {
   if (!data || !id) {
     return undefined;
@@ -38,6 +33,16 @@ const getAvgTotalFluid = (data, id) => {
     return (acc += user.numOunces);
   }, 0);
   return Math.round(hydrationAvg / hydrationEntries.length);
+};
+
+const getLatestDateForUser = (hydrationData, userId) => {
+  const userHydrationData = hydrationData.filter(
+    (data) => data.userID === userId
+  );
+  const latestDate = userHydrationData.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )[0].date;
+  return latestDate;
 };
 
 const getDayFluids = (data, id, date) => {
@@ -63,7 +68,7 @@ const getWeeklyHydration = (hydrationData, userId) => {
   }));
 };
 
-// SLEEP FUNCTIONS:
+// Sleep Data Functions
 const getAvgDailySleep = (sleepData, userId) => {
   if (!sleepData || !userId) {
     return 0;
@@ -165,20 +170,7 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
   return userSleepData.map((data) => data.hoursSlept);
 };
 
-// DATE Function:
-function getCurrentDate() {
-  // return dayjs(new Date()).format("YYYY/MM/DD");
-  return "2023/07/01";
-}
-
-const getStartDateOfLatestWeek = (latestDate) => {
-  const endDate = new Date(latestDate);
-  const startDate = new Date(endDate);
-  startDate.setDate(endDate.getDate() - 6);
-  return startDate;
-};
-
-// Activity Data
+// Activity Data Functions
 const calculateMilesWalked = (user, activityData, date) => {
   const userActivityForDate = activityData.find(
     (activity) => activity.date === date
@@ -216,24 +208,33 @@ const reachedStepGoalForDay = (user, activityData, date) => {
   return userActivityForDate.numSteps >= user.dailyStepGoal ? "Yes" : "No";
 };
 
+// Date Functions
+function getCurrentDate() {
+  // return dayjs(new Date()).format("YYYY/MM/DD");
+  return "2023/07/01";
+}
+
+const getStartDateOfLatestWeek = (latestDate) => {
+  const endDate = new Date(latestDate);
+  const startDate = new Date(endDate);
+  startDate.setDate(endDate.getDate() - 6);
+  return startDate;
+};
+
 export {
-  getUserData,
-  calculateAvgStepGoal,
   getRandomUser,
-  getAvgTotalFluid,
-  getDayFluids,
-  getWeeklyHydration,
+  getCurrentDate,
+  calculateAvgStepGoal,
   getAvgDailySleep,
   getAvgSleepQuality,
   getHoursSleptForDay,
   getSleepQualityForDay,
-  getHoursSleptForWeek,
-  getSleepQualityForWeek,
-  getCurrentDate,
-  getStartDateOfLatestWeek,
-  getAvgHoursSlept,
   getWeeklySleepStats,
-  calculateMilesWalked,
+  getLatestDateForUser,
+  getAvgTotalFluid,
+  getDayFluids,
+  getWeeklyHydration,
   getMinutesActiveForDay,
+  calculateMilesWalked,
   reachedStepGoalForDay,
 };
