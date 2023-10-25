@@ -1,78 +1,56 @@
-# FitLit Starter Kit
+## Abstract
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+This is a user-friendly app inspired by fitness tracking apps like Fitbit or Strava as outlined in [this project spec](http://frontend.turing.io/projects/fitlit.html). Using remote data sets of users and their daily entries of information, we managed to integrate fitness and hydration logs into a dashboard to display for any user. The purpose of FitLit was to take user datasets and display it for individual users in an easy to understand visual representation. The dashboard allows a user to view and see their latest activity data, goals, and hydration intake.
 
-## Setup
+## Learning Goals
 
-1. Within your group, decide on **one** person to have the project repository (repo) on their GitHub account. Then, that person should *fork* this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page).  `Control + C` is the command to stop running the local server.  Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.   
-1. Make sure both members of your team are collaborators on the forked repo.  
-1. Do not run `npm audit fix --force`.  This will update to the latest version of packages.  We need to be using `webpack-dev-server@3.11.2` which is not the latest version.  If you start to run into Webpack errors, first check that all group members are using the correct version.  
+- Use object and array prototype methods to perform data manipulation.
+- API fetch calls to retrieve data.
+- Write DRY, reusable code that follows SRP and trends toward function purity.
+- Implement a robust testing suite using TDD.
+- Understanding closure functions and introducing them appropriately.
+- Collaborate productively and professionally as a team. Ensure all team members are able to be heard and contribute throughout the project.
+## Preview of App
+[insert screenshot or gif here]
+## Context
+### Tools
+Javascript, HTML, CSS, NPM, Node.JS, GitHub, GitHub Projects, JSON, Webpack, Mocha, Chai, DayJS, WAVE
+# Timeline
+This is a mod 2 student project done in a one week sprint over the course of eight days by four people. 
+# Collaborators
+- [Gavin Garcia](https://github.com/EGavinG)
+- [Deanna Stevens](https://github.com/dsstevens)
+- [Dan Waverly](https://github.com/wlavery22)
+- [Bobby Steckline](https://github.com/rjsturing)
 
-## Testing
+## Installation
+- Clone down this repo to your local computer [FitLit Link](https://github.com/dsstevens/Fit_Lit).
+- CD into the project directory.
+- In your terminal, run npm install and then npm start
+- Go to http://localhost:8080/ in your browser to view the site.
 
-Mocha and chai are already set up, with a boilerplate test for you..
+### Wins
 
+- We learned how to implement fetch requests and moved away from local data files which involved creating a function that stored the data. 
+- Learning about Promises and promiseAll().
+- Learning about Webpack and how to utilize imports and exports.
+- Overcoming the challenges we faced using GitHib involved establishing new norms for more frequent communication and careful coordination of pushing and merging branches.
+- Keeping accessibility in mind during the app rendering phase on the DOM.
+- Utilizing GitHub projects and creating a board with issue tickets linked to pull requests.
+- Reaching out to mentors and having frequent checkins while learning new tools.
 
-## Data Model
+### Challenges
+- TDD
+- Naming conventions and effectively tracking variables and functions across multiple files.
+- Understanding code written by others.
+- Utilizing iterator methods in our ES6 JS functions.
+- Moving from using local data files to using fetch calls to retrieve data.
+- PromiseAll() and missing a return that made us question our understanding of a new method.
+- Using Webpack to manage file structure and import / export statements between files.
+- Learning to coordinate collaboration using GitHub between four team members working simultaneously on multiple branches.
 
-**Users**
+## Future features could include:
+- Building user interactivity allowing them to add new input and manipulate data.
+- Learn to post information through API calls.
+- Giving the user more information on login such as a motivational quote or a competitive incentive with other app users.
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
-
-**Activity**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
-
-**Hydration**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
