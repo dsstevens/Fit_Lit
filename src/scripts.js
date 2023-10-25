@@ -1,6 +1,7 @@
 import { fetchAPIcall } from "./apiCalls";
 import {
   updateInfoCard,
+  updateActivityData,
   updateWelcomeMessage,
   updateStepGoalCard,
   updateSleepInfo,
@@ -35,6 +36,7 @@ const updateDom = (allData) => {
   const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
 
   updateHydrationData(avgFluidIntake, dailyFluidIntake, weeklyHydration);
+  updateActivityData(activityData, randomUser, currentDate);
 };
 
 // // EVENTLISTENERS

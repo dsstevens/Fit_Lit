@@ -5,16 +5,19 @@ import {
   getAvgSleepQuality,
   getSleepQualityForDay,
   getWeeklySleepStats,
+  calculateMilesWalked,
+  getMinutesActiveForDay,
+  reachedStepGoalForDay,
 } from "./utils";
 
 const updateInfoCard = (user) => {
   const infoCard = document.querySelector(".info-card");
   infoCard.innerHTML = `
     <h2>${user.name}</h2>
-    <p>Email: ${user.email}</p>
-    <p>Address: ${user.address}</p>
-    <p>Stride Length: ${user.strideLength}</p>
-    <p>Daily Step Goal: ${user.dailyStepGoal}</p>
+    <h5>Email: ${user.email}</h5>
+    <h5>Address: ${user.address}</h5>
+    <h5>Stride Length: ${user.strideLength}</h5>
+    <h5>Daily Step Goal: ${user.dailyStepGoal}</h5>
   `;
 };
 
@@ -125,7 +128,26 @@ const updateHydrationData = (
   weeklyFluidElement.innerHTML = `<b>Weekly Intake:</b><br>${weeklyFluidStr}`;
 };
 
+const updateActivityData = (activityData, randomUser, date) => {
+  const minutesActiveDay = getMinutesActiveForDay(
+    randomUser,
+    activityData,
+    date
+  );
+  const milesWalked = calculateMilesWalked(randomUser, activityData, date);
+  const stepGoalReached = reachedStepGoalForDay(randomUser, activityData, date);
+
+  updateElementText("activity", "Activity Data");
+  updateElementText("min-active-day", `Minutes Active: ${minutesActiveDay}`);
+  updateElementText(
+    "reached-step-goal",
+    `Reached Step Goal: ${stepGoalReached}`
+  );
+  updateElementText("miles-per-day", `${milesWalked}`);
+};
+
 export {
+  updateActivityData,
   updateInfoCard,
   updateWelcomeMessage,
   updateStepGoalCard,

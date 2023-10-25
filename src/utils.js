@@ -6,7 +6,7 @@ dayjs.extend(require("dayjs/plugin/utc"));
 //DATA FUNCTION DECLARATIONS ONLY!
 const currentDate = getCurrentDate();
 
-//MOVED FROM FUNCTIONS TO TEST: 
+//MOVED FROM FUNCTIONS TO TEST:
 // USER DATA FUNCTIONS
 
 const getUserData = (users, userId) => {
@@ -53,10 +53,13 @@ const getWeeklyHydration = (hydrationData, userId) => {
   if (!hydrationData || !userId) {
     return [];
   }
-  const userHydrationData = hydrationData.filter(data => data.userID === userId).sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 7);
-  return userHydrationData.map(data => ({
+  const userHydrationData = hydrationData
+    .filter((data) => data.userID === userId)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 7);
+  return userHydrationData.map((data) => ({
     date: data.date,
-    ounces: data.numOunces
+    ounces: data.numOunces,
   }));
 };
 
@@ -175,59 +178,42 @@ const getStartDateOfLatestWeek = (latestDate) => {
   return startDate;
 };
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~ [MILES USER HAS WALKED] 
-
-const calculateMilesWalked = (userInfo, activityData, date) => {
-  const userActivityForDate = activityData.userActivity.find(activity => activity.date === date)
+// Activity Data
+const calculateMilesWalked = (user, activityData, date) => {
+  const userActivityForDate = activityData.find(
+    (activity) => activity.date === date
+  );
 
   if (!userActivityForDate) {
-    return "No activity found for the given date."
+    return "No activity found for the given date.";
   }
 
-  const user = userInfo.users.find(u => u.id === userActivityForDate.userID)
+  const miles = (user.strideLength * userActivityForDate.numSteps) / 5280;
+  return `Miles walked: ${miles.toFixed(2)}`;
+};
 
+const getMinutesActiveForDay = (user, activityData, date) => {
+  const userActivityForDate = activityData.find(
+    (activity) => activity.date === date
+  );
 
-  if (!user) {
-    return "User not found."
+  if (!userActivityForDate) {
+    return "No activity found for the given date.";
   }
 
-  const miles = (user.strideLength * userActivityForDate.numSteps) / 5280
-  return `Miles walked: ${miles.toFixed(2)}`
-}
+  return userActivityForDate.minutesActive;
+};
 
+const reachedStepGoalForDay = (user, activityData, date) => {
+  const userActivityForDate = activityData.find(
+    (activity) => activity.userID === user.id && activity.date === date
+  );
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [DAILY ACTIVE MINS] 
-const getMinutesActiveForDay = (userInfo, activityData, date) => {
-  if (!activityData || !userInfo || !date) {
-    return undefined;
+  if (!userActivityForDate) {
+    return "No activity found for the given date.";
   }
 
-  const userActivityData = activityData.userActivity.find(data => data.date === date);
-
-  if (!userActivityData) {
-    return `No activity found for the date: ${date}.`;
-  }
-
-  return userActivityData.minutesActive;
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [STEP GOAL REACHED 2.0!!!!!!]
-//refactor function and test to remove the userId param
-const reachedStepGoalForDay = (activityData, userInfo, date) => {
-  if (!activityData || !userInfo || !date) {
-    return undefined
-  }
-
-  const userActivityData = activityData.userActivity.find(data => data.date === date);
-
-  if (!userActivityData) return false;
-
-  const user = userInfo.users.find(u => u.id === userActivityData.userID);
-
-  if (!user) return false;
-
-  const stepGoal = user.dailyStepGoal;
-  return userActivityData.numSteps >= stepGoal;
+  return userActivityForDate.numSteps >= user.dailyStepGoal ? "Yes" : "No";
 };
 
 export {
@@ -249,5 +235,5 @@ export {
   getWeeklySleepStats,
   calculateMilesWalked,
   getMinutesActiveForDay,
-  reachedStepGoalForDay
+  reachedStepGoalForDay,
 };
