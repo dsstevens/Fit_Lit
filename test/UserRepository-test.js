@@ -326,6 +326,7 @@ describe("user's activity", function () {
     const date = '2023/03/24';
     const milesWalked = calculateMilesWalked(userData, activityData, date);
     expect(milesWalked).to.be.closeTo(5.577); 
+    // console.log("DATA:", activityData)
   });
 
   it('should return the correct number of minutes active for all users on a specific day', () => {

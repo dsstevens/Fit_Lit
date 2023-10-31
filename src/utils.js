@@ -247,6 +247,7 @@ const getStartDateOfLatestWeek = (latestDate) => {
 };
 
 export {
+  getUserData,
   getRandomUser,
   getCurrentDate,
   calculateAvgStepGoal,
@@ -254,6 +255,8 @@ export {
   getAvgSleepQuality,
   getHoursSleptForDay,
   getSleepQualityForDay,
+  getSleepQualityForWeek,
+  getHoursSleptForWeek,
   getWeeklySleepStats,
   getLatestDateForUser,
   getAvgTotalFluid,
