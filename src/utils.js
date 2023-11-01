@@ -191,7 +191,7 @@ const getMinutesActiveForDay = (user, activityData, date) => {
   if (!userActivityForDate) {
     return "No activity found for the given date.";
   }
-console.log(userActivityForDate)
+
   return userActivityForDate.minutesActive;
 };
 
@@ -203,7 +203,7 @@ const reachedStepGoalForDay = (user, activityData, date) => {
   if (!userActivityForDate) {
     return false;
   }
-console.log(userActivityForDate)
+
   return userActivityForDate.numSteps >= user.dailyStepGoal ? true : false;
 };
 
