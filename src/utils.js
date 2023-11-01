@@ -172,42 +172,39 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
 
 // Activity Data Functions
 const calculateMilesWalked = (user, activityData, date) => {
-  console.log(activityData);
-  console.log(user);
-  const userActivityForDate = activityData.find(
+  const userActivityForDate = activityData.activityData.userActivity.find(
     (activity) => activity.date === date
   );
-
   if (!userActivityForDate) {
     return "No activity found for the given date.";
   }
 
   const miles = (user.strideLength * userActivityForDate.numSteps) / 5280;
-  return `Miles walked: ${miles.toFixed(2)}`;
+  return parseFloat(miles.toFixed(2));
 };
 
 const getMinutesActiveForDay = (user, activityData, date) => {
-  const userActivityForDate = activityData.find(
+  const userActivityForDate = activityData.activityData.userActivity.find(
     (activity) => activity.date === date
   );
 
   if (!userActivityForDate) {
     return "No activity found for the given date.";
   }
-
+console.log(userActivityForDate)
   return userActivityForDate.minutesActive;
 };
 
 const reachedStepGoalForDay = (user, activityData, date) => {
-  const userActivityForDate = activityData.find(
+  const userActivityForDate = activityData.activityData.userActivity.find(
     (activity) => activity.userID === user.id && activity.date === date
   );
 
   if (!userActivityForDate) {
-    return "No activity found for the given date.";
+    return false;
   }
-
-  return userActivityForDate.numSteps >= user.dailyStepGoal ? "Yes" : "No";
+console.log(userActivityForDate)
+  return userActivityForDate.numSteps >= user.dailyStepGoal ? true : false;
 };
 
 const getLatestSteps = (activityData) => {

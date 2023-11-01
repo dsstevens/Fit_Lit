@@ -324,39 +324,45 @@ describe("user's sleep", function () {
 describe("user's activity", function () {
   it('should calculate the miles walked for a specific user on a specific day', () => {
     const date = '2023/03/24';
-    const milesWalked = calculateMilesWalked(userData, activityData, date);
-    expect(milesWalked).to.be.closeTo(5.577); 
+    const user = userData.userData.users[0]
+    console.log(user)
+    const milesWalked = calculateMilesWalked(user, activityData, date);
+    expect(milesWalked).to.equal(5.58); 
     // console.log("DATA:", activityData)
   });
 
-  it('should return the correct number of minutes active for all users on a specific day', () => {
+  it('should return the correct number of minutes active for a user on a specific day', () => {
     const date = "2023/03/25";
-    const minutesActive = getMinutesActiveForDay(userData, activityData, date);
+    const user = userData.userData.users[0]
+    const minutesActive = getMinutesActiveForDay(user, activityData, date);
     // This test should now check a specific user's active minutes or modify the assertion to suit the new structure
     // For example, checking if a user named 'John' was active for 111 minutes:
-    expect(minutesActive["John"]).to.equal(111);
+    expect(minutesActive).to.equal(111);
   });
 
   // The next tests are tricky because they deal with a function that is now broken (since userId is missing)
   // However, if we are considering a user named "John" with an id of 1:
   it('should return true when the user reached their step goal for a given day', () => {
     const date = "2023/03/25";
-    const result = reachedStepGoalForDay(activityData, userData, date);
+    const user = userData.userData.users[0]
+    const result = reachedStepGoalForDay(user, activityData, date);
     // For now, this test isn't precise since the function isn't working properly
     expect(result).to.be.true; 
   });
 
   it('should return false when the user did not reach their step goal for a given day', () => {
-    const date = "2023/03/24";
-    const result = reachedStepGoalForDay(activityData, userData, date);
+    const date = "2023/03/27";
+    const user = userData.userData.users[0]
+    const result = reachedStepGoalForDay(user, activityData, date);
     // As with the previous test, this isn't precise
     expect(result).to.be.false;
   });
 
   it('should return 0 when the user did not have data for the given day', () => {
     const date = "2023/03/23";
-    const result = reachedStepGoalForDay(activityData, userData, date);
+    const user = userData.userData.users[0]
+    const result = reachedStepGoalForDay(user, activityData, date);
     // This test assertion is a bit odd because the function returns 'false' or 'undefined', not 0
-    expect(result).to.be.undefined;
+    expect(result).to.be.false;
   });
 });
