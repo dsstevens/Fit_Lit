@@ -253,6 +253,7 @@ export {
   calculateAvgStepGoal,
   getAvgDailySleep,
   getAvgSleepQuality,
+  getAvgHoursSlept,
   getHoursSleptForDay,
   getSleepQualityForDay,
   getSleepQualityForWeek,
