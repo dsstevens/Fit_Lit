@@ -18,7 +18,7 @@ import {
   getWeeklySleepStats,
   calculateMilesWalked,
   getMinutesActiveForDay,
-  reachedStepGoalForDay
+  reachedStepGoalForDay,
 } from "../src/utils.js";
 
 import userData from "./userTestData";
@@ -38,7 +38,7 @@ describe("getUserData function", function () {
           email: "Taurean_Pollich31@gmail.com",
           strideLength: 4,
           dailyStepGoal: 7000,
-          friends: [5, 43, 46, 11]
+          friends: [5, 43, 46, 11],
         },
         {
           id: 2,
@@ -47,7 +47,7 @@ describe("getUserData function", function () {
           email: "Nicolette_Halvorson43@yahoo.com",
           strideLength: 4.5,
           dailyStepGoal: 8000,
-          friends: [13, 19, 3]
+          friends: [13, 19, 3],
         },
         {
           id: 3,
@@ -56,7 +56,7 @@ describe("getUserData function", function () {
           email: "Wilford.Barton@gmail.com",
           strideLength: 2.7,
           dailyStepGoal: 3000,
-          friends: [31, 16, 15, 7]
+          friends: [31, 16, 15, 7],
         },
       ],
     };
@@ -133,7 +133,7 @@ describe("fluid consumed", function () {
     expect(avgFluidConsumed).to.deep.equal(33);
   });
 
-  it('should return NaN when there is no user data', () => {
+  it("should return NaN when there is no user data", () => {
     const userId = 4;
     const date = "2023/03/27";
     const result = getAvgTotalFluid(hydrationData.userWater, userId, date);
@@ -147,7 +147,7 @@ describe("fluid consumed", function () {
     expect(specificDayFluid).to.equal(95);
   });
 
-  it('should return undefined when there is no user data for the date', () => {
+  it("should return undefined when there is no user data for the date", () => {
     const id = 1;
     const date = "2023/03/31";
     const result = getDayFluids(hydrationData.userWater.numOunces, id, date);
@@ -168,10 +168,9 @@ describe("fluid consumed", function () {
     ]);
   });
 
-  it('should return [] if there is no data for user', () => {
+  it("should return [] if there is no data for user", () => {
     const userId = 4;
     const result = getWeeklyHydration(hydrationData.userWater, userId);
-    console.log(result)
     expect(result).to.deep.equal([]);
   });
 });
@@ -181,181 +180,187 @@ describe("user's sleep", function () {
   beforeEach(function () {
     sleepData = {
       userSleep: [
-        {userID: 1, date: '2023/03/24', hoursSlept: 9.6, sleepQuality: 4.3},
-        {userID: 2, date: '2023/03/24', hoursSlept: 8.4, sleepQuality: 3.5},
-        {userID: 3, date: '2023/03/24', hoursSlept: 9.7, sleepQuality: 4.7},
-        {userID: 1, date: '2023/03/25', hoursSlept: 6.3, sleepQuality: 3.3},
-        {userID: 2, date: '2023/03/25', hoursSlept: 8.1, sleepQuality: 4.7},
-        {userID: 3, date: '2023/03/25', hoursSlept: 9.5, sleepQuality: 1.8},
-        {userID: 1, date: '2023/03/26', hoursSlept: 5.4, sleepQuality: 3.1},
-        {userID: 2, date: '2023/03/26', hoursSlept: 9.8, sleepQuality: 4.8},
-        {userID: 3, date: '2023/03/26', hoursSlept: 4.1, sleepQuality: 2},
-        {userID: 1, date: '2023/03/27', hoursSlept: 7.1, sleepQuality: 4.7},
-        {userID: 2, date: '2023/03/27', hoursSlept: 10.7, sleepQuality: 2.8},
-        {userID: 3, date: '2023/03/27', hoursSlept: 8.7, sleepQuality: 2.9},
-        {userID: 1, date: '2023/03/28', hoursSlept: 6, sleepQuality: 4.6},
-        {userID: 2, date: '2023/03/28', hoursSlept: 5.1, sleepQuality: 2.1},
-        {userID: 3, date: '2023/03/28', hoursSlept: 7, sleepQuality: 4.1},
-        {userID: 1, date: '2023/03/29', hoursSlept: 5.6, sleepQuality: 2.1},
-        {userID: 2, date: '2023/03/29', hoursSlept: 4.3, sleepQuality: 2.2},
-        {userID: 3, date: '2023/03/29', hoursSlept: 6.6, sleepQuality: 3.2},
-        {userID: 1, date: '2023/03/30', hoursSlept: 6.2, sleepQuality: 3.3},
-        {userID: 2, date: '2023/03/30', hoursSlept: 10.1, sleepQuality: 3.2},
-        {userID: 3, date: '2023/03/30', hoursSlept: 8.8, sleepQuality: 3.2},
-        {userID: 1, date: '2023/03/31', hoursSlept: 8.3, sleepQuality: 1.2},
-        {userID: 2, date: '2023/03/31', hoursSlept: 9.3, sleepQuality: 2.8},
-        {userID: 3, date: '2023/03/31', hoursSlept: 9.7, sleepQuality: 2.5}
+        { userID: 1, date: "2023/03/24", hoursSlept: 9.6, sleepQuality: 4.3 },
+        { userID: 2, date: "2023/03/24", hoursSlept: 8.4, sleepQuality: 3.5 },
+        { userID: 3, date: "2023/03/24", hoursSlept: 9.7, sleepQuality: 4.7 },
+        { userID: 1, date: "2023/03/25", hoursSlept: 6.3, sleepQuality: 3.3 },
+        { userID: 2, date: "2023/03/25", hoursSlept: 8.1, sleepQuality: 4.7 },
+        { userID: 3, date: "2023/03/25", hoursSlept: 9.5, sleepQuality: 1.8 },
+        { userID: 1, date: "2023/03/26", hoursSlept: 5.4, sleepQuality: 3.1 },
+        { userID: 2, date: "2023/03/26", hoursSlept: 9.8, sleepQuality: 4.8 },
+        { userID: 3, date: "2023/03/26", hoursSlept: 4.1, sleepQuality: 2 },
+        { userID: 1, date: "2023/03/27", hoursSlept: 7.1, sleepQuality: 4.7 },
+        { userID: 2, date: "2023/03/27", hoursSlept: 10.7, sleepQuality: 2.8 },
+        { userID: 3, date: "2023/03/27", hoursSlept: 8.7, sleepQuality: 2.9 },
+        { userID: 1, date: "2023/03/28", hoursSlept: 6, sleepQuality: 4.6 },
+        { userID: 2, date: "2023/03/28", hoursSlept: 5.1, sleepQuality: 2.1 },
+        { userID: 3, date: "2023/03/28", hoursSlept: 7, sleepQuality: 4.1 },
+        { userID: 1, date: "2023/03/29", hoursSlept: 5.6, sleepQuality: 2.1 },
+        { userID: 2, date: "2023/03/29", hoursSlept: 4.3, sleepQuality: 2.2 },
+        { userID: 3, date: "2023/03/29", hoursSlept: 6.6, sleepQuality: 3.2 },
+        { userID: 1, date: "2023/03/30", hoursSlept: 6.2, sleepQuality: 3.3 },
+        { userID: 2, date: "2023/03/30", hoursSlept: 10.1, sleepQuality: 3.2 },
+        { userID: 3, date: "2023/03/30", hoursSlept: 8.8, sleepQuality: 3.2 },
+        { userID: 1, date: "2023/03/31", hoursSlept: 8.3, sleepQuality: 1.2 },
+        { userID: 2, date: "2023/03/31", hoursSlept: 9.3, sleepQuality: 2.8 },
+        { userID: 3, date: "2023/03/31", hoursSlept: 9.7, sleepQuality: 2.5 },
       ],
-    }
+    };
   });
 
-    it('should return the users average number of hours slept per day', () => {
-      const userSleepData = sleepData.userSleep;
-      const userId = 1;
-      const expectedAverage = 7;
-      const result = getAvgDailySleep(userSleepData, userId);
-      expect(result).to.equal(expectedAverage);
-    });
+  it("should return the users average number of hours slept per day", () => {
+    const userSleepData = sleepData.userSleep;
+    const userId = 1;
+    const expectedAverage = 7;
+    const result = getAvgDailySleep(userSleepData, userId);
+    expect(result).to.equal(expectedAverage);
+  });
 
-    it('should return NaN if no user data is found', () => {
-      const userSleepData = sleepData.userSleep;
-      const userId = 4;
-      const result = getAvgDailySleep(userSleepData, userId);
-      expect(result).to.deep.equal(NaN);
-    });
+  it("should return NaN if no user data is found", () => {
+    const userSleepData = sleepData.userSleep;
+    const userId = 4;
+    const result = getAvgDailySleep(userSleepData, userId);
+    expect(result).to.deep.equal(NaN);
+  });
 
-    it('should return the users average sleep quality per day over all time', () => {
-      const userSleepData = sleepData.userSleep;
-      const userId = 1;
-      const expectedAverage = 3.325;
-      const result = getAvgSleepQuality(userSleepData, userId);
-      expect(result).to.equal(expectedAverage);
-    });
+  it("should return the users average sleep quality per day over all time", () => {
+    const userSleepData = sleepData.userSleep;
+    const userId = 1;
+    const expectedAverage = 3.325;
+    const result = getAvgSleepQuality(userSleepData, userId);
+    expect(result).to.equal(expectedAverage);
+  });
 
-    it('should return NaN if no user data is found', () => {
-      const userSleepData = sleepData.userSleep;
-      const userId = 4;
-      const result = getAvgSleepQuality(userSleepData, userId);
-      expect(result).to.deep.equal(NaN);
-    });
+  it("should return NaN if no user data is found", () => {
+    const userSleepData = sleepData.userSleep;
+    const userId = 4;
+    const result = getAvgSleepQuality(userSleepData, userId);
+    expect(result).to.deep.equal(NaN);
+  });
 
-    it('should return the number of hours a user slept for a specific day', () => {
-      const userSleepData = sleepData.userSleep;
-      const userId = 1;
-      const date = '2023/03/24';
-      const expectedHours = 9.6;
-      const result = getHoursSleptForDay(userSleepData, userId, date);
-      expect(result).to.equal(expectedHours);
-    });
+  it("should return the number of hours a user slept for a specific day", () => {
+    const userSleepData = sleepData.userSleep;
+    const userId = 1;
+    const date = "2023/03/24";
+    const expectedHours = 9.6;
+    const result = getHoursSleptForDay(userSleepData, userId, date);
+    expect(result).to.equal(expectedHours);
+  });
 
-    it('should return the users sleep quality for a specific day', () => {
-      const userId = 1;
-      const date = '2023/03/24';
-      const result = getSleepQualityForDay(sleepData.userSleep, userId, date);
-      const expectedValue = 4.3;
-      expect(result).to.equal(expectedValue);
-    });
+  it("should return the users sleep quality for a specific day", () => {
+    const userId = 1;
+    const date = "2023/03/24";
+    const result = getSleepQualityForDay(sleepData.userSleep, userId, date);
+    const expectedValue = 4.3;
+    expect(result).to.equal(expectedValue);
+  });
 
-    it('should return 0 when there is no data for the user', () => {
-      const date = '2023/03/24';
-      const userId = 4;
-      const result = getSleepQualityForDay(sleepData.userSleep, userId, date);
-      expect(result).to.equal(0);
-    });
+  it("should return 0 when there is no data for the user", () => {
+    const date = "2023/03/24";
+    const userId = 4;
+    const result = getSleepQualityForDay(sleepData.userSleep, userId, date);
+    expect(result).to.equal(0);
+  });
 
-    it('should return 0 when there is no data for the date', () => {
-      const userId = 1;
-      const date = '2023/03/23';
-      const result = getSleepQualityForDay(sleepData.userSleep, userId, date);
-      expect(result).to.equal(0);
-    });
+  it("should return 0 when there is no data for the date", () => {
+    const userId = 1;
+    const date = "2023/03/23";
+    const result = getSleepQualityForDay(sleepData.userSleep, userId, date);
+    expect(result).to.equal(0);
+  });
 
-    it('should calculate hours slept for 7 days for a given user', () => {
-      const userId = 1;
-      const startDate = '2023/03/25';
-      const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
-      const expectedHoursSlept = [6.3, 5.4, 7.1, 6, 5.6, 6.2, 8.3];
-      expect(result).to.deep.equal(expectedHoursSlept);
-    });
+  it("should calculate hours slept for 7 days for a given user", () => {
+    const userId = 1;
+    const startDate = "2023/03/25";
+    const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
+    const expectedHoursSlept = [6.3, 5.4, 7.1, 6, 5.6, 6.2, 8.3];
+    expect(result).to.deep.equal(expectedHoursSlept);
+  });
 
-    it('should return zero when there is no start date', () => {
-      const userId = 1;
-      const startDate = '';
-      const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
-      const expectedHoursSlept = 0;
-      expect(result).to.deep.equal(expectedHoursSlept);
-    });
+  it("should return zero when there is no start date", () => {
+    const userId = 1;
+    const startDate = "";
+    const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
+    const expectedHoursSlept = 0;
+    expect(result).to.deep.equal(expectedHoursSlept);
+  });
 
-    it('should return [] when there is no data for the user', () => {
-      const userId = 4;
-      const startDate = '2023/03/25';
-      const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
-      const expectedHoursSlept = [];
-      expect(result).to.deep.equal(expectedHoursSlept);
-    });
+  it("should return [] when there is no data for the user", () => {
+    const userId = 4;
+    const startDate = "2023/03/25";
+    const result = getHoursSleptForWeek(sleepData.userSleep, userId, startDate);
+    const expectedHoursSlept = [];
+    expect(result).to.deep.equal(expectedHoursSlept);
+  });
 
-    it('should return an array of sleep quality for 7 days', () => {
-      const userId = 1;
-      const startDate = '2023/03/25';
-      const sleepQualityFor7Days = getSleepQualityForWeek(sleepData.userSleep, userId, startDate);
-      const expectedSleepQuality = [6.3, 5.4, 7.1, 6, 5.6, 6.2, 8.3];
-      expect(sleepQualityFor7Days).to.deep.equal(expectedSleepQuality);
-    });
+  it("should return an array of sleep quality for 7 days", () => {
+    const userId = 1;
+    const startDate = "2023/03/25";
+    const sleepQualityFor7Days = getSleepQualityForWeek(
+      sleepData.userSleep,
+      userId,
+      startDate
+    );
+    const expectedSleepQuality = [6.3, 5.4, 7.1, 6, 5.6, 6.2, 8.3];
+    expect(sleepQualityFor7Days).to.deep.equal(expectedSleepQuality);
+  });
 
-    it('should return [] for a user with no data', () => {
-      const userId = 4;
-      const startDate = '2023/03/25';
-      const result = getSleepQualityForWeek(sleepData.userSleep, userId, startDate);
-      expect(result).to.deep.equal([]);
-    });
+  it("should return [] for a user with no data", () => {
+    const userId = 4;
+    const startDate = "2023/03/25";
+    const result = getSleepQualityForWeek(
+      sleepData.userSleep,
+      userId,
+      startDate
+    );
+    expect(result).to.deep.equal([]);
+  });
 
-    it('should return zero when there is no start date', () => {
-      const userId = 2;
-      const startDate = '';
-      const result = getSleepQualityForWeek(sleepData.userSleep, userId, startDate);
-      expect(result).to.equal(0);
-    });
-  })
-
-// Calculate the miles a user has walked based on their number of steps (use their strideLength to help calculate this), based on a specific day
-// Return how many minutes a user was active for a given day
-// Return if a user reached their step goal for a given day
+  it("should return zero when there is no start date", () => {
+    const userId = 2;
+    const startDate = "";
+    const result = getSleepQualityForWeek(
+      sleepData.userSleep,
+      userId,
+      startDate
+    );
+    expect(result).to.equal(0);
+  });
+});
 
 describe("user's activity", function () {
-  it('should calculate the miles walked for a specific user on a specific day', () => {
-    const date = '2023/03/24';
-    const milesWalked = calculateMilesWalked(userData, activityData, date);
-    expect(milesWalked).to.be.closeTo(5.577); 
-  });
-
-  it('should return the correct number of minutes active for all users on a specific day', () => {
-    const date = "2023/03/25";
-    const minutesActive = getMinutesActiveForDay(userData, activityData, date);
-    // This test should now check a specific user's active minutes or modify the assertion to suit the new structure
-    // For example, checking if a user named 'John' was active for 111 minutes:
-    expect(minutesActive["John"]).to.equal(111);
-  });
-
-  // The next tests are tricky because they deal with a function that is now broken (since userId is missing)
-  // However, if we are considering a user named "John" with an id of 1:
-  it('should return true when the user reached their step goal for a given day', () => {
-    const date = "2023/03/25";
-    const result = reachedStepGoalForDay(activityData, userData, date);
-    // For now, this test isn't precise since the function isn't working properly
-    expect(result).to.be.true; 
-  });
-
-  it('should return false when the user did not reach their step goal for a given day', () => {
+  it("should calculate the miles walked for a specific user on a specific day", () => {
     const date = "2023/03/24";
-    const result = reachedStepGoalForDay(activityData, userData, date);
-    // As with the previous test, this isn't precise
+    const user = userData.users[0];
+    const milesWalked = calculateMilesWalked(user, activityData, date);
+    expect(milesWalked).to.equal("Miles walked: 5.58");
+  });
+
+  it("should return the correct number of minutes active for a user on a specific day", () => {
+    const date = "2023/03/25";
+    const user = userData.users[0];
+    const minutesActive = getMinutesActiveForDay(user, activityData, date);
+    expect(minutesActive).to.equal(111);
+  });
+
+  it("should return true when the user reached their step goal for a given day", () => {
+    const date = "2023/03/25";
+    const user = userData.users[0];
+    const result = reachedStepGoalForDay(user, activityData, date);
+    expect(result).to.be.true;
+  });
+
+  it("should return false when the user did not reach their step goal for a given day", () => {
+    const date = "2023/03/27";
+    const user = userData.users[0];
+    const result = reachedStepGoalForDay(user, activityData, date);
     expect(result).to.be.false;
   });
 
-  it('should return 0 when the user did not have data for the given day', () => {
+  it("should return 0 when the user did not have data for the given day", () => {
     const date = "2023/03/23";
-    const result = reachedStepGoalForDay(activityData, userData, date);
-    // This test assertion is a bit odd because the function returns 'false' or 'undefined', not 0
-    expect(result).to.be.undefined;
+    const user = userData.users[0];
+    const result = reachedStepGoalForDay(user, activityData, date);
+    expect(result).to.be.false;
   });
 });
