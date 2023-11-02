@@ -172,7 +172,7 @@ const getSleepQualityForWeek = (sleepData, userId, startDate) => {
 
 // Activity Data Functions
 const calculateMilesWalked = (user, activityData, date) => {
-  const userActivityForDate = activityData.activityData.userActivity.find(
+  const userActivityForDate = activityData.find(
     (activity) => activity.date === date
   );
   if (!userActivityForDate) {
@@ -180,11 +180,11 @@ const calculateMilesWalked = (user, activityData, date) => {
   }
 
   const miles = (user.strideLength * userActivityForDate.numSteps) / 5280;
-  return parseFloat(miles.toFixed(2));
+  return `Miles walked: ${parseFloat(miles.toFixed(2))}`;
 };
 
 const getMinutesActiveForDay = (user, activityData, date) => {
-  const userActivityForDate = activityData.activityData.userActivity.find(
+  const userActivityForDate = activityData.find(
     (activity) => activity.date === date
   );
 
@@ -196,7 +196,7 @@ const getMinutesActiveForDay = (user, activityData, date) => {
 };
 
 const reachedStepGoalForDay = (user, activityData, date) => {
-  const userActivityForDate = activityData.activityData.userActivity.find(
+  const userActivityForDate = activityData.find(
     (activity) => activity.userID === user.id && activity.date === date
   );
 
