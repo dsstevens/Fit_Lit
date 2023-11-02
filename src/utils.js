@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
 import calendar from "dayjs/plugin/calendar";
-dayjs.extend(calendar);
-dayjs.extend(require("dayjs/plugin/utc"));
+import utc from "dayjs/plugin/utc";
+import isBetween from "dayjs/plugin/isBetween";
 
+dayjs.extend(calendar);
+dayjs.extend(utc);
+dayjs.extend(isBetween);
 // User Data Functions
 const getUserData = (users, userId) => {
   return users.find((user) => user.id === userId);
@@ -96,7 +99,9 @@ const getHoursSleptForDay = (sleepData, userId, date) => {
   if (!sleepData || !userId || !date) {
     return 0;
   }
-  const userSleepData = sleepData.find((data) => data.date === date);
+  const userSleepData = sleepData.find(
+    (data) => data.userID === userId && data.date === date
+  );
   return userSleepData ? userSleepData.hoursSlept : 0;
 };
 
@@ -110,17 +115,28 @@ const getSleepQualityForDay = (sleepData, userId, date) => {
   return userSleepData ? userSleepData.sleepQuality : 0;
 };
 
-const getWeeklySleepStats = (weekSleepData) => {
+const getWeeklySleepStats = (sleepData, date, userId) => {
   let totalHoursSlept = 0;
   let totalSleepQuality = 0;
+  const lastWeekStartDate = dayjs(date).subtract(7, "day").format("YYYY/MM/DD");
+  const lastWeekEndDate = dayjs(date).subtract(1, "day").format("YYYY/MM/DD");
+  const latestWeekSleepData = sleepData.filter(
+    (entry) =>
+      dayjs(entry.date).isBetween(
+        lastWeekStartDate,
+        lastWeekEndDate,
+        null,
+        "[]"
+      ) && userId === entry.userID
+  );
 
-  for (const entry of weekSleepData) {
+  for (const entry of latestWeekSleepData) {
     totalHoursSlept += entry.hoursSlept;
     totalSleepQuality += entry.sleepQuality;
   }
 
-  const averageHoursSlept = totalHoursSlept / weekSleepData.length;
-  const averageSleepQuality = totalSleepQuality / weekSleepData.length;
+  const averageHoursSlept = totalHoursSlept / latestWeekSleepData.length;
+  const averageSleepQuality = totalSleepQuality / latestWeekSleepData.length;
 
   return {
     totalHoursSlept,
@@ -139,6 +155,7 @@ const getAvgHoursSlept = (sleepData, userID) => {
 };
 
 const getHoursSleptForWeek = (sleepData, userId, startDate) => {
+  console.log(startDate);
   if (!sleepData || !userId || !startDate) {
     return 0;
   }
