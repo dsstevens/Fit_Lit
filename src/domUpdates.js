@@ -136,7 +136,7 @@ const updateSleepCard = (sleepData, userId, date) => {
     `Sleep quality on ${date}: ${sleepQualityForDay}`
   );
 
-  const latestWeekSleepData = getWeeklySleepStats(sleepData);
+  const latestWeekSleepData = getWeeklySleepStats(sleepData, date, userId);
   const latestWeekAvgHoursSlept = latestWeekSleepData.averageHoursSlept;
   const latestWeekAvgSleepQuality = latestWeekSleepData.averageSleepQuality;
 
