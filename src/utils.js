@@ -155,7 +155,6 @@ const getAvgHoursSlept = (sleepData, userID) => {
 };
 
 const getHoursSleptForWeek = (sleepData, userId, startDate) => {
-  console.log(startDate);
   if (!sleepData || !userId || !startDate) {
     return 0;
   }
@@ -202,7 +201,7 @@ const calculateMilesWalked = (user, activityData, date) => {
 
 const getMinutesActiveForDay = (user, activityData, date) => {
   const userActivityForDate = activityData.find(
-    (activity) => activity.date === date
+    (activity) => activity.userID === user.id && activity.date === date
   );
 
   if (!userActivityForDate) {
@@ -224,27 +223,29 @@ const reachedStepGoalForDay = (user, activityData, date) => {
   return userActivityForDate.numSteps >= user.dailyStepGoal ? true : false;
 };
 
-const getLatestSteps = (activityData) => {
+const getLatestSteps = (activityData, userId, date) => {
+  console.log(userId);
+  console.log(date);
+  console.log(activityData);
   const startDate = new Date("2023/03/24");
   const endDate = new Date("2023/07/01");
 
   const validEntries = activityData.filter(
     (entry) =>
-      new Date(entry.date) >= startDate && new Date(entry.date) <= endDate
+      entry.userID === userId &&
+      new Date(entry.date) >= startDate &&
+      new Date(entry.date) <= endDate
   );
 
   if (validEntries.length === 0) {
-    return "No valid entries found in the given date range.";
+    return null;
   }
 
-  const { numSteps: latestSteps } = validEntries.reduce((latest, current) => {
-    const currentDate = new Date(current.date);
-    const latestDate = new Date(latest.date);
+  const sortedEntries = validEntries.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
-    return currentDate > latestDate ? current : latest;
-  });
-
-  return latestSteps;
+  return sortedEntries[0].numSteps;
 };
 
 // Date Functions
