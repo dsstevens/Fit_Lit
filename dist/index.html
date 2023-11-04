@@ -42,13 +42,23 @@
   </div>
   <div class ="login">
     <div class="activity-section">
-      <section>
-        <h2 class="activity"></h2>
-        <h3 class="min-active-day"></h3>
-        <h3 class="reached-step-goal"></h3>
-        <h3 class="miles-per-day"></h3>
-        <h3 class="latest-steps"></h3>
-      </section>
+      <div class="activity-data"> <!-- This is a new container for the activity data -->
+        <section>
+          <h2 class="activity"></h2>
+          <h3 class="min-active-day"></h3>
+          <h3 class="reached-step-goal"></h3>
+          <h3 class="miles-per-day"></h3>
+          <h3 class="latest-steps"></h3>
+        </section>
+      </div>
+      <div class="timer-section">
+        <h2>Stretch Timer</h2>
+        <h5 id="timer-display">00:15</h5>
+        <button id="stretch-timer">Start</button>
+        <h5 id="reps-tally">Reps: <span id="reps-count">0</span></h5>
+        <h5 id="sets-tally">Sets: <span id="sets-count">0</span></h5>
+        <h5 id="completion-message"></h5>
+      </div>
     </div>
   </div>
     <div class="user-info-section">
@@ -82,7 +92,7 @@
     <div class="step-goals">
       <section>
         <h2>Step</h2>
-        <h5 class="usr-step-goal"></h5>
+        <h5 class="user-step-goal"></h5>
         <h5 class="avg-step-goal"></h5>
         <h5 class="step-goal-comparison"></h5>
       </section>
