@@ -39,13 +39,23 @@
       </section>
     </div>
     <div class="activity-section">
-      <section>
-        <h2 class="activity"></h2>
-        <h3 class="min-active-day"></h3>
-        <h3 class="reached-step-goal"></h3>
-        <h3 class="miles-per-day"></h3>
-        <h3 class="latest-steps"></h3>
-      </section>
+      <div class="activity-data"> <!-- This is a new container for the activity data -->
+        <section>
+          <h2 class="activity"></h2>
+          <h3 class="min-active-day"></h3>
+          <h3 class="reached-step-goal"></h3>
+          <h3 class="miles-per-day"></h3>
+          <h3 class="latest-steps"></h3>
+        </section>
+      </div>
+      <div class="timer-section">
+        <h2>Workout Timer</h2>
+        <div id="timer-display">00:15</div>
+        <button id="start-timer">Start</button>
+        <div id="reps-tally">Reps: <span id="reps-count">0</span></div>
+        <div id="sets-tally">Sets: <span id="sets-count">0</span></div>
+        <div id="completion-message"></div>
+      </div>
     </div>
     <div class="user-info-section">
       <section class = "info-card">

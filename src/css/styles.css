@@ -104,6 +104,12 @@ h1 {
 .activity-section {
   background-color: #f9f9f9;
   padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  padding: 20px;
   width: 500px;
   height: 365px;
   border-radius: 20px;
@@ -156,4 +162,35 @@ h2 {
 h5 {
   color: #333;
   margin: 10px;
+}
+
+.timer-section {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  text-align: center;
+}
+
+#timer-display {
+  font-size: 2em;
+  margin: 20px;
+  color: #49bea1; /* mint green for visibility */
+}
+
+#start-timer {
+  background-color: #3c53f8; /* electric blue */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#start-timer:hover {
+  background-color: #334cf7;
+}
+
+#reps-tally,
+#sets-tally {
+  margin: 10px 0;
+  color: #333;
 }
