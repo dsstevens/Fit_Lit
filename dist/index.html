@@ -24,6 +24,7 @@
         width="100px"
       />
     </div>
+    <div class="login">
     <div class="sleep-section">
       <section>
         <h2>Sleep</h2>
@@ -38,21 +39,35 @@
     <h3 class="sleep-daily-avg-qlty"></h3>
       </section>
     </div>
+  </div>
+  <div class ="login">
     <div class="activity-section">
-      <section>
-        <h2 class="activity"></h2>
-        <h3 class="min-active-day"></h3>
-        <h3 class="reached-step-goal"></h3>
-        <h3 class="miles-per-day"></h3>
-        <h3 class="latest-steps"></h3>
-      </section>
+      <div class="activity-data"> <!-- This is a new container for the activity data -->
+        <section>
+          <h2 class="activity"></h2>
+          <h3 class="min-active-day"></h3>
+          <h3 class="reached-step-goal"></h3>
+          <h3 class="miles-per-day"></h3>
+          <h3 class="latest-steps"></h3>
+        </section>
+      </div>
+      <div class="timer-section">
+        <h2>Stretch Timer</h2>
+        <h5 id="timer-display">00:15</h5>
+        <button id="stretch-timer">Start</button>
+        <h5 id="reps-tally">Reps: <span id="reps-count">0</span></h5>
+        <h5 id="sets-tally">Sets: <span id="sets-count">0</span></h5>
+        <h5 id="completion-message"></h5>
+      </div>
     </div>
+  </div>
     <div class="user-info-section">
       <section class = "info-card">
         <h1>User Info</h1>
         <h1 class="user-static-info"></h1>
       </section>
     </div>
+    <div class ="login">
     <div class="hydration-section">
       <section>
         <h2>Hydration</h2>
@@ -62,6 +77,8 @@
         <h5 class="water-weekly-view"></h5>
       </section>
     </div>
+  </div>
+    <div class ="login">
     <div class="input-field">
       <section>
         <h2>Input</h2>
@@ -70,33 +87,23 @@
         <h5 class=""></h5>
       </section>
     </div>
+  </div>
+  <div class ="login">
     <div class="step-goals">
       <section>
         <h2>Step</h2>
-        <h5 class="usr-step-goal"></h5>
+        <h5 class="user-step-goal"></h5>
         <h5 class="avg-step-goal"></h5>
         <h5 class="step-goal-comparison"></h5>
       </section>
     </div>
-    <div class="hydration-form">
-      <section>
-        <form>
-          <label for="date">
-            date:
-          </label>
-          <input type="date" name="date" id="hydrationDate" required />
-          <label for="number-of-ounces">
-            ounces:
-          </label>
-          <input type="number" name="number-of-ounces" id="hydrationOunces" required />
-          <input type="submit" value="Submit!" id="hydrationFormSubmitButton" />
-        </form>
-      </section>
-    </div>
+  </div>
+  <div class ="login">
     <div class="img">
       <img src = "./images/banner.png">
     </img>
     </div>
+  </div>
     <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
     <script src="bundle.js"></script>
   </body>

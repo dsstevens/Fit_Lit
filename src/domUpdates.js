@@ -89,7 +89,7 @@ const updateStepGoalCard = (randomUser, avgStepGoal) => {
 
 const updateUserStepGoal = (randomUser) => {
   updateElementText(
-    "usr-step-goal",
+    "user-step-goal",
     `User Step Goal: ${randomUser.dailyStepGoal}`
   );
 };
