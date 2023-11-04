@@ -18,7 +18,7 @@ window.addEventListener("load", function () {
 
 document.addEventListener('DOMContentLoaded', () => {
   const timerDisplay = document.getElementById('timer-display')
-  const startButton = document.getElementById('start-timer')
+  const startButton = document.getElementById('stretch-timer')
   const repsCountDisplay = document.getElementById('reps-count')
   const setsCountDisplay = document.getElementById('sets-count')
   const completionMessage = document.getElementById('completion-message')

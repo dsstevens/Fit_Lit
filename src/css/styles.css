@@ -173,11 +173,11 @@ h5 {
 #timer-display {
   font-size: 2em;
   margin: 20px;
-  color: #49bea1; /* mint green for visibility */
+  color: #49bea1;
 }
 
-#start-timer {
-  background-color: #3c53f8; /* electric blue */
+#stretch-timer {
+  background-color: #3c53f8;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -185,7 +185,7 @@ h5 {
   cursor: pointer;
 }
 
-#start-timer:hover {
+#stretch-timer:hover {
   background-color: #334cf7;
 }
 
