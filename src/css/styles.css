@@ -139,7 +139,19 @@ h1 {
 .step-goals {
   background-color: #f9f9f9;
   padding: 20px;
-  width: 500px;
+  width: 225px;
+  height: 150px;
+  border-radius: 20px;
+  position: relative;
+  float: right;
+  margin-top: 9px;
+  margin-right: 10px;
+}
+
+.input-field {
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 225px;
   height: 150px;
   border-radius: 20px;
   position: relative;
