@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
           timerDisplay.textContent = '00:15'
           startButton.textContent = 'Start'
           startButton.disabled = false
-        }, 2000)
+        }, 1500)
       }
     }, 1000)
   })
