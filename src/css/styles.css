@@ -14,9 +14,7 @@ off black
 
 body,
 html {
-  body {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-  }
+  font-family: "M PLUS Rounded 1c", sans-serif;
   background-image: linear-gradient(
     to top,
     #3c53f8 0%,
@@ -26,8 +24,6 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 90%;
-  /* margin: 5px; */
-  /* margin-top: 10px; */
   padding: 11px;
 }
 
@@ -206,4 +202,3 @@ h5 {
   margin: 10px 0;
   color: #333;
 }
-
