@@ -1,18 +1,25 @@
 import "./css/styles.css";
 import "./images/turing-logo.png";
 import "./images/banner.png";
-import { fetchAPIcall } from "./apiCalls";
+import { fetchAPIcall, postHydrationData } from "./apiCalls";
 import { updateDom } from "./domUpdates";
+import { getRandomUser } from "./utils";
+
+let randomUser
+// const randomUser = getRandomUser(usersData);
 
 const hydrationFormSubmitButton = document.querySelector("#hydrationFormSubmitButton");
 const hydrationDate = document.querySelector("#hydrationDate");
 const hydrationOunces = document.querySelector("#hydrationOunces");
 
-const postHydrationData = (event) => {
+const submitHydrationData = (event) => {
   event.preventDefault()
   // need to call our fetch(POST) function
   // need to update DOM, use the DOM update function and take out the stuff you don't want, like generating a new random user, will you need to clear html fields?
-  console.log(hydrationDate.value, hydrationOunces.value)
+  console.log(hydrationDate.value, hydrationOunces.value, randomUser)
+  postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value)).then((response) => {
+    console.log(response)
+  });
 }
 
 // // EVENT LISTENERS
@@ -23,7 +30,8 @@ window.addEventListener("load", function () {
     fetchAPIcall("sleep"),
     fetchAPIcall("hydration"),
   ]).then((allData) => {
-    updateDom(allData);
+    randomUser = getRandomUser(allData[1].users);
+    updateDom(allData, randomUser);
   });
 });
 
@@ -69,5 +77,5 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 hydrationFormSubmitButton.addEventListener("click", function(event) {
-  postHydrationData(event)
+  submitHydrationData(event)
 });

@@ -1,6 +1,6 @@
 //DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 import {
-  getRandomUser,
+  // getRandomUser,
   getCurrentDate,
   calculateAvgStepGoal,
   getAvgDailySleep,
@@ -19,7 +19,7 @@ import {
 } from "./utils";
 
 // Update DOM
-const updateDom = (allData) => {
+const updateDom = (allData, randomUser) => {
   // Parse data
   const activityData = allData[0].activityData;
   const usersData = allData[1].users;
@@ -27,7 +27,7 @@ const updateDom = (allData) => {
   const hydrationData = allData[3].hydrationData;
 
   // Update Header
-  const randomUser = getRandomUser(usersData);
+  // const randomUser = getRandomUser(usersData);
   updateWelcomeMessage(randomUser.name);
   const currentDate = getCurrentDate();
   updateTargetDate(currentDate);
