@@ -19,7 +19,8 @@ import {
 } from "./utils";
 
 // Update DOM
-const updateDom = (allData) => {
+const updateDom = (allData, userId) => {
+  console.log(userId);
   // Parse data
   const activityData = allData[0].activityData;
   const usersData = allData[1].users;

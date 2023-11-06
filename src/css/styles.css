@@ -115,6 +115,21 @@ h1 {
   margin-right: 290px;
 }
 
+.user-login {
+  background-color: #fff;
+  flex-direction: column;
+  display: flex;
+  width: 240px;
+  height: 200px;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 140px;
+  margin-left: 550px;
+}
+
 .user-info-section {
   background-color: #f9f9f9;
   padding: 20px;

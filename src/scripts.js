@@ -4,6 +4,8 @@ import "./images/banner.png";
 import { fetchAPIcall } from "./apiCalls";
 import { updateDom } from "./domUpdates";
 
+let userId = 0;
+
 // // EVENT LISTENERS
 window.addEventListener("load", function () {
   Promise.all([
@@ -12,7 +14,7 @@ window.addEventListener("load", function () {
     fetchAPIcall("sleep"),
     fetchAPIcall("hydration"),
   ]).then((allData) => {
-    updateDom(allData);
+    updateDom(allData, 0);
   });
 });
 
@@ -73,8 +75,6 @@ function toggleVisibility(className) {
 const toggleButton = document.getElementById("toggleButton");
 
 toggleButton.addEventListener("click", function () {
-  // toggleVisibility("login");
-  // createUserLogin();
   const containerDiv = document.getElementById("container");
   containerDiv.style.display = "none";
   createUserLogin();
@@ -93,8 +93,7 @@ const createUserLogin = () => {
   submitButton.textContent = "Submit";
 
   submitButton.addEventListener("click", () => {
-    const userId = userIdInput.value;
-    console.log("User ID:", userId);
+    userId = userIdInput.value;
   });
 
   userLoginDiv.appendChild(userIdInput);
