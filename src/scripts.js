@@ -36,6 +36,7 @@ window.addEventListener("load", function () {
   });
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const timerDisplay = document.getElementById('timer-display')
   const startButton = document.getElementById('stretch-timer')
