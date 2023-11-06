@@ -41,8 +41,23 @@ const updateDom = (allData, randomUser) => {
 
   // Update Sleep Card
   updateSleepCard(sleepData, randomUser.id, currentDate);
-
+  
   // Update Hydration Card
+  doHydrationUpdate(hydrationData, randomUser)
+  // const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
+  // const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
+  // const dailyFluidIntake = getDayFluids(
+  //   hydrationData,
+  //   randomUser.id,
+  //   latestDate
+  // );
+  // const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
+  // updateHydrationCard(avgFluidIntake, dailyFluidIntake, weeklyHydration);
+
+  updateActivityCard(activityData, randomUser, currentDate);
+};
+
+const doHydrationUpdate = (hydrationData, randomUser) => {
   const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
   const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
   const dailyFluidIntake = getDayFluids(
@@ -53,8 +68,8 @@ const updateDom = (allData, randomUser) => {
   const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
   updateHydrationCard(avgFluidIntake, dailyFluidIntake, weeklyHydration);
 
-  updateActivityCard(activityData, randomUser, currentDate);
-};
+  // updateActivityCard(activityData, randomUser, currentDate);
+}
 
 // Update Info Card
 const updateInfoCard = (user) => {
@@ -204,4 +219,4 @@ const updateElementText = (className, content) => {
   }
 };
 
-export { updateDom };
+export { updateDom, doHydrationUpdate };

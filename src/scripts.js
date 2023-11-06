@@ -2,11 +2,11 @@ import "./css/styles.css";
 import "./images/turing-logo.png";
 import "./images/banner.png";
 import { fetchAPIcall, postHydrationData } from "./apiCalls";
-import { updateDom } from "./domUpdates";
+import { updateDom, doHydrationUpdate } from "./domUpdates";
 import { getRandomUser } from "./utils";
 
 let randomUser
-// const randomUser = getRandomUser(usersData);
+let hydrationData
 
 const hydrationFormSubmitButton = document.querySelector("#hydrationFormSubmitButton");
 const hydrationDate = document.querySelector("#hydrationDate");
@@ -14,14 +14,11 @@ const hydrationOunces = document.querySelector("#hydrationOunces");
 
 const submitHydrationData = (event) => {
   event.preventDefault()
-  // need to call our fetch(POST) function
-  // need to update DOM, use the DOM update function and take out the stuff you don't want, like generating a new random user, will you need to clear html fields?
-  // eliminate the ability to enter negative # of oz!!! on form
-  // figure out the user issue (user v randomUser) and connect the fetchPost function to submit button
-  // need to test submit button and post for sad path when user tries to submit incomplete or bad data
-  console.log(hydrationDate.value, hydrationOunces.value, randomUser)
   postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value)).then((response) => {
-    console.log(response)
+    hydrationData.push(response)
+    doHydrationUpdate(hydrationData, randomUser)
+    hydrationDate.value = "";
+    hydrationOunces.value = "";
   });
 }
 
@@ -33,8 +30,9 @@ window.addEventListener("load", function () {
     fetchAPIcall("sleep"),
     fetchAPIcall("hydration"),
   ]).then((allData) => {
-    randomUser = getRandomUser(allData[1].users);
-    updateDom(allData, randomUser);
+      randomUser = getRandomUser(allData[1].users);
+      hydrationData = allData[3].hydrationData;
+      updateDom(allData, randomUser);
   });
 });
 
