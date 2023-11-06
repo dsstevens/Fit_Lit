@@ -70,13 +70,15 @@ function toggleVisibility(className) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleButton = document.getElementById("toggleButton");
+const toggleButton = document.getElementById("toggleButton");
 
-  toggleButton.addEventListener("click", function () {
-    toggleVisibility("login");
-    createUserLogin();
-  });
+toggleButton.addEventListener("click", function () {
+  // toggleVisibility("login");
+  // createUserLogin();
+  const containerDiv = document.getElementById("container");
+  containerDiv.style.display = "none";
+  createUserLogin();
+  toggleButton.style.display = "none";
 });
 
 const createUserLogin = () => {

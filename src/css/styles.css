@@ -184,7 +184,8 @@ h5 {
   color: #49bea1;
 }
 
-#stretch-timer {
+button {
+  width: 200px;
   background-color: #3c53f8;
   color: #fff;
   border: none;
@@ -193,8 +194,8 @@ h5 {
   cursor: pointer;
 }
 
-#stretch-timer:hover {
-  background-color: #334cf7;
+button:hover {
+  background-color: #49bea1;
 }
 
 #reps-tally,
