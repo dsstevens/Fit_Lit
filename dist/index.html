@@ -91,10 +91,13 @@
           <label for="number-of-ounces">
             oz:
           </label>
-          <input type="number" min="1" name="number-of-ounces" id="hydrationOunces" required />
+          <!-- <input type="number" min="1" name="number-of-ounces" 
+          id="hydrationOunces" required /> -->
+          <input type="number" min="0" name="number-of-ounces" id="hydrationOunces" required placeholder="Add ounces here..."/>
           <br/>
           <input type="submit" value="Submit!" id="hydrationFormSubmitButton" />
-        </form>
+        </form> 
+        <p id="formError"></p>
         <!-- <h5 class=""></h5>
         <h5 class=""></h5>
         <h5 class=""></h5> -->

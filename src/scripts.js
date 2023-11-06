@@ -2,7 +2,7 @@ import "./css/styles.css";
 import "./images/turing-logo.png";
 import "./images/banner.png";
 import { fetchAPIcall, postHydrationData } from "./apiCalls";
-import { updateDom, doHydrationUpdate } from "./domUpdates";
+import { updateDom, doHydrationUpdate, setErrorMessage } from "./domUpdates";
 import { getRandomUser } from "./utils";
 
 let randomUser
@@ -14,14 +14,26 @@ const hydrationOunces = document.querySelector("#hydrationOunces");
 
 const submitHydrationData = (event) => {
   event.preventDefault()
+  if (!hydrationDate.value.length && !hydrationOunces.value.length) {
+    setErrorMessage("Please complete both fields")
+  } else if (!hydrationDate.value.length) {
+    setErrorMessage("Please enter a date")
+  } else if (!hydrationOunces.value.length) {
+    setErrorMessage("Please enter ounces")
+  } else if (parseInt(hydrationOunces.value) < 0) {
+    setErrorMessage("Please enter positive number")
+  } else {
   postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value)).then((response) => {
     hydrationData.push(response)
     doHydrationUpdate(hydrationData, randomUser)
     hydrationDate.value = "";
     hydrationOunces.value = "";
+    setErrorMessage("Successfully submitted!")
   });
 }
+}
 
+// need a conditional, to do error handling for preventing submission of duplicate dates, and incomplete forms, shouldn't be able to put empty dates in 
 // // EVENT LISTENERS
 window.addEventListener("load", function () {
   Promise.all([

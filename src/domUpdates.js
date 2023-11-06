@@ -219,4 +219,9 @@ const updateElementText = (className, content) => {
   }
 };
 
-export { updateDom, doHydrationUpdate };
+const setErrorMessage = (errorMessage) => {
+  const formErrorElement = document.querySelector("#formError");
+  formErrorElement.textContent = errorMessage;
+}
+
+export { updateDom, doHydrationUpdate, setErrorMessage };

@@ -55,7 +55,6 @@ const postHydrationData = (userID, date, numOunces) => {
         //   // import from domUpdates, define it to target the header
         // });
     
-
 module.exports = {
   fetchAPIcall,
   postHydrationData
