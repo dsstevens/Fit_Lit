@@ -5,35 +5,41 @@ import { fetchAPIcall, postHydrationData } from "./apiCalls";
 import { updateDom, doHydrationUpdate, setErrorMessage } from "./domUpdates";
 import { getRandomUser } from "./utils";
 
-let randomUser
-let hydrationData
+let randomUser;
+let hydrationData;
 
-const hydrationFormSubmitButton = document.querySelector("#hydrationFormSubmitButton");
+const hydrationFormSubmitButton = document.querySelector(
+  "#hydrationFormSubmitButton"
+);
 const hydrationDate = document.querySelector("#hydrationDate");
 const hydrationOunces = document.querySelector("#hydrationOunces");
 
 const submitHydrationData = (event) => {
-  event.preventDefault()
+  event.preventDefault();
   if (!hydrationDate.value.length && !hydrationOunces.value.length) {
-    setErrorMessage("Please complete both fields")
+    setErrorMessage("Please complete both fields");
   } else if (!hydrationDate.value.length) {
-    setErrorMessage("Please enter a date")
+    setErrorMessage("Please enter a date");
   } else if (!hydrationOunces.value.length) {
-    setErrorMessage("Please enter ounces")
+    setErrorMessage("Please enter ounces");
   } else if (parseInt(hydrationOunces.value) < 0) {
-    setErrorMessage("Please enter positive number")
+    setErrorMessage("Please enter positive number");
   } else {
-  postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value))
-    .then((response) => {
-      hydrationData.push(response)
-      doHydrationUpdate(hydrationData, randomUser)
-      hydrationDate.value = "";
-      hydrationOunces.value = "";
-      setErrorMessage("Successfully submitted!")
-    })
-    .catch(error => setErrorMessage(error.message))
+    postHydrationData(
+      randomUser.id,
+      hydrationDate.value,
+      parseInt(hydrationOunces.value)
+    )
+      .then((response) => {
+        hydrationData.push(response);
+        doHydrationUpdate(hydrationData, randomUser);
+        hydrationDate.value = "";
+        hydrationOunces.value = "";
+        setErrorMessage("Successfully submitted!");
+      })
+      .catch((error) => setErrorMessage(error.message));
   }
-}
+};
 
 // need a conditional, to do error handling for preventi
 
@@ -47,11 +53,10 @@ window.addEventListener("load", function () {
     fetchAPIcall("hydration"),
   ]).then((allData) => {
     randomUser = getRandomUser(allData[1].users);
-      hydrationData = allData[3].hydrationData;
-      updateDom(allData, randomUser);
+    hydrationData = allData[3].hydrationData;
+    updateDom(allData, randomUser);
   });
 });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const timerDisplay = document.getElementById("timer-display");
@@ -96,13 +101,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const loginButton = document.getElementById("login-button");
+
+loginButton.addEventListener("click", login);
+
+function login() {
+  const userIdField = document.getElementById("userId-field");
+  const id = userIdField.value;
+  loginAsUser(id);
+}
+
+function loginAsUser(id) {}
+
 function toggleVisibility(className) {
   const elements = document.getElementsByClassName(className);
-
   for (const element of elements) {
-    if (className === "login") {
+    if (className === "logged-in") {
       element.style.display = "none";
-    } else if (className === "login-div") {
+    } else if (className === "logged-out") {
       element.style.display = "block";
     }
   }
@@ -111,8 +127,8 @@ function toggleVisibility(className) {
 const toggleButton = document.getElementById("toggleButton");
 
 toggleButton.addEventListener("click", function () {
-  toggleVisibility("login");
-  toggleVisibility("login-div");
+  toggleVisibility("logged-in");
+  toggleVisibility("logged-out");
 });
 
 const clearUserId = () => {
@@ -127,6 +143,6 @@ const clearUserId = () => {
   });
 };
 
-hydrationFormSubmitButton.addEventListener("click", function(event) {
-  submitHydrationData(event)
+hydrationFormSubmitButton.addEventListener("click", function (event) {
+  submitHydrationData(event);
 });

@@ -134,11 +134,19 @@ h1 {
   background-color: #f9f9f9;
   padding: 20px;
   width: 240px;
-  height: 200px;
+  height: 230px;
   border-radius: 20px;
   position: relative;
   float: right;
   margin-top: -404px;
+}
+
+header {
+  text-align: center;
+}
+
+button#toggleButton {
+  margin-top: 5px; /* Adjust the margin as needed */
 }
 
 .hydration-section {
@@ -146,11 +154,11 @@ h1 {
   background-color: #f9f9f9;
   padding: 20px;
   width: 240px;
-  height: 315px;
+  height: 284px;
   border-radius: 20px;
   position: relative;
   float: right;
-  margin-top: -155px;
+  margin-top: -125px;
 }
 
 .step-goals {
@@ -166,6 +174,9 @@ h1 {
 }
 
 .input-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #f9f9f9;
   padding: 20px;
   width: 225px;
@@ -179,7 +190,9 @@ h1 {
 
 h2 {
   color: #3c53f8;
-  margin: 10px;
+  margin: 0px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 h5 {
@@ -221,4 +234,22 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+form {
+  margin-top: 5px;
+}
+
+.material-symbols-outlined {
+  font-size: 35px;
+}
+
+#timer {
+  font-size: 150px;
+}
+
+label,
+input {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 500;
 }

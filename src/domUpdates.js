@@ -16,22 +16,24 @@ import {
   calculateMilesWalked,
   reachedStepGoalForDay,
   getLatestSteps,
+  getRandomUser,
 } from "./utils";
 
 // Update DOM
-const updateDom = (allData, randomUser) => {
-
+const updateDom = (allData, randomUser, userId) => {
   // Parse data
   const activityData = allData[0].activityData;
   const usersData = allData[1].users;
   const sleepData = allData[2].sleepData;
   const hydrationData = allData[3].hydrationData;
 
-  const user = userId ? usersData.find(user => user.id === parseInt(userId, 10)) : getRandomUser(usersData);
+  const user = userId
+    ? usersData.find((user) => user.id === parseInt(userId, 10))
+    : getRandomUser(usersData);
 
   if (!user) {
-    console.error('User not found');
-    return; 
+    console.error("User not found");
+    return;
   }
 
   // Update Header
@@ -49,9 +51,9 @@ const updateDom = (allData, randomUser) => {
 
   // Update Sleep Card
   updateSleepCard(sleepData, randomUser.id, currentDate);
-  
+
   // Update Hydration Card
-  doHydrationUpdate(hydrationData, randomUser)
+  doHydrationUpdate(hydrationData, randomUser);
   // const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
   // const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
   // const dailyFluidIntake = getDayFluids(
@@ -77,7 +79,7 @@ const doHydrationUpdate = (hydrationData, randomUser) => {
   updateHydrationCard(avgFluidIntake, dailyFluidIntake, weeklyHydration);
 
   // updateActivityCard(activityData, randomUser, currentDate);
-}
+};
 
 // Update Info Card
 const updateInfoCard = (user) => {
@@ -94,7 +96,13 @@ const updateInfoCard = (user) => {
 // Update Welcome Message
 const updateWelcomeMessage = (userName) => {
   const welcomeMessage = document.querySelector(".welcome-user-msg");
-  welcomeMessage.textContent = `Welcome, ${userName}!`;
+  welcomeMessage.textContent = `Welcome, ${userName}`;
+
+  const iconElement = document.createElement("h2");
+  iconElement.classList.add("material-symbols-outlined");
+  iconElement.textContent = "person";
+
+  welcomeMessage.appendChild(iconElement);
 };
 
 // Update Target Date
@@ -230,6 +238,6 @@ const updateElementText = (className, content) => {
 const setErrorMessage = (errorMessage) => {
   const formErrorElement = document.querySelector("#formError");
   formErrorElement.textContent = errorMessage;
-}
+};
 
 export { updateDom, doHydrationUpdate, setErrorMessage };

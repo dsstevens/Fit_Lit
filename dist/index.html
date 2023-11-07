@@ -5,6 +5,12 @@
     <title>Fitlit</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap');
     </style>
@@ -31,7 +37,10 @@
       <div class="logged-in">
         <div class="sleep-section">
           <section>
-            <h2>Sleep</h2>
+            <h2>Sleep Data</h2>
+            <h2 class="material-symbols-outlined">
+              bedtime
+            </h2>
             <h2 class="sleep"></h2>
             <h3 class="sleep-daily-hrs"></h3>
             <h3 class="sleep-avg-daily-hrs"></h3>
@@ -56,7 +65,9 @@
             </section>
           </div>
           <div class="timer-section">
-            <h2>Stretch Timer</h2>
+            <h2 class="material-symbols-outlined" id="timer">
+              timer
+            </h2>
             <h5 id="timer-display">00:15</h5>
             <button id="stretch-timer">Start</button>
             <h5 id="reps-tally">Reps: <span id="reps-count">0</span></h5>
@@ -73,7 +84,8 @@
         <div class="hydration-section"> 
           <section>
             <h2>Hydration</h2>
-            <h2 class="hydration"></h2><h2 class="material-symbols-outlined">
+            <h2 class="hydration"></h2>
+            <h2 class="material-symbols-outlined">
               water_drop
             </h2>
             <h5 class="water-daily-avg"></h5>
@@ -83,7 +95,11 @@
         </div>
         <div class="input-field">
           <section>
-            <h2>Hydration Input</h2>
+            <h2>Hydration +</h2>
+            <h2 class="material-symbols-outlined">
+              opacity
+            </h2>
+            <br>
             <form>
               <label for="date">
                 date:
@@ -101,13 +117,15 @@
             <p id="formError"></p>
           </section>
         </div>
-
         <div class="img">
           <img src = "./images/banner.png"> </img>
         </div>
         <div class="step-goals">
           <section>
-            <h2>Step</h2>
+            <h2>Steps</h2>
+            <h2 class="material-symbols-outlined">
+              steps
+            </h2>
             <h5 class="user-step-goal"></h5>
             <h5 class="avg-step-goal"></h5>
             <h5 class="step-goal-comparison"></h5>
@@ -118,7 +136,7 @@
       <div class="logged-out hidden">
         <div class="user-login">
           <h1 class="user-login-title">User Login</h1>
-          <input type="text" id="userId-" placeholder="Enter User ID">
+          <input type="text" id="userId-field" placeholder="Enter User ID">
           <button id="login-button">Submit</button>
         </div>
       </div>
