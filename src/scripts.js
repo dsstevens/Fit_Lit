@@ -23,14 +23,16 @@ const submitHydrationData = (event) => {
   } else if (parseInt(hydrationOunces.value) < 0) {
     setErrorMessage("Please enter positive number")
   } else {
-  postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value)).then((response) => {
-    hydrationData.push(response)
-    doHydrationUpdate(hydrationData, randomUser)
-    hydrationDate.value = "";
-    hydrationOunces.value = "";
-    setErrorMessage("Successfully submitted!")
-  });
-}
+  postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value))
+    .then((response) => {
+      hydrationData.push(response)
+      doHydrationUpdate(hydrationData, randomUser)
+      hydrationDate.value = "";
+      hydrationOunces.value = "";
+      setErrorMessage("Successfully submitted!")
+    })
+    .catch(error => setErrorMessage(error.message))
+  }
 }
 
 // need a conditional, to do error handling for preventing submission of duplicate dates, and incomplete forms, shouldn't be able to put empty dates in 
