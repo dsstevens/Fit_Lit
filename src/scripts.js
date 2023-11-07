@@ -13,6 +13,10 @@ const hydrationFormSubmitButton = document.querySelector(
 );
 const hydrationDate = document.querySelector("#hydrationDate");
 const hydrationOunces = document.querySelector("#hydrationOunces");
+  
+hydrationFormSubmitButton.addEventListener("click", function (event) {
+  submitHydrationData(event);
+});
 
 const submitHydrationData = (event) => {
   event.preventDefault();
@@ -41,8 +45,6 @@ const submitHydrationData = (event) => {
   }
 };
 
-// need a conditional, to do error handling for preventi
-
 // // EVENT LISTENERS
 window.addEventListener("load", function () {
   let userId = null;
@@ -58,6 +60,8 @@ window.addEventListener("load", function () {
   });
 });
 
+
+// STRETCH TIMER
 document.addEventListener("DOMContentLoaded", () => {
   const timerDisplay = document.getElementById("timer-display");
   const startButton = document.getElementById("stretch-timer");
@@ -101,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+//LOGIN FUNCTIONALITY
 const loginButton = document.getElementById("login-button");
 
 loginButton.addEventListener("click", login);
@@ -143,6 +148,3 @@ const clearUserId = () => {
   });
 };
 
-hydrationFormSubmitButton.addEventListener("click", function (event) {
-  submitHydrationData(event);
-});
