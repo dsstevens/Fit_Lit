@@ -66,52 +66,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function toggleVisibility(className) {
-  const elements = document.getElementsByClassName(className);
+document.addEventListener("DOMContentLoaded", function () {
+  const loginButton = document.getElementById("toggleButton");
 
-  for (const element of elements) {
-    element.style.display =
-      element.style.display === "none" || element.style.display === ""
-        ? "block"
-        : "none";
-  }
-}
-
-const toggleButton = document.getElementById("toggleButton");
-
-toggleButton.addEventListener("click", function () {
-  const containerDiv = document.getElementById("container");
-  containerDiv.style.display = "none";
-  createUserLogin();
-  toggleButton.style.display = "none";
+  loginButton.addEventListener("click", function () {
+    toggleVisibility();
+  });
 });
 
-const createUserLogin = () => {
-  const userLoginDiv = document.createElement("div");
-  userLoginDiv.classList.add("user-login");
+function toggleVisibility() {
+  const elementsToToggle = ["login", "user-login"];
 
-  const userLoginTitle = document.createElement("h1");
-  userLoginTitle.classList.add("user-login-title");
-  userLoginTitle.textContent = "User Login";
+  elementsToToggle.forEach((className) => {
+    const elements = document.getElementsByClassName(className);
 
-  const userIdInput = document.createElement("input");
-  userIdInput.type = "text";
-  userIdInput.placeholder = "Enter User ID";
-
-  const submitButton = document.createElement("button");
-  submitButton.textContent = "Submit";
-
-  submitButton.addEventListener("click", () => {
-    const userId = userIdInput.value;
-    console.log("User ID:", userId);
+    for (const element of elements) {
+      element.style.display =
+        element.style.display === "none" || element.style.display === ""
+          ? "block"
+          : "none";
+    }
   });
-
-  userLoginDiv.appendChild(userLoginTitle);
-  userLoginDiv.appendChild(userIdInput);
-  userLoginDiv.appendChild(submitButton);
-
-  document.body.appendChild(userLoginDiv);
-};
+}
 
 const clearUserId = () => {
   localStorage.removeItem("userId");
