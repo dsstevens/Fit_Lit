@@ -8,16 +8,13 @@ const fetchAPIcall = (data) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch((error) => {
-      console.error("error", error);
     });
 };
 
 const postHydrationData = (userID, date, numOunces) => {
-  console.log(userID, date, numOunces)
   return fetch('http://localhost:3001/api/v1/hydration', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -48,13 +45,7 @@ const postHydrationData = (userID, date, numOunces) => {
     }
   })
 }
-        // .then(data => data)
-        // .catch(error => {
-        //   console.log("error", error);
-        //   displayError(error);
-        //   // import from domUpdates, define it to target the header
-        // });
-    
+   
 module.exports = {
   fetchAPIcall,
   postHydrationData
