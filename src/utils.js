@@ -19,6 +19,7 @@ const getRandomUser = (users) => {
 
 // Step Goal Data Functions
 const calculateAvgStepGoal = (users) => {
+  console.log(users)
   const totalStepGoal = users.reduce(
     (sum, { dailyStepGoal }) => sum + dailyStepGoal,
     0

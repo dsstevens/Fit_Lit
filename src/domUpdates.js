@@ -1,6 +1,6 @@
 //DOM FUNCTIONS ONLY! when writing a new function, add it to the export here and the import on scripts
 import {
-  getRandomUser,
+  // getRandomUser,
   getCurrentDate,
   calculateAvgStepGoal,
   getAvgDailySleep,
@@ -19,7 +19,7 @@ import {
 } from "./utils";
 
 // Update DOM
-const updateDom = (allData) => {
+const updateDom = (allData, randomUser) => {
   // Parse data
   const activityData = allData[0].activityData;
   const usersData = allData[1].users;
@@ -27,7 +27,7 @@ const updateDom = (allData) => {
   const hydrationData = allData[3].hydrationData;
 
   // Update Header
-  const randomUser = getRandomUser(usersData);
+  // const randomUser = getRandomUser(usersData);
   updateWelcomeMessage(randomUser.name);
   const currentDate = getCurrentDate();
   updateTargetDate(currentDate);
@@ -41,8 +41,23 @@ const updateDom = (allData) => {
 
   // Update Sleep Card
   updateSleepCard(sleepData, randomUser.id, currentDate);
-
+  
   // Update Hydration Card
+  doHydrationUpdate(hydrationData, randomUser)
+  // const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
+  // const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
+  // const dailyFluidIntake = getDayFluids(
+  //   hydrationData,
+  //   randomUser.id,
+  //   latestDate
+  // );
+  // const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
+  // updateHydrationCard(avgFluidIntake, dailyFluidIntake, weeklyHydration);
+
+  updateActivityCard(activityData, randomUser, currentDate);
+};
+
+const doHydrationUpdate = (hydrationData, randomUser) => {
   const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
   const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
   const dailyFluidIntake = getDayFluids(
@@ -53,8 +68,8 @@ const updateDom = (allData) => {
   const weeklyHydration = getWeeklyHydration(hydrationData, randomUser.id);
   updateHydrationCard(avgFluidIntake, dailyFluidIntake, weeklyHydration);
 
-  updateActivityCard(activityData, randomUser, currentDate);
-};
+  // updateActivityCard(activityData, randomUser, currentDate);
+}
 
 // Update Info Card
 const updateInfoCard = (user) => {
@@ -204,4 +219,9 @@ const updateElementText = (className, content) => {
   }
 };
 
-export { updateDom };
+const setErrorMessage = (errorMessage) => {
+  const formErrorElement = document.querySelector("#formError");
+  formErrorElement.textContent = errorMessage;
+}
+
+export { updateDom, doHydrationUpdate, setErrorMessage };
