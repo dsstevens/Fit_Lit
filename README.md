@@ -27,10 +27,19 @@ This is a mod 2 student project done in a one week sprint over the course of eig
 - [Bobby Steckline](https://github.com/rjsturing)
 
 ## Installation
-- Clone down this repo to your local computer [FitLit Link](https://github.com/dsstevens/Fit_Lit).
-- CD into the project directory.
-- In your terminal, run npm install and then npm start
-- Go to http://localhost:8080/ in your browser to view the site.
+- Click the green `code` button.
+- Copy the SSH link to your clipboard.
+- Open the terminal on your local machine.
+- Change into the directory that you wish to clone the app into with the cd command.
+- Install the npm dependency by typing `npm install` on the command line in terminal.
+- Start the webpack by typing `npm start` into the terminal.
+- Copy the link it provides that will look like this: [http:localhost:8080]() 
+- Paste that code into your web browser.
+- On a separate tab, navigate to [this page](https://github.com/turingschool-examples/fitlit-api) which has the server that will be necessary to run on your local machine. 
+- Follow the first steps of copying and cloning that SSH code into your terminal.
+- Run `npm install` and `npm start`.
+- You should see that the local server is now running and which provides the data to populate on the 8080 site.
+- Enjoy using an activity tracking application!
 
 ### Wins
 
