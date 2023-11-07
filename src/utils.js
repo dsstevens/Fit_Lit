@@ -19,7 +19,6 @@ const getRandomUser = (users) => {
 
 // Step Goal Data Functions
 const calculateAvgStepGoal = (users) => {
-  console.log(users);
   const totalStepGoal = users.reduce(
     (sum, { dailyStepGoal }) => sum + dailyStepGoal,
     0
@@ -225,9 +224,6 @@ const reachedStepGoalForDay = (user, activityData, date) => {
 };
 
 const getLatestSteps = (activityData, userId, date) => {
-  console.log(userId);
-  console.log(date);
-  console.log(activityData);
   const startDate = new Date("2023/03/24");
   const endDate = new Date("2023/07/01");
 
@@ -251,7 +247,7 @@ const getLatestSteps = (activityData, userId, date) => {
 
 // Date Functions
 function getCurrentDate() {
-  // return dayjs(new Date()).format("YYYY/MM/DD");
+ 
   return "2023/07/01";
 }
 

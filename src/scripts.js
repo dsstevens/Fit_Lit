@@ -1,5 +1,5 @@
 import "./css/styles.css";
-import "./images/turing-logo.png";
+import "./images/turingLogo.png";
 import "./images/banner.png";
 import { fetchAPIcall, postHydrationData } from "./apiCalls";
 import { updateDom, doHydrationUpdate, setErrorMessage } from "./domUpdates";

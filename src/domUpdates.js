@@ -215,7 +215,7 @@ const updateActivityCard = (activityData, randomUser, date) => {
   const milesWalked = calculateMilesWalked(randomUser, activityData, date);
   const stepGoalReached = reachedStepGoalForDay(randomUser, activityData, date);
   const latestSteps = getLatestSteps(activityData, randomUser.id, date);
-  console.log(randomUser);
+
 
   updateElementText("activity", "Activity Data");
   updateElementText("min-active-day", `Minutes Active: ${minutesActiveDay}`);
