@@ -21,7 +21,6 @@ import {
 
 // Update DOM
 const updateDom = (allData, randomUser, userId) => {
-  // Parse data
   const activityData = allData[0].activityData;
   const usersData = allData[1].users;
   const sleepData = allData[2].sleepData;
@@ -37,7 +36,6 @@ const updateDom = (allData, randomUser, userId) => {
   }
 
   // Update Header
-  // const randomUser = getRandomUser(usersData);
   updateWelcomeMessage(randomUser.name);
   const currentDate = getCurrentDate();
   updateTargetDate(currentDate);
@@ -54,6 +52,7 @@ const updateDom = (allData, randomUser, userId) => {
 
   // Update Hydration Card
   doHydrationUpdate(hydrationData, randomUser);
+  //WIP FOR LOGIN BUTTON:
   // const latestDate = getLatestDateForUser(hydrationData, randomUser.id);
   // const avgFluidIntake = getAvgTotalFluid(hydrationData, randomUser.id);
   // const dailyFluidIntake = getDayFluids(
