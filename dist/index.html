@@ -28,91 +28,60 @@
       />
     </div>
     <div id="container">
-    <div class="login">
-    <div class="sleep-section">
-      <section>
-        <h2>Sleep</h2>
-        <h2 class="sleep"></h2>
-        <h3 class="sleep-daily-hrs"></h3>
-        <h3 class="sleep-avg-daily-hrs"></h3>
-        <h3 class="sleep-daily-qlty"></h3>
-        <h3 class="sleep-avg-daily-qlty"></h3>
-        <h3 class="sleep-daily-hrs-current-week"></h3>
-        <h3 class="sleep-daily-qlty-current-week"></h3>
-        <h3 class="sleep-daily-avg-hrs"></h3>
-    <h3 class="sleep-daily-avg-qlty"></h3>
-      </section>
-    </div>
-  </div>
-  <div class ="login">
-    <div class="activity-section">
-      <div class="activity-data"> <!-- This is a new container for the activity data -->
-        <section>
-          <h2 class="activity"></h2><h2 class="material-symbols-outlined">
-            heart_plus
-          </h2>
-          <h3 class="min-active-day"></h3>
-          <h3 class="reached-step-goal"></h3>
-          <h3 class="miles-per-day"></h3>
-          <h3 class="latest-steps"></h3>
-        </section>
-      </div>
-      <div class="timer-section">
-        <h2>Stretch Timer</h2>
-        <h5 id="timer-display">00:15</h5>
-        <button id="stretch-timer">Start</button>
-        <h5 id="reps-tally">Reps: <span id="reps-count">0</span></h5>
-        <h5 id="sets-tally">Sets: <span id="sets-count">0</span></h5>
-        <h5 id="completion-message"></h5>
-      </div>
-  </div>
-    <div class="user-info-section">
-      <section class = "info-card">
-        <h2>User Info</h2>
-        <h2 class="user-static-info"></h2>
-      </section>
-    </div>
-    <div class ="login">
-    <div class="hydration-section">
-      <section>
-        <h2>Hydration</h2>
-        <h2 class="hydration"></h2><h2 class="material-symbols-outlined">
-          water_drop
-        </h2>
-        <h5 class="water-daily-avg"></h5>
-        <h5 class="water-daily-view"></h5>
-        <h5 class="water-weekly-view"></h5>
-      </section>
-    </div>
-  </div>
-    <div class ="login">
-    <div class="input-field">
-      <section>
-        <h2>Input</h2>
-        <form>
-          <label for="date">
-            date:
-          </label>
-          <input type="date" name="date" id="hydrationDate" required />
-          <br/>
-          <label for="number-of-ounces">
-            oz:
-          </label>
-          <!-- <input type="number" min="1" name="number-of-ounces" 
-          id="hydrationOunces" required /> -->
-          <input type="number" min="0" name="number-of-ounces" id="hydrationOunces" required placeholder="Add ounces here..."/>
-          <br/>
-          <input type="submit" value="Submit!" id="hydrationFormSubmitButton" />
-        </form> 
-        <p id="formError"></p>
-        <!-- <h5 class=""></h5>
-        <h5 class=""></h5>
-        <h5 class=""></h5> -->
-      </section>
-    </div>
-  </div>
-  <div class ="login">
-    <div class="step-goals">
+      <div class="logged-in">
+        <div class="sleep-section">
+          <section>
+            <h2>Sleep</h2>
+            <h2 class="sleep"></h2>
+            <h3 class="sleep-daily-hrs"></h3>
+            <h3 class="sleep-avg-daily-hrs"></h3>
+            <h3 class="sleep-daily-qlty"></h3>
+            <h3 class="sleep-avg-daily-qlty"></h3>
+            <h3 class="sleep-daily-hrs-current-week"></h3>
+            <h3 class="sleep-daily-qlty-current-week"></h3>
+            <h3 class="sleep-daily-avg-hrs"></h3>
+            <h3 class="sleep-daily-avg-qlty"></h3>
+          </section>
+        </div>
+        <div class="activity-section">
+          <div class="activity-data"> <!-- This is a new container for the activity data -->
+            <section>
+              <h2 class="activity"></h2><h2 class="material-symbols-outlined">
+                heart_plus
+              </h2>
+              <h3 class="min-active-day"></h3>
+              <h3 class="reached-step-goal"></h3>
+              <h3 class="miles-per-day"></h3>
+              <h3 class="latest-steps"></h3>
+            </section>
+          </div>
+          <div class="timer-section">
+            <h2>Stretch Timer</h2>
+            <h5 id="timer-display">00:15</h5>
+            <button id="stretch-timer">Start</button>
+            <h5 id="reps-tally">Reps: <span id="reps-count">0</span></h5>
+            <h5 id="sets-tally">Sets: <span id="sets-count">0</span></h5>
+            <h5 id="completion-message"></h5>
+          </div>
+        </div>
+        <div class="user-info-section">
+          <section class = "info-card">
+            <h2>User Info</h2>
+            <h2 class="user-static-info"></h2>
+          </section>
+        </div>
+        <div class="hydration-section"> 
+        
+          <section>
+            <h2>Hydration</h2>
+            <h2 class="hydration"></h2><h2 class="material-symbols-outlined">
+              water_drop
+            </h2>
+            <h5 class="water-daily-avg"></h5>
+            <h5 class="water-daily-view"></h5>
+            <h5 class="water-weekly-view"></h5>
+          </section>
+      <div class="step-goals">
       <section>
         <h2>Step</h2>
         <h5 class="user-step-goal"></h5>
@@ -120,22 +89,45 @@
         <h5 class="step-goal-comparison"></h5>
       </section>
     </div>
-  </div>
   <div class ="login">
     <div class="img">
       <img src = "./images/banner.png">
     </img>
     </div>
   </div>
-</div>
-<div class="login-div hidden">
-  <div class="user-login">
-    <h1 class="user-login-title">User Login</h1>
-    <input type="text" placeholder="Enter User ID">
-    <button>Submit</button>
-  </div>
-</div>
-    <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+        </div>
+        <div class="input-field">
+          <section>
+            <h2>Hydration Input</h2>
+            <form>
+              <label for="date">
+                date:
+              </label>
+              <input type="date" name="date" id="hydrationDate" required />
+              <br/>
+              <label for="number-of-ounces">
+                oz:
+              </label>
+              <input type="number" min="0" name="number-of-ounces" id="hydrationOunces" required placeholder="Add ounces here..."/>
+              <br/>
+              <br>
+              <button type="button" id="hydrationFormSubmitButton" class="hydration-form-submit-button">Submit!</button>
+            </form> 
+            <p id="formError"></p>
+          </section>
+        </div>
+      </div>
+      <div class="logged-out hidden">
+        <div class="user-login">
+          <h1 class="user-login-title">User Login</h1>
+          <input type="text" id="userId-" placeholder="Enter User ID">
+          <button id="login-button">Submit</button>
+        </div>
+      </div>
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html> 
+
+
+<div class ="logged-out">
