@@ -14,9 +14,7 @@ off black
 
 body,
 html {
-  body {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-  }
+  font-family: "M PLUS Rounded 1c", sans-serif;
   background-image: linear-gradient(
     to top,
     #3c53f8 0%,
@@ -26,8 +24,6 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 90%;
-  /* margin: 5px; */
-  /* margin-top: 10px; */
   padding: 11px;
 }
 
@@ -119,15 +115,38 @@ h1 {
   margin-right: 290px;
 }
 
+.user-login {
+  background-color: #fff;
+  flex-direction: column;
+  display: flex;
+  width: 240px;
+  height: 200px;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 140px;
+  margin-left: 550px;
+}
+
 .user-info-section {
   background-color: #f9f9f9;
   padding: 20px;
   width: 240px;
-  height: 200px;
+  height: 230px;
   border-radius: 20px;
   position: relative;
   float: right;
   margin-top: -404px;
+}
+
+header {
+  text-align: center;
+}
+
+button#toggleButton {
+  margin-top: 5px; /* Adjust the margin as needed */
 }
 
 .hydration-section {
@@ -135,11 +154,11 @@ h1 {
   background-color: #f9f9f9;
   padding: 20px;
   width: 240px;
-  height: 315px;
+  height: 284px;
   border-radius: 20px;
   position: relative;
   float: right;
-  margin-top: -155px;
+  margin-top: -125px;
 }
 
 .step-goals {
@@ -155,6 +174,9 @@ h1 {
 }
 
 .input-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #f9f9f9;
   padding: 20px;
   width: 225px;
@@ -168,7 +190,9 @@ h1 {
 
 h2 {
   color: #3c53f8;
-  margin: 10px;
+  margin: 0px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 h5 {
@@ -188,7 +212,8 @@ h5 {
   color: #49bea1;
 }
 
-#stretch-timer {
+button {
+  width: 200px;
   background-color: #3c53f8;
   color: #fff;
   border: none;
@@ -197,8 +222,8 @@ h5 {
   cursor: pointer;
 }
 
-#stretch-timer:hover {
-  background-color: #334cf7;
+button:hover {
+  background-color: #49bea1;
 }
 
 #reps-tally,
@@ -207,3 +232,24 @@ h5 {
   color: #333;
 }
 
+.hidden {
+  display: none;
+}
+
+form {
+  margin-top: 5px;
+}
+
+.material-symbols-outlined {
+  font-size: 35px;
+}
+
+#timer {
+  font-size: 150px;
+}
+
+label,
+input {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 500;
+}
