@@ -5,14 +5,20 @@ This is a user-friendly app inspired by fitness tracking apps like Fitbit or Str
 ## Learning Goals
 
 - Use object and array prototype methods to perform data manipulation.
-- API fetch calls to retrieve data.
+- API fetch and post calls to retrieve and add new data.
+- Incorporating accessibility best practices into our design.
+- Implement feedback from a usability test to improve product.
 - Write DRY, reusable code that follows SRP and trends toward function purity.
 - Implement a robust testing suite using TDD.
 - Understanding closure functions and introducing them appropriately.
 - Collaborate productively and professionally as a team. Ensure all team members are able to be heard and contribute throughout the project.
 
 ## Preview of App
+### Part One
 <img src="https://i.imgur.com/uN96sFM.png" width="1012" height="531" alt="Screenshot of Fit Lit App">
+
+### Part Two 
+![Screenshot of Part Two](src/images/fit_lit.gif)
 
 ## Context
 ### Tools
