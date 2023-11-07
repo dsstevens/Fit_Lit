@@ -1,6 +1,5 @@
 ## Abstract
 
-
 This is a user-friendly app inspired by fitness tracking apps like Fitbit or Strava as outlined in [this project spec](http://frontend.turing.io/projects/fitlit.html). Using remote data sets of users and their daily entries of information, we managed to integrate fitness and hydration logs into a dashboard to display for any user. The purpose of FitLit was to take user datasets and display it for individual users in an easy to understand visual representation. The dashboard allows a user to view and see their latest activity data, goals, and hydration intake.
 
 ## Learning Goals
@@ -19,7 +18,7 @@ This is a user-friendly app inspired by fitness tracking apps like Fitbit or Str
 ### Tools
 Javascript, HTML, CSS, NPM, Node.JS, GitHub, GitHub Projects, JSON, Webpack, Mocha, Chai, DayJS, WAVE
 # Timeline
-This is a mod 2 student project done in a one week sprint over the course of eight days by four people. 
+This is a mod 2 student project done in two parts in a two week sprint by four people. 
 # Collaborators
 - [Gavin Garcia](https://github.com/EGavinG)
 - [Deanna Stevens](https://github.com/dsstevens)
@@ -43,7 +42,10 @@ This is a mod 2 student project done in a one week sprint over the course of eig
 
 ### Wins
 
-- We learned how to implement fetch requests and moved away from local data files which involved creating a function that stored the data. 
+- Learning how to implement fetch requests and no longer using local data files which involved creating a function that stored the data. 
+- Posting new data for hydration.
+- Created and implemented a stopwatch timer with asynchronous Javascript.
+- Writing and implementing our first usability test, gathering information and using feedback.
 - Learning about Promises and promiseAll().
 - Learning about Webpack and how to utilize imports and exports.
 - Overcoming the challenges we faced using GitHib involved establishing new norms for more frequent communication and careful coordination of pushing and merging branches.
@@ -53,6 +55,8 @@ This is a mod 2 student project done in a one week sprint over the course of eig
 
 ### Challenges
 - TDD
+- Accurately POSTing new information with adequate error handling to guide the UX.
+- Developing a concept for a login which was a huge undertaking with refactoring our functionality.
 - Naming conventions and effectively tracking variables and functions across multiple files.
 - Understanding code written by others.
 - Utilizing iterator methods in our ES6 JS functions.
@@ -62,7 +66,7 @@ This is a mod 2 student project done in a one week sprint over the course of eig
 - Learning to coordinate collaboration using GitHub between four team members working simultaneously on multiple branches.
 
 ## Future features could include:
-- Building user interactivity allowing them to add new input and manipulate data.
-- Learn to post information through API calls.
+- Building user interactivity allowing them to not only add new input for one activity but also manipulate data.
+- Complete the login and develop a login view which persists for the user upon refresh.
 - Giving the user more information on login such as a motivational quote or a competitive incentive with other app users.
 
