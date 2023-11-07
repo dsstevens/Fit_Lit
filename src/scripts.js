@@ -66,28 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const loginButton = document.getElementById("toggleButton");
+function toggleVisibility(className) {
+  const elements = document.getElementsByClassName(className);
 
-  loginButton.addEventListener("click", function () {
-    toggleVisibility();
-  });
-});
-
-function toggleVisibility() {
-  const elementsToToggle = ["login", "user-login"];
-
-  elementsToToggle.forEach((className) => {
-    const elements = document.getElementsByClassName(className);
-
-    for (const element of elements) {
-      element.style.display =
-        element.style.display === "none" || element.style.display === ""
-          ? "block"
-          : "none";
+  for (const element of elements) {
+    if (className === "login") {
+      element.style.display = "none";
+    } else if (className === "login-div") {
+      element.style.display = "block";
     }
-  });
+  }
 }
+
+const toggleButton = document.getElementById("toggleButton");
+
+toggleButton.addEventListener("click", function () {
+  toggleVisibility("login");
+  toggleVisibility("login-div");
+});
 
 const clearUserId = () => {
   localStorage.removeItem("userId");
