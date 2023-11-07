@@ -1,10 +1,41 @@
 import "./css/styles.css";
 import "./images/turing-logo.png";
 import "./images/banner.png";
-import { fetchAPIcall } from "./apiCalls";
-import { updateDom } from "./domUpdates";
+import { fetchAPIcall, postHydrationData } from "./apiCalls";
+import { updateDom, doHydrationUpdate, setErrorMessage } from "./domUpdates";
+import { getRandomUser } from "./utils";
 
-let userId = 0;
+let randomUser
+let hydrationData
+
+const hydrationFormSubmitButton = document.querySelector("#hydrationFormSubmitButton");
+const hydrationDate = document.querySelector("#hydrationDate");
+const hydrationOunces = document.querySelector("#hydrationOunces");
+
+const submitHydrationData = (event) => {
+  event.preventDefault()
+  if (!hydrationDate.value.length && !hydrationOunces.value.length) {
+    setErrorMessage("Please complete both fields")
+  } else if (!hydrationDate.value.length) {
+    setErrorMessage("Please enter a date")
+  } else if (!hydrationOunces.value.length) {
+    setErrorMessage("Please enter ounces")
+  } else if (parseInt(hydrationOunces.value) < 0) {
+    setErrorMessage("Please enter positive number")
+  } else {
+  postHydrationData(randomUser.id, hydrationDate.value, parseInt(hydrationOunces.value))
+    .then((response) => {
+      hydrationData.push(response)
+      doHydrationUpdate(hydrationData, randomUser)
+      hydrationDate.value = "";
+      hydrationOunces.value = "";
+      setErrorMessage("Successfully submitted!")
+    })
+    .catch(error => setErrorMessage(error.message))
+  }
+}
+
+// need a conditional, to do error handling for preventi
 
 // // EVENT LISTENERS
 window.addEventListener("load", function () {
@@ -15,13 +46,12 @@ window.addEventListener("load", function () {
     fetchAPIcall("sleep"),
     fetchAPIcall("hydration"),
   ]).then((allData) => {
-    if (userId) {
-      updateDom(allData, userId);
-    } else {
-      updateDom(allData);
-    }
+    randomUser = getRandomUser(allData[1].users);
+      hydrationData = allData[3].hydrationData;
+      updateDom(allData, randomUser);
   });
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const timerDisplay = document.getElementById("timer-display");
@@ -96,3 +126,7 @@ const clearUserId = () => {
     updateDom(allData);
   });
 };
+
+hydrationFormSubmitButton.addEventListener("click", function(event) {
+  submitHydrationData(event)
+});
