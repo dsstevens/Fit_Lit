@@ -19,13 +19,20 @@ import {
 } from "./utils";
 
 // Update DOM
-const updateDom = (allData, userId) => {
+const updateDom = (allData, userId = null) => {
   console.log(userId);
   // Parse data
   const activityData = allData[0].activityData;
   const usersData = allData[1].users;
   const sleepData = allData[2].sleepData;
   const hydrationData = allData[3].hydrationData;
+
+  const user = userId ? usersData.find(user => user.id === parseInt(userId, 10)) : getRandomUser(usersData);
+
+  if (!user) {
+    console.error('User not found');
+    return; 
+  }
 
   // Update Header
   const randomUser = getRandomUser(usersData);

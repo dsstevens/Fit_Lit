@@ -8,13 +8,18 @@ let userId = 0;
 
 // // EVENT LISTENERS
 window.addEventListener("load", function () {
+  let userId = null;
   Promise.all([
     fetchAPIcall("activity"),
     fetchAPIcall("users"),
     fetchAPIcall("sleep"),
     fetchAPIcall("hydration"),
   ]).then((allData) => {
-    updateDom(allData, 0);
+    if (userId) {
+      updateDom(allData, userId);
+    } else {
+      updateDom(allData);
+    }
   });
 });
 
@@ -85,6 +90,10 @@ const createUserLogin = () => {
   const userLoginDiv = document.createElement("div");
   userLoginDiv.classList.add("user-login");
 
+  const userLoginTitle = document.createElement("h1");
+  userLoginTitle.classList.add("user-login-title");
+  userLoginTitle.textContent = "User Login";
+
   const userIdInput = document.createElement("input");
   userIdInput.type = "text";
   userIdInput.placeholder = "Enter User ID";
@@ -93,11 +102,25 @@ const createUserLogin = () => {
   submitButton.textContent = "Submit";
 
   submitButton.addEventListener("click", () => {
-    userId = userIdInput.value;
+    const userId = userIdInput.value;
+    console.log("User ID:", userId);
   });
 
+  userLoginDiv.appendChild(userLoginTitle);
   userLoginDiv.appendChild(userIdInput);
   userLoginDiv.appendChild(submitButton);
 
   document.body.appendChild(userLoginDiv);
+};
+
+const clearUserId = () => {
+  localStorage.removeItem("userId");
+  Promise.all([
+    fetchAPIcall("activity"),
+    fetchAPIcall("users"),
+    fetchAPIcall("sleep"),
+    fetchAPIcall("hydration"),
+  ]).then((allData) => {
+    updateDom(allData);
+  });
 };
